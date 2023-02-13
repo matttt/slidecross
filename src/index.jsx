@@ -5,10 +5,14 @@ import reportWebVitals from "./reportWebVitals";
 import Canvas from "./Canvas";
 import App from "./App";
 
+export const resolution = Math.min(window.innerWidth, window.innerHeight)
 const config = {
-  width: 1920,
-  height: 1080,
-  antialias: true,
+  width: resolution,
+  height: resolution,
+  // antialias: true,
+  backgroundColor: 0xFFFFFF,
+  resolution: 2,
+  autoDensity : true
 };
 
 ReactDOM.render(
