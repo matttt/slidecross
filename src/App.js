@@ -44,7 +44,7 @@ function init({ stage, screen, ticker }) {
 
     board.deselectAllConveyors()
 
-    if (cell.sequentialClicks > 2) {
+    if (cell.sequentialClicks > 2 && targetVertSelected) { // lazy hack. need to properly handle click counts
       cell.sequentialClicks = 0
       return
     };
@@ -52,13 +52,13 @@ function init({ stage, screen, ticker }) {
     if (targetHorSelected || targetVertSelected) {
       if (targetHorSelected) {
         targetCell.horConveyor.selected = false;
-        targetCell.horConveyor.draw();
+        // targetCell.horConveyor.draw();
 
         targetCell.vertConveyor.selected = true;
-        targetCell.vertConveyor.draw();
+        // targetCell.vertConveyor.draw();
       } else if (targetVertSelected) {
         targetCell.vertConveyor.selected = false;
-        targetCell.vertConveyor.draw();
+        // targetCell.vertConveyor.draw();
 
         targetCell.horConveyor.selected = true;
         targetCell.horConveyor.draw();
@@ -68,6 +68,7 @@ function init({ stage, screen, ticker }) {
       targetCell.horConveyor.draw();
     }
 
+    board.propogateSelected()
 
   }
 

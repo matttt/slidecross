@@ -166,13 +166,13 @@
 // LED#ASLAN
 // `
 
-export const testBoardStr = `
-APP##
-SOLOS
-ALERT
-PEACE
-##DAM
-`
+// export const testBoardStr = `
+// APP##
+// SOLOS
+// ALERT
+// PEACE
+// ##DAM
+// `
 
 // export const testBoardStr = `
 // ACCRA#PAC
@@ -255,13 +255,13 @@ PEACE
 // ##YOU
 // `
 
-// export const testBoardStr = `
-// COBS#
-// APOP#
-// MAGIC
-// PLUTO
-// ##SEW
-// `
+export const testBoardStr = `
+COBS#
+APOP#
+MAGIC
+PLUTO
+##SEW
+`
 
 
 // export const testBoardStr = `

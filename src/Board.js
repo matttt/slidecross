@@ -27,7 +27,7 @@ export class Board {
       fontFamily: 'Helvetica',
     });
 
-    BitmapFont.from('AnswerFont', textStyle, { chars: BitmapFont.ALPHA, resolution: 2 });
+    BitmapFont.from('AnswerFont', textStyle, { chars: BitmapFont.ALPHA, resolution: 4 });
 
     this.container = new Container();
 
@@ -137,6 +137,24 @@ export class Board {
       conveyor.selected = false;
       conveyor.draw();
     }
+  }
+
+  deselectAllCells() {
+    for (const cell of this.cells) {
+      cell.selected = false;
+      // cell.draw();
+    }
+  }
+
+  propogateSelected() {
+    this.deselectAllCells()
+
+    for (const conveyor of [...this.horConveyors, ...this.vertConveyors]) {
+      conveyor.propogateSelected();
+
+      conveyor.draw(true);
+    }
+
   }
 
 }

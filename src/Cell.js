@@ -13,8 +13,14 @@ export class Cell {
     this.text = new BitmapText(this.letter ? this.letter : '', { fontName: 'AnswerFont' });
     this.text.anchor.set(0.5, 0.5);
     this.text.x = this.w / 2;
-    this.text.y = this.w / 2 - 5;
+    this.text.y = this.w / 2 - 3;
     this.correct = false;
+    this.selected = false;
+
+    this.previousState = {
+      correct: null,
+      selected: null
+    }
 
     this.sequentialClicks = 0;
 
@@ -50,6 +56,12 @@ export class Cell {
   }
 
   draw() {
+    if (this.previousState) {
+      if (this.previousState.correct === this.correct && this.previousState.selected === this.selected) {
+        return;
+      }
+    }
+
     this.gfx.lineStyle(2, 0, 1);
     if (this.letter) {
       if (this.selected) {
@@ -64,5 +76,11 @@ export class Cell {
     // this.gfx.beginFill(this.letter ? 0xFFFFFF : 0x000000);
     this.gfx.drawRect(0, 0, this.w, this.w);
     this.gfx.endFill();
+
+    this.previousState = {
+      correct: this.correct,
+      selected: this.selected
+    }
   }
+
 }

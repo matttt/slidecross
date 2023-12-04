@@ -125,10 +125,10 @@ export class Conveyor {
     this.cell2.updateText();
   }
 
-  draw() {
+  draw(force = false) {
 
     // dont redraw if nothing has changed
-    if (this.previousState) {
+    if (this.previousState && !force) {
       if (this.previousState.correct === this.correct && this.previousState.selected === this.selected) {
         const previousLetters = this.previousState.letters.join('');
         const currLetters = this.cells.map(c => c.letter).join('')
@@ -137,7 +137,6 @@ export class Conveyor {
         }
       }
     }
-
 
     for (const cell of this.cells) {
       cell.correct = this.correct;
@@ -150,6 +149,16 @@ export class Conveyor {
       selected: this.selected,
       letters: this.cells.map(c => c.letter)
     };
+  }
+
+  propogateSelected() {
+    for (const cell of this.cells) {
+      if (this.selected) {
+        cell.selected = true;
+      }
+    }
+
+    this.draw();
   }
 
   checkCorrectness() {

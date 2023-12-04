@@ -9,9 +9,9 @@ export const resolution = Math.min(window.innerWidth, window.innerHeight)
 const config = {
   width: resolution,
   height: resolution,
-  // antialias: true,
+  antialias: true,
   backgroundColor: 0xFFFFFF,
-  resolution: 2,
+  resolution: 4,
   autoDensity : true
 };
 
