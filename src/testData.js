@@ -166,25 +166,25 @@
 // LED#ASLAN
 // `
 
-// export const testBoardStr = `
-// APP##
-// SOLOS
-// ALERT
-// PEACE
-// ##DAM
-// `
-
 export const testBoardStr = `
-ACCRA#PAC
-PUREX#ADO
-TRYME#RIP
-###ALTKEY
-#III#EAU#
-ANGLEE###
-VAL#ATSEA
-ONO#SEUSS
-NEO#TREES
+APP##
+SOLOS
+ALERT
+PEACE
+##DAM
 `
+
+// export const testBoardStr = `
+// ACCRA#PAC
+// PUREX#ADO
+// TRYME#RIP
+// ###ALTKEY
+// #III#EAU#
+// ANGLEE###
+// VAL#ATSEA
+// ONO#SEUSS
+// NEO#TREES
+// `
 // export const testBoardStr = `
 // NACHO#LOG
 // ALBOM#APE
