@@ -10,7 +10,7 @@ export class Conveyor {
     this.pill = new Pill(cells, direction);
     this.board = board;
     this.dir = direction;
-    this.isCorrect = false;
+    this.correct = false;
     this.selected = false;
 
     this.textStyle = textStyle;
@@ -37,7 +37,7 @@ export class Conveyor {
 
     this.board.isAnimating = true;
 
-    for (const cell of [...hiddenCellsToAnimate, ...this.cells]) {
+    for (const cell of hiddenCellsToAnimate) {
       new TWEEN.Tween(cell.offsetContainer.position)
         .to(tweenTarget, ANIMATION_TIME)
         .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
@@ -47,6 +47,61 @@ export class Conveyor {
           cell.offsetContainer.position.x = 0;
           cell.offsetContainer.position.y = 0;
         });
+
+        const destinationCell = reverse ? this.cells[0] : this.cells.at(-1);
+        if (destinationCell.selected && !cell.selected) {
+          new TWEEN.Tween(cell.selectedGfx)
+            .to({ alpha: 1 }, ANIMATION_TIME)
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
+            .start()
+            .onComplete(()=> {
+              cell.selectedGfx.alpha = 0;
+            })
+        } else if (!destinationCell.selected && cell.selected) {
+          new TWEEN.Tween(cell.selectedGfx)
+            .to({ alpha: 0 }, ANIMATION_TIME)
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
+            .start()
+            .onComplete(()=> {
+              cell.selectedGfx.alpha = 1;
+            })
+        }
+    }
+
+    for (let i = 0; i < this.cells.length; i++) {
+      const cell = this.cells[i];
+
+      new TWEEN.Tween(cell.offsetContainer.position)
+        .to(tweenTarget, ANIMATION_TIME)
+        .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
+        .start()
+        .onComplete(() => {
+          onComplete();
+          cell.offsetContainer.position.x = 0;
+          cell.offsetContainer.position.y = 0;
+        });
+
+
+      const destinationCell = this.cells[(i + (reverse ? 1 : -1) + this.cells.length) % this.cells.length];
+
+      if (destinationCell.selected && !cell.selected) {
+        new TWEEN.Tween(cell.selectedGfx)
+          .to({ alpha: 1 }, ANIMATION_TIME)
+          .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
+          .start()
+          .onComplete(()=> {
+            cell.selectedGfx.alpha = 0;
+          })
+      } else if (!destinationCell.selected && cell.selected) {
+        new TWEEN.Tween(cell.selectedGfx)
+          .to({ alpha: 0 }, ANIMATION_TIME)
+          .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
+          .start()
+          .onComplete(()=> {
+            cell.selectedGfx.alpha = 1;
+          })
+      }
+
     }
 
     // hacky way to get single oncomplete
@@ -64,6 +119,7 @@ export class Conveyor {
       this.board.isAnimating = false;
 
       this.board.checkConveyorCorrectness();
+      this.board.propogateSelected()
 
       // for (const conveyor of [...this.board.horConveyors, ...this.board.vertConveyors]) {
       //   conveyor.updateHiddenCellLetters()
@@ -121,18 +177,27 @@ export class Conveyor {
     this.cell1.letter = letter1;
     this.cell2.letter = letter2;
 
+    this.cell1.selected = this.selected;
+    this.cell2.selected = this.selected;
+
     this.cell1.updateText();
     this.cell2.updateText();
+
+    this.cell1.draw();
+    this.cell2.draw();
   }
 
   draw(force = false) {
 
     // dont redraw if nothing has changed
     if (this.previousState && !force) {
+
       if (this.previousState.correct === this.correct && this.previousState.selected === this.selected) {
-        const previousLetters = this.previousState.letters.join('');
-        const currLetters = this.cells.map(c => c.letter).join('')
-        if (previousLetters === currLetters) {
+        return;
+      }
+
+      for (let i = 0; i < this.cells.length; i++) {
+        if (this.previousState.cells[i] !== this.cells[i]) {
           return;
         }
       }
@@ -147,16 +212,16 @@ export class Conveyor {
     this.previousState = {
       correct: this.correct,
       selected: this.selected,
-      letters: this.cells.map(c => c.letter)
+      cells: [...this.cells]
     };
   }
 
   propogateSelected() {
+    // if (this.selected === true) {
     for (const cell of this.cells) {
-      if (this.selected) {
-        cell.selected = true;
-      }
+      cell.selected = this.selected;
     }
+    // }
 
     this.draw();
   }

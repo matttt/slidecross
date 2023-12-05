@@ -247,21 +247,21 @@
 // SALSA#RAN
 // `
 
-// export const testBoardStr = `
-// BMW##
-// EIEIO
-// ARENA
-// DEPTH
-// ##YOU
-// `
-
 export const testBoardStr = `
-COBS#
-APOP#
-MAGIC
-PLUTO
-##SEW
+BMW##
+EIEIO
+ARENA
+DEPTH
+##YOU
 `
+
+// export const testBoardStr = `
+// COBS#
+// APOP#
+// MAGIC
+// PLUTO
+// ##SEW
+// `
 
 
 // export const testBoardStr = `

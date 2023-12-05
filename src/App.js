@@ -9,7 +9,8 @@ export const HORIZONTAL = 2
 const DRAG_START_ZONE = 5
 
 export const ANIMATION_TIME = 200
-function init({ stage, screen, ticker }) {
+function init({ stage, screen, ticker, view }) {
+
 
   const root = new Container();
   stage.addChild(root);
@@ -31,6 +32,7 @@ function init({ stage, screen, ticker }) {
   }
 
   function onClick(e, cell) {
+
     if (targetCell !== cell) return;
 
     if (!targetCell.letter) return;
@@ -61,11 +63,11 @@ function init({ stage, screen, ticker }) {
         // targetCell.vertConveyor.draw();
 
         targetCell.horConveyor.selected = true;
-        targetCell.horConveyor.draw();
+        // targetCell.horConveyor.draw();
       }
     } else {
       targetCell.horConveyor.selected = true;
-      targetCell.horConveyor.draw();
+      // targetCell.horConveyor.draw();
     }
 
     board.propogateSelected()

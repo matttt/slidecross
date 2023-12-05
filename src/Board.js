@@ -35,7 +35,7 @@ export class Board {
     this.whiteContainer = new Container();
     this.blackContainer = new Container();
 
-    this.container.addChild(this.whiteContainer, this.blackContainer, this.overlayContainer);
+    this.container.addChild(this.whiteContainer, this.overlayContainer,  this.blackContainer);
 
     // cells are stored in a 1 dimensional array. 
     // their locations are derived from their i, j member vars
@@ -123,7 +123,7 @@ export class Board {
 
     allConveyors.sort((x, y) => {
       // false values first
-      return (x.isCorrect === y.isCorrect) ? 0 : x.isCorrect ? 1 : -1;
+      return (x.correct === y.correct) ? 0 : x.correct ? 1 : -1;
     });
 
 
@@ -149,10 +149,13 @@ export class Board {
   propogateSelected() {
     this.deselectAllCells()
 
-    for (const conveyor of [...this.horConveyors, ...this.vertConveyors]) {
-      conveyor.propogateSelected();
+    const conveyors = [...this.horConveyors, ...this.vertConveyors]
 
-      conveyor.draw(true);
+    // sort conveyors so that selected ones are drawn last
+    conveyors.sort((a,b) => a.selected === b.selected ? 0 : a.selected ? 1 : -1)
+
+    for (const conveyor of conveyors) {
+      conveyor.propogateSelected();
     }
 
   }
