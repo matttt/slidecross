@@ -16,7 +16,7 @@ ___] |___ | |__/ |___ |___ |  \ |__| ___] ___]
         [ ] nyt parser get clues as well
         [ ] create datastructure combining letters and clues
         [ ] integrate selection system 
-    [x?] fix performance regression (likely to do with cascading 'check correctness' calls)
+    [x] fix performance regression (likely to do with cascading 'check correctness' calls)
     [ ] board state in react state
     [ ] win state play jingle
 

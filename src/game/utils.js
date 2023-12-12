@@ -97,6 +97,11 @@ export function getVerticalConveyors(boardData) {
         }
     }
 
+    //hacky bullshit inbound
+    // sort conveyors so that they are ordered like down clues in the NYT
+    conveyors.sort((a,b) => a[0].j - b[0].j || a[0].i - b[0].i)
+    
+
     return conveyors
 }
 
@@ -107,7 +112,7 @@ export function arrayRotate(arr, reverse) {
 }
 
 export function rotateCells(cells, reverse) {
-    // just need to rotate the indices of the cells
+    // just need to rotate the letters of the cells
     const letters = cells.map(c => c.letter)
 
     arrayRotate(letters, reverse)
@@ -167,5 +172,12 @@ export function scrambleBoard(boardData) {
     }
 
     return newBoard
+}
+
+export function boardStateToStr(state) {
+    const strArray = state.map(row=>row.map(l=>l===null?'#':l).join(''))
+    const str = strArray.join('\n')
+
+    return str
 }
 

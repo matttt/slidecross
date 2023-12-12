@@ -4,16 +4,23 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.20",
     "@pixi/math-extras": "7.0.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@tweenjs/tween.js": "^18.6.4",
-    "pixi.js": "^5.3.12",
+    "node-fetch": "^3.3.2",
+    "pixi.js": "^6.5.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^1.1.2"
+    "use-sound": "^4.0.1",
+    "web-vitals": "^1.1.2",
+    "yargs": "^17.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.6"
   }
 }

@@ -8,10 +8,11 @@ export class Pill {
     this.dir = dir;
     this.gfx = new Graphics();
 
-    this.gfx.alpha = 0;
-
+    
     this.container = new Container();
     this.container.addChild(this.gfx);
+    this.container.alpha = 0;
+    // this.gfx.blendMode = BLEND_MODES.DARKEN //
 
     this.draw();
 
@@ -20,11 +21,11 @@ export class Pill {
   }
 
   animate() {
-    const tweenTarget = { alpha: this.correct ? 0.25 : 0 };
+    const tweenTarget = { alpha: this.correct ? 1 : 0 };
 
-    new TWEEN.Tween(this.gfx)
+    new TWEEN.Tween(this.container)
       .to(tweenTarget, ANIMATION_TIME)
-      .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
+      .easing(TWEEN.Easing.Quadratic.Out) 
       .start();
     // .onComplete(() => {
     //   onComplete();
@@ -47,8 +48,8 @@ export class Pill {
     const x2 = cell2.i * w + w / 2;
     const y2 = cell2.j * w + w / 2;
 
-    this.gfx.lineStyle(2, 0, 1);
-    this.gfx.beginFill(5087591);
+    // this.gfx.lineStyle(2, 0, 1);
+    this.gfx.beginFill(0x8bd69e);
 
     const barWidth = cell1.w / 3 * 2;
     const endCapLength = cell1.w / 3;
@@ -65,6 +66,9 @@ export class Pill {
 
 
     this.gfx.endFill();
+
+    this.gfx.cacheAsBitmapResolution = 2;
+    this.gfx.cacheAsBitmap = true;
   }
 
 
