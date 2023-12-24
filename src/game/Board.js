@@ -1,5 +1,6 @@
-import { Container, TextStyle, BitmapFont, Graphics, Text } from "pixi.js";
-import { parseBoardString, scrambleBoard, boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.js';
+import { Container, TextStyle, BitmapFont, Graphics } from "pixi.js";
+
+import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.jsx';
 import { resolution } from '../index.jsx';
 import { Conveyor } from "./Conveyor";
 import { Cell } from "./Cell.js";
@@ -7,17 +8,20 @@ import { HORIZONTAL, VERTICAL } from "./App.js";
 
 
 export class Board {
-  constructor(boardState, correctBoardState, clues, sounds, setBoardState) {
+  constructor(boardState, correctBoardState, clues, sounds, id, setClue) {
     
+    this.id = id
     this.correctData = correctBoardState;
     this.data = boardState;
     this.clues = clues;
     this.sounds = sounds;
-    this.setBoardState = setBoardState;
+    this.setClue = setClue;
+
+    this.undoStack = [];
 
     // this.data = parseBoardString(boardStr)
     this.n = this.data.length;
-    this.w = (resolution * 0.9) / this.n;
+    this.w = (resolution - 64) / this.n;
     this.isAnimating = false;
     this.startPos = null;
     this.mousePos = null;
@@ -33,79 +37,26 @@ export class Board {
       fontSize: this.w / 3,
       fontWeight: '400',
       fill: '#000000',
-      fontFamily: 'Helvetica',
+      fontName: 'Arial',
     });
     // Create black rectangles on the left and right sides
-    BitmapFont.from('AnswerFont', textStyle, { chars: BitmapFont.ALPHA, resolution: 4 });
+    BitmapFont.from('AnswerFont', textStyle, { chars: BitmapFont.ALPHA, resolution: 3 });
 
-    const width = resolution * 0.05;
+    const width = 32;
     const height = resolution;
     const baffles = new Graphics();
     baffles.beginFill(0x000000);
     baffles.drawRect(0, 0, width, height);
     baffles.drawRect(height - width, 0, width, height);
-    baffles.drawRect(0, height * .9, height, resolution * .1);
+    baffles.drawRect(0, height - (width*2), height, (width*2));
     baffles.endFill();
 
     baffles.cacheAsBitmap = true;
 
-    const arrowShape = [10, 5, 0, 10, 0, 0].map(n => (n - 5) * 2);
-
-    const leftButton = new Graphics();
-    leftButton.lineStyle(2, 0xFFFFFF);
-    // draw a left facing arrow 10 px tall
-    leftButton.drawPolygon(arrowShape);
-
-    leftButton.position.y = resolution - resolution * 0.05;
-    leftButton.position.x = resolution * .075;
-    // rotate the arrow 180 degrees
-    leftButton.rotation = Math.PI;
-    leftButton.cacheAsBitmap = true;
-    leftButton.interactive = true;
-    leftButton.buttonMode = true
-    
-
-    const rightButton = new Graphics();
-    rightButton.lineStyle(2, 0xFFFFFF);
-    // draw a left facing arrow 10 px tall
-    rightButton.drawPolygon(arrowShape);
-
-    rightButton.position.y = resolution - resolution * 0.05;
-    rightButton.position.x = resolution * .925;
-    rightButton.cacheAsBitmap = true;
-    rightButton.interactive = true;
-    rightButton.buttonMode = true
-
-
-    rightButton.on('pointerdown', () => {
-      this.selectNextConveyor(false);
-    });
-
-    leftButton.on('pointerdown', () => {
-      this.selectNextConveyor(true);
-    });
-
-    this.text = new Text('', {
-      fontFamily: 'Helvetica',
-      fill: 0xffffff,
-      align: 'center'
-    });
-    this.text.position.x = resolution / 2;
-    this.text.position.y = resolution * 0.95;
-    this.text.anchor.set(0.5, 0.5);
-
-    this.container.addChild(baffles, this.text, leftButton, rightButton);
-
-    // const rightRect = new Graphics();
-    // rightRect.beginFill(0x000000);
-    // rightRect.drawRect(resolution - resolution * 0.05, 0, resolution * 0.05, resolution);
-    // rightRect.endFill();
-    // this.container.addChild(rightRect);
+    this.container.addChild(baffles);
   }
 
   createCells(onDragStart, onClick) {
-
-
     this.textContainer = new Container();
     this.overlayContainer = new Container();
     this.whiteContainer = new Container();
@@ -216,19 +167,16 @@ export class Board {
     // });
 
 
-    for (const conveyor of allConveyors) {
-      conveyor.draw();
-    }
-
     if (isCorrect) {
       this.deselectAllConveyors();
-      this.text.text = 'Solved!';
-      this.text.dirty = true;
+      this.setClue('Solved!')
       this.sounds.playJingle()
+      this.isCorrect = true;
+    } else {
+      this.isCorrect = false;
     }
 
-    this.setBoardState(boardStateToStr(this.getSimpleData()))
-    console.log(boardStateToStr(this.getSimpleData()))
+    localStorage.setItem(this.id, boardStateToStr(this.getSimpleData()))
 
   }
 
@@ -237,7 +185,7 @@ export class Board {
       conveyor.selected = false;
       conveyor.draw();
     }
-    this.text.text = ''
+    this.setClue('')
 
   }
 
@@ -273,43 +221,68 @@ export class Board {
       selectedConveyor.draw();
     }
 
-    const delta = reverse ? -1 : 1
-    const nextConveyor = conveyors[((selectedConveyorIdx + delta) + conveyors.length) % conveyors.length]
 
-    if (nextConveyor) {
-      nextConveyor.selected = true;
-      nextConveyor.draw();
+    // loop through idxs recursively until we find a conveyor that is not correct (unless all are correct)
+    const recur = (idx) => {
+      const delta = reverse ? -1 : 1
+      const nextIdx = ((idx + delta) + conveyors.length) % conveyors.length
+      const nextConveyor = conveyors[nextIdx]
+  
+      if (nextConveyor && (!nextConveyor.correct || this.isCorrect)) {
+        nextConveyor.selected = true;
+        nextConveyor.draw();
+        this.showClue()
+      } else if (nextIdx !== selectedConveyorIdx) {
+        recur(nextIdx)
+      }
+  
     }
 
-    this.showClue()
+    recur(selectedConveyorIdx)
+    
   }
 
   showClue() {
-    // font sizes at different break points of clue length
-    const fontSizes = {
-      12: 24,
-      24: 22,
-      36: 20,
-      48: 18
-    }
+    // // font sizes at different break points of clue length
+    // const fontSizes = {
+    //   12: 24,
+    //   24: 22,
+    //   36: 20,
+    //   48: 18
+    // }
 
-    let fontSize = 14;
+    // let fontSize = 14;
 
     const selected = [...this.horConveyors, ...this.vertConveyors].find(c => c.selected === true)
 
     if (selected) {
 
-      for (const size in fontSizes) {
-        if (selected.clue.length < size) {
-          fontSize = fontSizes[size]
-          break;
-        }
-      }
+      // for (const size in fontSizes) {
+      //   if (selected.clue.length < size) {
+      //     fontSize = fontSizes[size]
+      //     break;
+      //   }
+      // }
       
-      this.text.style.fontSize = fontSize;
 
-      this.text.text = selected.clue
-      this.text.dirty = true;
+      this.setClue(selected.clue)
+    }
+  }
+
+  onUndoableShift(conveyor, reverse=false) {
+
+    this.undoStack.push({
+      conveyor,
+      reverse
+    })
+    // this.checkConveyorCorrectness()
+  }
+
+  undo() {
+    const lastAction = this.undoStack.pop()
+
+    if (lastAction) {
+      lastAction.conveyor.shift(!lastAction.reverse, true)
     }
   }
 

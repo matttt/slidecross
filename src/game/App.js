@@ -1,7 +1,6 @@
 import { Container } from "pixi.js";
 import { Board } from "./Board.js";
-import { useState } from 'react';
-import { parseBoardString, scrambleBoard, boardStateToStr } from "./utils.js";
+import { parseBoardString, scrambleBoard } from "./utils.jsx";
 const TWEEN = require('@tweenjs/tween.js')
 
 export const VERTICAL = 1
@@ -10,7 +9,8 @@ export const HORIZONTAL = 2
 const DRAG_START_ZONE = 5
 
 export const ANIMATION_TIME = 200
-function app({ stage, screen, ticker, view }, puzzle, sounds, setBoardState) {
+function app({app, puzzle, sounds, boardStateStr,setClue}) {
+  const { stage, ticker } = app;
   stage.eventMode = 'passive';
 
   const root = new Container();
@@ -21,12 +21,12 @@ function app({ stage, screen, ticker, view }, puzzle, sounds, setBoardState) {
 
   const correctBoardState = parseBoardString(puzzle.boardDataStr);
 
-  const startingBoardState = scrambleBoard(correctBoardState);
-  // const startingBoardState = correctBoardState
-  // const startingBoardStr = boardStateToStr(startingBoardState);
+  let startingBoardState = scrambleBoard(correctBoardState);
+  if (boardStateStr) {
+    startingBoardState = parseBoardString(boardStateStr);
+  } 
 
-
-  const board = new Board(startingBoardState, correctBoardState, puzzle.clues, sounds, setBoardState)
+  const board = new Board(startingBoardState, correctBoardState, puzzle.clues, sounds, puzzle.id, setClue)
 
   let isClick = false;
 
@@ -146,14 +146,7 @@ function app({ stage, screen, ticker, view }, puzzle, sounds, setBoardState) {
         board.isAnimating = true
         targetCell.horConveyor.return()
         targetCell.vertConveyor.return()
-        for (const cell of targetCell.horConveyor.cells) {
-          const conveyor = cell.vertConveyor;
-          conveyor.return()
-        }
-        for (const cell of targetCell.vertConveyor.cells) {
-          const conveyor = cell.horConveyor;
-          conveyor.return()
-        }
+
       }
       root.off('pointermove', onDragMove);
       targetCell = null;
@@ -165,6 +158,18 @@ function app({ stage, screen, ticker, view }, puzzle, sounds, setBoardState) {
   ticker.add((delta) => {
     TWEEN.update()
   });
+
+  return {
+    onUndo() {
+      board.undo()
+    },
+    onNextClue() {
+      board.selectNextConveyor(false)
+    },
+    onPreviousClue() {
+      board.selectNextConveyor(true)
+    }
+  }
 }
 
 export default app

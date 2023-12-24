@@ -1,4 +1,4 @@
-import { rotateCells } from './utils.js';
+import { rotateCells } from './utils.jsx';
 import { HORIZONTAL, VERTICAL, ANIMATION_TIME } from "./App";
 import { Cell } from "./Cell.js";
 import { Pill } from './Pill.js';
@@ -16,7 +16,7 @@ export class Conveyor {
   }
 
 
-  shift(reverse) {
+  shift(reverse, isUndo = false) {
 
 
     const tweenTarget = {};
@@ -120,12 +120,18 @@ export class Conveyor {
       this.board.checkConveyorCorrectness();
       this.board.propogateSelected()
 
+
       this.board.showClue()
+      if (!isUndo) {
+        this.board.onUndoableShift(this, reverse)
+      }
     };
 
   }
 
   return() {
+    // REENABLE IF YOU REENABLE THE 1/3 PX DIFF CREEP
+    // IN APP.JS line 115 or so
     const tweenTarget = { x: 0, y: 0 };
 
     for (const cell of [this.cell1, this.cell2, ...this.cells]) {
@@ -191,39 +197,19 @@ export class Conveyor {
     // this.cell2.draw();
   }
 
-  draw(force = false) {
-
-    // dont redraw if nothing has changed
-    if (this.previousState && !force) {
-
-      if (this.previousState.correct === this.correct && this.previousState.selected === this.selected) {
-        return;
-      }
-
-      for (let i = 0; i < this.cells.length; i++) {
-        if (this.previousState.cells[i] !== this.cells[i]) {
-          return;
-        }
-      }
-    }
-
+  draw() {
     for (const cell of this.cells) {
-      cell.correct = this.correct;
       cell.selected = this.selected;
       cell.updateSelected();
     }
-
-    this.previousState = {
-      correct: this.correct,
-      selected: this.selected,
-      cells: [...this.cells]
-    };
   }
 
   propogateSelected() {
     // if (this.selected === true) {
     for (const cell of this.cells) {
-      cell.selected = this.selected;
+      if (this.selected === true) {
+        cell.selected = this.selected;
+      }
     }
 
     this.updateHiddenCellLetters()

@@ -1,3 +1,5 @@
+import React from "react"
+
 export function parseBoardString(str) {
     const rowStrs = str.replace(/ /g, '').split('\n')
 
@@ -19,6 +21,25 @@ export function parseBoardString(str) {
     return rows
 }
 
+export function createFakeCellGrid(grid) {
+    const fakeGrid = []
+
+    for (let j = 0; j < grid.length; j++) {
+        const row = []
+        for (let i = 0; i < grid.length; i++) {
+            const cell = {
+                letter: grid[j][i],
+                i,
+                j
+            }
+            row.push(cell)
+        }
+        fakeGrid.push(row)
+    }
+
+    return fakeGrid
+}
+
 // returns array of horizontal conveyor configs, including 
 // row idx
 // col start and end idx,
@@ -27,7 +48,7 @@ export function getHorizontalConveyors(boardData) {
     const n = boardData.length
     const conveyors = []
     for (let j = 0; j < n; j++) {
-        const row = boardData[j].map(c => c.letter)
+        const row = boardData[j].map(c=>c.letter)
         const rowCells = boardData[j]
         const handledIndicies = new Set()
         for (let i = 0; i < n; i++) {
@@ -101,7 +122,6 @@ export function getVerticalConveyors(boardData) {
     // sort conveyors so that they are ordered like down clues in the NYT
     conveyors.sort((a,b) => a[0].j - b[0].j || a[0].i - b[0].i)
     
-
     return conveyors
 }
 
@@ -179,5 +199,98 @@ export function boardStateToStr(state) {
     const str = strArray.join('\n')
 
     return str
+}
+
+export function generateBoardAsciiArt(puzzle, boardStateStr) {
+  if (!boardStateStr) {
+    let boardAsciiArt = '';
+
+    for (const char of puzzle.boardDataStr) {
+      if (char === '#') {
+        boardAsciiArt += '□';
+      } else if (char === '\n') {
+        boardAsciiArt += '\n';
+      } else {
+        boardAsciiArt += '■';
+      }
+    }
+
+    return boardAsciiArt;
+  }
+
+  const boardState = parseBoardString(boardStateStr);
+  const fakeCellGrid = createFakeCellGrid(boardState);
+  const horizontalConveyors = getHorizontalConveyors(fakeCellGrid);
+  const verticalConveyors = getVerticalConveyors(fakeCellGrid);
+
+  const answerGrid = parseBoardString(puzzle.boardDataStr);
+  const answerGridCells = createFakeCellGrid(answerGrid);
+  const answerHorizontalConveyors = getHorizontalConveyors(answerGridCells);
+  const answerVerticalConveyors = getVerticalConveyors(answerGridCells);
+
+  for (let i = 0; i < horizontalConveyors.length; i++) {
+    const conveyor = horizontalConveyors[i];
+    const answerConveyor = answerHorizontalConveyors[i];
+
+    let correct = true;
+    for (let j = 0; j < conveyor.length; j++) {
+      const cell = conveyor[j];
+      const answerCell = answerConveyor[j];
+
+      if (cell.letter !== answerCell.letter) {
+        correct = false;
+        break;
+      }
+    }
+
+    conveyor.correct = correct;
+  }
+
+  for (let i = 0; i < verticalConveyors.length; i++) {
+    const conveyor = verticalConveyors[i];
+    const answerConveyor = answerVerticalConveyors[i];
+
+    let correct = true;
+    for (let j = 0; j < conveyor.length; j++) {
+      const cell = conveyor[j];
+      const answerCell = answerConveyor[j];
+
+      if (cell.letter !== answerCell.letter) {
+        correct = false;
+        break;
+      }
+    }
+
+    conveyor.correct = correct;
+  }
+
+  for (const conveyor of [...horizontalConveyors, ...verticalConveyors]) {
+    if (conveyor.correct) {
+      for (const cell of conveyor) {
+        cell.correct = true;
+      }
+    }
+  }
+
+  let boardAsciiArt = [];
+
+  const collapsedGrid = fakeCellGrid.reduce((acc, row) => {
+    return acc.concat([...row, { letter: '\n' }]);
+  }, []);
+
+  for (const cell of collapsedGrid) {
+    const letter = cell.letter;
+    if (letter === null) {
+      boardAsciiArt.push('□');
+    } else if (letter === '\n') {
+      boardAsciiArt.push(<br />);
+    } else if (cell.correct) {
+      boardAsciiArt.push(<span style={{ color: '#8bd69e' }}>■</span>);
+    } else {
+      boardAsciiArt.push('■');
+    }
+  }
+
+  return boardAsciiArt;
 }
 

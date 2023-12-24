@@ -1,4 +1,6 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
+import { isMobile } from 'react-device-detect';
+
 
 export class Cell {
   constructor(letter, correctLetter, i, j, width, onDragStart, onClick, board) {
@@ -20,6 +22,11 @@ export class Cell {
     this.text.anchor.set(0.5, 0.5);
     this.text.x = this.w / 2;
     this.text.y = this.w / 2 - 3;
+
+    if (isMobile) {
+      this.text.y -= this.w/20;
+    }
+
     this.correct = false;
     this.selected = false;
 
@@ -92,10 +99,10 @@ export class Cell {
   draw() {
     this.gfx.lineStyle(2, 0, 1);
 
-    this.selectedGfx.beginFill(11720699);
+    this.selectedGfx.beginFill(0xB2D7FB);
     this.selectedGfx.drawRect(1, 1, this.w - 2, this.w - 2);
     this.selectedGfx.endFill();
-    this.selectedGfx.alpha = .5;
+    // this.selectedGfx.alpha = .5;
 
     if (this.letter) {
       // this.gfx.beginFill(16777215);
