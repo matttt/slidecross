@@ -26,7 +26,7 @@ export function createFakeCellGrid(grid) {
 
     for (let j = 0; j < grid.length; j++) {
         const row = []
-        for (let i = 0; i < grid.length; i++) {
+        for (let i = 0; i < grid[0].length; i++) {
             const cell = {
                 letter: grid[j][i],
                 i,
@@ -51,7 +51,7 @@ export function getHorizontalConveyors(boardData) {
         const row = boardData[j].map(c=>c.letter)
         const rowCells = boardData[j]
         const handledIndicies = new Set()
-        for (let i = 0; i < n; i++) {
+        for (let i = 0; i < rowCells.length; i++) {
             if (!row[i] || handledIndicies.has(i)) continue // if null or handled by another conveyor, dont care about it
 
             // for each cell, search in either direction for either a wall or null
@@ -83,7 +83,7 @@ export function getHorizontalConveyors(boardData) {
 export function getVerticalConveyors(boardData) {
     const n = boardData.length
     const conveyors = []
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < boardData[0].length; i++) {
         // build column into single array
         const columnCells = []
 
@@ -93,7 +93,7 @@ export function getVerticalConveyors(boardData) {
         const column = columnCells.map(c => c.letter)
 
         const handledIndicies = new Set()
-        for (let j = 0; j < n; j++) {
+        for (let j = 0; j < columnCells.length; j++) {
             if (!column[j] || handledIndicies.has(j)) continue // if null or handled by another conveyor, dont care about it
 
             // for each cell, search in either direction for either a wall or null

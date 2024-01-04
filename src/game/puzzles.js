@@ -1,710 +1,545 @@
 export const puzzles = {
     "minis": [
         {
-            "boardDataStr": "#ADA#\nLWORD\nEARTH\nIKKIL\n#ESE#\n",
+            "id": "M87BiBbuZNRt5UeIefnVP",
+            "boardDataStr": "#DOT#\nRISES\nANISE\nMOTTO\n#SOY#",
             "clues": {
-                "across": [
-                    "19th century mathematician Lovelace",
-                    "TV drama about lesbians in L.A.",
-                    "3rd planet from the sun",
-                    "Natural wonder in Mexico",
-                    "Language ender"
-                ],
-                "down": [
-                    "Not asleep",
-                    "Nerd types",
-                    "Comedian Lange",
-                    "Elvis wore one in \"Blue Hawaii\"",
-                    "Fed-Ex alternative"
-                ]
-            },
-            "id": "t3hta9VmK8CPc4cS9ddhe",
-            "author": "Alex Tuchi"
-        },
-        {
-            "boardDataStr": "#CIG#\nKOALA\nMEMES\nTUBAS\n#RSN#\n",
+              "across": [
+                "Org headed by Pete Buttigieg",
+                "Comes up",
+                "\"Celestial\" spice",
+                "Words to live by",
+                "___bean"
+              ],
+              "down": [
+                "Shape of some nuggets",
+                "Teddy in spanish",
+                "Annoyed by a pop quiz?",
+                "Horny animal",
+                "Google metric, briefly"
+              ]
+            }
+          },
+          {
+            "id": "RoqfBmDXiDD-VS3TItctX",
+            "boardDataStr": "#ACE#\nWILMA\nEBOOK\nBASTA\n#NEE#",
             "clues": {
-                "across": [
-                    "You might bum one",
-                    "Marsupials that only eat poison",
-                    "Online jokes for Gen Z",
-                    "Big brasses",
-                    "Where you might watch the MLB, NBA, or NHL"
-                ],
-                "down": [
-                    "Sacré ___",
-                    "Shakespeare wrote in them",
-                    "Gather or learn (information)",
-                    "British text slang for annoyance",
-                    "They can either kick or get kicked"
-                ]
-            },
-            "id": "8VOGsm_hC42vZISzZzTn0",
-            "author": "Alex Tuchi"
-        },
-        {
-            "boardDataStr": "#ADE#\nIRAQI\nSCRUB\nHOPIS\n#SAP#\n",
+              "across": [
+                "Earn the best grade",
+                "Fred Flintstone exclamation",
+                "Digital tome",
+                "Enough in Guadalajara",
+                "Maiden name reference"
+              ],
+              "down": [
+                "What a WGA contingency fought for in 2023",
+                "Shut",
+                "Fortnite dance, e.g.",
+                "Widows weave them",
+                "Alias abbreviation"
+              ]
+            }
+          },
+          {
+            "id": "VU_489tKlRuzdT2DwU4Kg",
+            "boardDataStr": "#PHD#\nPEERS\nENNUI\nINDIA\n#EOD#",
             "clues": {
-                "across": [
-                    "Suffix with lemon or lime",
-                    "Saddam Hussein nationality",
-                    "Wipe one's online presence",
-                    "Tribe members living in Arizona",
-                    "A romantic"
-                ],
-                "down": [
-                    "Places you might pass gas",
-                    "Org. with a yearly robotics competition",
-                    "Prepare or put on",
-                    "Kinda",
-                    "Acronym for an intestinal disorder"
-                ]
-            },
-            "id": "zMXVVmQ7wJ8yp9x_Htpvc",
-            "author": "Alex Tuchi"
-        },
-        {
-            "boardDataStr": "#DOT#\nRISES\nANISE\nMOTTO\n#SOY#\n",
+              "across": [
+                "Highest degree",
+                "Coevals",
+                "Boredom",
+                "Soul singer Arie",
+                "5pm, in corporate slang"
+              ],
+              "down": [
+                "Pasta shape",
+                "Bachelorette party in Sussex",
+                "Magic using race in DnD",
+                "___ Wei",
+                "Director of \"Music\" (2021)"
+              ]
+            }
+          },
+          {
+            "id": "-TBJQTBZBGdahLa2r5tl7",
+            "boardDataStr": "#ADO#\nQDOBA\nRIGGS\nSEEYA\n#USN#",
             "clues": {
-                "across": [
-                    "Org. headed by Pete Buttigieg",
-                    "Comes up",
-                    "\"Celestial\" spice",
-                    "Words to live by",
-                    "__bean"
-                ],
-                "down": [
-                    "Shape of some nuggets",
-                    "Teddy in Spanish",
-                    "Annoyed by a pop quick?",
-                    "Horny animal",
-                    "Google metric, briefly"
-                ]
-            },
-            "id": "mhvVraXOJ3AZhI6roq-s0",
-            "author": "Alex Tuchi"
-        },
-        {
-            "boardDataStr": "#CAN#\nOHYOU\nDIETS\nDRAMA\n#PRE#\n",
+              "across": [
+                "Big fuss",
+                "Mexican taco chain",
+                "Gibson in Lethal Weapon",
+                "\"Catch you on the flip!\"",
+                "US defense org."
+              ],
+              "down": [
+                "Goodbye in Nice",
+                "Multiple internet pups",
+                "Delivery docs",
+                "Sq. codes",
+                "Butterfield of Sex Education and Ender's Game"
+              ]
+            }
+          },
+          {
+            "id": "GF2ImbB-fR-1J1_8k4jrM",
+            "boardDataStr": "#DNA#\nLEONE\nSIENA\nDRYER\n#SEX#",
             "clues": {
-                "across": [
-                    "Garbage container, or something for the recycling",
-                    "\"What a silly goose!\"",
-                    "Weight-loss schemes",
-                    "Club for theater lovers",
-                    "Opposite of post-"
-                ],
-                "down": [
-                    "Reply to a tweet?",
-                    "Annually",
-                    "\"I would never!\"",
-                    "Not even",
-                    "Springsteen's \"Born in the ___\""
-                ]
-            },
-            "id": "ZoWWZW29BB1A01UQ4CpKQ"
-        },
-        {
-            "boardDataStr": "EGGS#\nROOM#\nROBOT\n#SAKE\n#EDEN\n",
+              "across": [
+                "The building blocks of life",
+                "Sierra ______",
+                "Home of the Palio horse race",
+                "Maytag makes it",
+                "The act of rutting"
+              ],
+              "down": [
+                "Monasteries in Amman ",
+                "Anophthalmia ",
+                "Addition to a building",
+                "Acid abbreviation",
+                "Ironic unit of grain for Van Gogh to consume"
+              ]
+            }
+          },
+          {
+            "id": "I28HGqfnvXjF8XinF_3ZG",
+            "boardDataStr": "#EPS#\nALIAS\nJENNY\nOCTAL\n#TOR#",
             "clues": {
-                "across": [
-                    "Classics on a brunch menu",
-                    "Hotel booking",
-                    "One might go \"Beep, boop, beep, boop\"",
-                    "Japanese rice wine",
-                    "Home to Adam and Eve"
-                ],
-                "down": [
-                    "Make a mistake",
-                    "Mother ___ of nursery rhymes",
-                    "Become rotten",
-                    "What you might smell like after sitting around a campfire",
-                    "Highest point value for a Scrabble tile"
-                ]
-            },
-            "id": "elZWFZTSZ0Pnr1UNtomtt"
-        },
-        {
-            "boardDataStr": "###TOGA\n#SCORES\nFIREANT\nREA#NIH\nENVOGUE\nSNAKES#\nHATS###\n",
+              "across": [
+                "Big cheeses in TV writers' rooms",
+                "Childish Gambino to Donald Glover",
+                "_____ from Thebes, 2023 Mountain Goats release",
+                "Adjective for a base-8 system",
+                "Browser for the dark web"
+              ],
+              "down": [
+                "Choose",
+                "Bean or Ford",
+                "To heal in Oaxaca",
+                "Small town east of Tucson",
+                "Nickname for Looney Tunes cat"
+              ]
+            }
+          },
+          {
+            "id": "VPuqeIyrSZ9wX8vRRSh2l",
+            "boardDataStr": "#ODA#\nGRETA\nABATE\nSINEW\n#TON#",
             "clues": {
-                "across": [
-                    "Wrap worn by ancient Romans",
-                    "Gets a layup or a touchdown",
-                    "Stinging insect found in the southern U.S.",
-                    "Mens ___ (legal concept)",
-                    "Federal medical research agcy.",
-                    "Fashionable, from the French",
-                    "Reptiles that look like their first and last letters?",
-                    "They can hide bad haircuts"
-                ],
-                "down": [
-                    "Part of the foot",
-                    "Fruit that looks like its first letter?",
-                    "Super-smart person",
-                    "\"___ saying goes ...\"",
-                    "Popular Toyota minivan",
-                    "Fancy necktie",
-                    "How a movie might be \"Certified\" on Rotten Tomatoes",
-                    "Gives a thumbs-up"
-                ]
-            },
-            "id": "I6eTyK-UijJy2SnWd-L9l"
-        },
-        {
-            "boardDataStr": "#MARS\nPILOT\nOMEGA\nMIXER\nSCAR#\n",
+              "across": [
+                "Creator of the manga \"One Piece\"",
+                "Gerwig of Barbie & Little Women",
+                "Lessen in intensity",
+                "Stringy bit in muscles",
+                "2000 pounds"
+              ],
+              "down": [
+                "Gum or path",
+                "Nickname for Martin of the Rat Pack",
+                "When you might have a mid-morning snack",
+                "Helium's a noble one",
+                "TV pro wrestling network"
+              ]
+            }
+          },
+          {
+            "id": "CVVN0ZOLhFfPW6brP7089",
+            "boardDataStr": "#SJW#\nUTERO\nMINIS\nOMITS\n#SSE#",
             "clues": {
-                "across": [
-                    "Brand that makes Milky Way candy bars, apt given its space-related name",
-                    "Season 1, Episode 1",
-                    "Last letter of the Greek alphabet",
-                    "Baking appliance that comes with whisks",
-                    "Lasting mark from an injury"
-                ],
-                "down": [
-                    "Impersonate",
-                    "Wake word for an Amazon device",
-                    "Movie critic Ebert",
-                    "Bit of the Milky Way",
-                    "Cheerleading accessories"
-                ]
-            },
-            "id": "GSUntLoAaE0y41FF0VFBg"
-        },
-        {
-            "boardDataStr": "#SUS#\nRANCH\nEMBER\nMOONS\n#AXE#\n",
+              "across": [
+                "Woke online, briefly",
+                "In _____",
+                "Puzzles slightly worse than ours",
+                "Neglects to include",
+                "Opp. of north northwest"
+              ],
+              "down": [
+                "Repetitive somatic motions",
+                "Ice cream chain in Los Angeles",
+                "Pen",
+                "Abbreviation for the group who released \"V\" this year",
+                "Org. in \"Spy Kids\""
+              ]
+            }
+          },
+          {
+            "id": "Mv6nI_WUIzKHlCCtmFZYt",
+            "boardDataStr": "#SRP#\nSPOOL\nIATSE\nPROSE\n#ERE#",
             "clues": {
-                "across": [
-                    "Shady, in modern lingo",
-                    "In 1992, this overtook Italian as the most popular salad dressing in the U.S.",
-                    "End of a fire ... and also the end of two cold months?",
-                    "Planet orbiters",
-                    "Chopping tool"
-                ],
-                "down": [
-                    "Striped Girl Scout cookie",
-                    "Take out of its packaging",
-                    "Segment of a movie",
-                    "\"Shiny Happy People\" band",
-                    "There are 24 in a day: Abbr."
-                ]
-            },
-            "id": "lURaRcUVB13lqwPgh_fVK"
-        },
-        {
-            "boardDataStr": "ARMS#\nBOOK#\nCATAN\n#SOTO\n#TRES\n",
+              "across": [
+                "AZ water group",
+                "Wound for a loom",
+                "Hollywood crew org.",
+                "Not poetry",
+                "Bygone"
+              ],
+              "down": [
+                "You could pick one up in bowling",
+                "Palindromic helicopter part",
+                "Gang in Tombstone",
+                "Little taste",
+                "Director Ang of \"Life of Pie\""
+              ]
+            }
+          },
+          {
+            "id": "5iolrc93xn96_pNlhf6Fn",
+            "boardDataStr": "#OAR#\nIPMAN\nNEMSA\nGRAPE\n#ANY#",
             "clues": {
-                "across": [
-                    "Fun fact: Starfish see out of their ___",
-                    "You might get lost in one at night",
-                    "Board game where players accumulate wood, brick, sheep, wheat and ore",
-                    "Juan ___, three-time baseball All-Star from 2021-23",
-                    "Very, in French"
-                ],
-                "down": [
-                    "First 3 of 26",
-                    "Mercilessly make fun of",
-                    "Attachment to the back of a boat",
-                    "Move around an ice rink",
-                    "Rejections"
-                ]
-            },
-            "id": "QQd5o6_kWpTxC37G2o79D"
-        },
-        {
-            "boardDataStr": "WIRES\nEMOJI\nBIDEN\n#NECK\n#DOTS\n",
+              "across": [
+                "You might be becalmed without one",
+                "Bruce Lee's trainer",
+                "Emergency services labor grp.",
+                "Fruitful role for early DiCaprio",
+                "Pick of the litter"
+              ],
+              "down": [
+                " Chrome competitor",
+                "Capital of Jordan",
+                "A little hoarse",
+                "Present participle ender",
+                "Whip and ___-___"
+              ]
+            }
+          },
+          {
+            "id": "kPnVjeJLXjfp5aQoFtboq",
+            "boardDataStr": "#FEB#\nPIXAR\nSEXXY\nTROOP\n#SNU#",
             "clues": {
-                "across": [
-                    "Things that are cut to defuse time bombs",
-                    "The \"100\" one means \"I totally agree!\"",
-                    "The third president in a row with a five-letter surname (convenient for Mini crosswords!)",
-                    "What a scarf covers",
-                    "Symbols for stops on subway maps"
-                ],
-                "down": [
-                    "One of the w's of www",
-                    "\"Yeah, that bothers me\"",
-                    "Cowboy's contest",
-                    "Throw out, as from a game",
-                    "Plummets"
-                ]
-            },
-            "id": "O4Qg0cQMH2l91mmBs_JxF"
-        },
-        {
-            "boardDataStr": "COZY#\nBLEEP\nSARAH\n#FORE\n##SSW\n",
+              "across": [
+                "Shortest Mo.",
+                "Steve Jobs founded animation company",
+                "_____ Red, Rich Baby Daddy singer",
+                "Soldier Unit",
+                "Death by ___ ___"
+              ],
+              "down": [
+                "Whistleblower in Astros scandal",
+                "Oil company with over 5000 spills since 2005",
+                "Big Easy locale",
+                "Timezone for WA, OR, and CA",
+                "DIY sports betting app"
+              ]
+            }
+          },
+          {
+            "id": "dWRkgonzQvK4mtyjG4_Fr",
+            "boardDataStr": "#MLM#\nDAVES\nOHIAN\nGAINS\n#LIT#",
             "clues": {
-                "across": [
-                    "Like curling up beside a crackling fire",
-                    "Curse word cover-up",
-                    "New York's ___ Lawrence College",
-                    "Golfer's warning",
-                    "Opposite of NNE"
-                ],
-                "down": [
-                    "\"Survivor\" airer since 2000",
-                    "Snowman in \"Frozen\"",
-                    "A lot of binary code",
-                    "Wine vintages",
-                    "\"Thank god!\""
-                ]
-            },
-            "id": "NLe8jUr0z-1nmVDgYd6NJ"
-        },
-        {
-            "boardDataStr": "BAD##\nACRID\nBLADE\nYUKON\n##ELS\n",
+              "across": [
+                "Tummy tea scam for short",
+                "Grohl and Bautista",
+                "Lebron is one of them",
+                "Gym bros need them",
+                "It's ___! (Travis Scott adlib)"
+              ],
+              "down": [
+                "Taj ____ ",
+                "Next year's Super Bowl",
+                "Intended",
+                "Man's best friend",
+                "Popular K-Pop acronym"
+              ]
+            }
+          },
+          {
+            "id": "lcYf3emjKFMJVb5Q3DoBY",
+            "boardDataStr": "#OGS#\nIMOUT\nGAMMA\nSHEAR\n#ARC#",
             "clues": {
-                "across": [
-                    "Like some hair days",
-                    "Foul-smelling",
-                    "Piece of grass",
-                    "Canadian territory that borders Alaska",
-                    "Chicago trains"
-                ],
-                "down": [
-                    "Fan of Dada?",
-                    "Free speech org.",
-                    "He recently tied Michael Jackson for most #1 Billboard hits by a male artist (13)",
-                    "\"American ___,\" TV talent show",
-                    "Cozy rooms"
-                ]
-            },
-            "id": "Yz6ORbdu0rS-hG1ALdylk"
-        },
-        {
-            "boardDataStr": "##HAR##\n#JULEP#\nHOBBIES\nENCANTO\nMEANIES\n#SPINS#\n##SAG##\n",
+              "across": [
+                "Dogg & Nip",
+                "\"Too rich for my blood!\"",
+                "Rays from pulsars",
+                "Shave",
+                "Smooth curve"
+              ],
+              "down": [
+                "Wizard of Oz's hometown",
+                "Pyle of the Andy Griffith Show",
+                "Deep red spice",
+                "Social media accts",
+                "2022 Cate Blanchett Feature"
+              ]
+            }
+          },
+          {
+            "id": "l3rgZtkAZ8sp4hbiUPEvI",
+            "boardDataStr": "#DOJ#\nCENCH\nBROOD\nTAILS\n#NLE#",
             "clues": {
-                "across": [
-                    "When repeated, a sarcastic laugh",
-                    "Mint ___ (cocktail)",
-                    "They're listed on a dating profile",
-                    "Disney film with the hit song \"We Don't Talk About Bruno\"",
-                    "Jerkfaces",
-                    "Turns in \"Wheel of Fortune\"",
-                    "Droop"
-                ],
-                "down": [
-                    "Wheel covers",
-                    "Montenegro's neighbor to the south",
-                    "Bringing under control, with \"in\"",
-                    "Second-most common last name in England, fifth-most in the United States",
-                    "Comedians Holmes and Davidson",
-                    "Tailor's edge",
-                    "Ship's call for help"
-                ]
-            },
-            "id": "dtWI_2UKDuqZlNUb31Q9p"
-        },
-        {
-            "boardDataStr": "##DAD\nUTICA\nROADS\nDENCH\nUSA##\n",
+              "across": [
+                "US law enforcement org.",
+                "Nickname for UK grime rapper with hits like \"Doja\" & \"Sprinter\"",
+                "Litter",
+                "Sonic's flying friend",
+                "___ Choppa"
+              ],
+              "down": [
+                "Youngest Cody on TNT's Animal Kingdom",
+                "How you might pan fry a chicken cutlet",
+                "Rapper who featured on Drake's \"First Person Shooter\" & \"Evil Ways\"",
+                "In brief, substance abuse & mental health strategy",
+                "High end flat screens"
+              ]
+            }
+          },
+          {
+            "id": "vI0oaErJfhXaJLpHdJ08Z",
+            "boardDataStr": "#NTA#\nNOISY\nPLATA\nCARRS\n#BAA#",
             "clues": {
-                "across": [
-                    "Pop",
-                    "City in upstate New York",
-                    "All of them lead to Rome, in a saying",
-                    "Judi in the Bond films",
-                    "Red, white and blue inits."
-                ],
-                "down": [
-                    "Main focus of season 5 of \"The Crown\"",
-                    "\"Thunderstruck\" band",
-                    "— or –",
-                    "National language of Pakistan",
-                    "Sandals expose them"
-                ]
-            },
-            "id": "7b2zFEBWqocy0wO0zrObu"
-        },
-        {
-            "boardDataStr": "#FOG#\n#ONO#\nTREND\nAMAZE\nBELOW\n",
+              "across": [
+                "Reddit answer to: AITA?",
+                "Grainy lag in footage",
+                "No es oro",
+                "Derck & Brendan",
+                "Sheep sound"
+              ],
+              "down": [
+                "What STEM students hope for",
+                "Crown for a Princess",
+                "Ad _____ per aspera",
+                "GTA extra",
+                "Gay slang for affirmative"
+              ]
+            }
+          },
+          {
+            "id": "rArXSY59YY9kekdhlFsU5",
+            "boardDataStr": "#BRB#\nELARA\nNOGOS\nTRUCK\n#TSK#",
             "clues": {
-                "across": [
-                    "It often dissipates with daylight",
-                    "Artist Yoko",
-                    "Be popular online",
-                    "Cause to go \"Wow!\"",
-                    "___ the belt (unfair)"
-                ],
-                "down": [
-                    "\"Personally ...\"",
-                    "Shaquille of the N.B.A.",
-                    "Muppet with a long, curved nose",
-                    "Key that causes indenting",
-                    "It often dissipates with daylight"
-                ]
-            },
-            "id": "oCVYvulqGs9EeW2Dqj6Jx"
-        },
-        {
-            "boardDataStr": "##ZZZ\n#CIAO\nMAPLE\nBLUE#\nALPS#\n",
+              "across": [
+                "\"I'm leaving for a sec \" over text",
+                "Safdie brothers' production company",
+                "Dealbreakers",
+                "Fire or garbage?",
+                "Reprimanding sound"
+              ],
+              "down": [
+                "A laugh that shoots milk out of your nose",
+                "Sauces",
+                "Aptly named gym leader in the Pokemon Anime",
+                "Tree person in Lord of the Rings",
+                "Have a question?"
+              ]
+            }
+          },
+          {
+            "id": "dzrW54-SPPsZnAwDrrP9F",
+            "boardDataStr": "#TGI#\nHERVE\nALOOF\nSLURP\n#SPY#",
             "clues": {
-                "across": [
-                    "Letters above the sleeping face emoji",
-                    "Italian \"hello\" or \"goodbye\"",
-                    "Sugar ___, tree that turns fiery red in the fall",
-                    "Color that Picasso became enamored with from 1901-1904",
-                    "Mountains seen on the packaging of Toblerone and Swiss Miss"
-                ],
-                "down": [
-                    "Close, as a duffel bag",
-                    "Major diamond retailer",
-                    "Actress Kravitz",
-                    "Meeting for a remote worker",
-                    "Entrepreneur's degree, for short"
-                ]
-            },
-            "id": "ZAL8yvlqW16jS-suseG2D"
-        },
-        {
-            "boardDataStr": "#SNAP\n#WOKE\nLIBRA\nOSLO#\nWHEN#\n",
+              "across": [
+                "___ Friday's",
+                "_____ le Tellier, author of \"The Anomaly\" ",
+                "Standoffish",
+                "Eat soup loudly",
+                "What you might do with your little eye"
+              ],
+              "down": [
+                "Poker giveaways",
+                "A passel of people",
+                "Poacher's boon",
+                "Posseses",
+                "Bomb that focuses on penetrating armor"
+              ]
+            }
+          },
+          {
+            "id": "bx-4OzkStruVGOhDwXTlx",
+            "boardDataStr": "OSOM#\nFAFO#\nFRAUD\n#ELSE\n#ELEM",
             "clues": {
-                "across": [
-                    "With 4-Down, crunchy green vegetable",
-                    "Word added to Merriam-Webster in 2017 meaning \"socially aware\"",
-                    "Zodiac sign symbolized by scales",
-                    "Capital of Norway",
-                    "\"You can stop pouring the water\""
-                ],
-                "down": [
-                    "Nothing-but-net sound",
-                    "Aristocratic",
-                    "City in Ohio where LeBron James was born",
-                    "See 1-Across",
-                    "Quiet fan setting"
-                ]
-            },
-            "id": "tyIIpnz6c-jfpg6DjNZVZ"
-        },
-        {
-            "boardDataStr": "#PIC#\nMINUS\nPLATO\nHALEY\n#FLY#\n",
+              "across": [
+                "Jay Rock redemption cut feat. J. Cole",
+                "Gen Z text slang for \"Try me\"",
+                "Fake",
+                "If/or/____",
+                "Abbreviation for primary (as in school)"
+              ],
+              "down": [
+                "Not on",
+                "Elegant, traditional dress in Pondicherry",
+                "Most",
+                "Food for Tom or Felix",
+                "Lib. party member"
+              ]
+            }
+          },
+          {
+            "id": "WC7ajKEL5Z2_tIXsMr37j",
+            "boardDataStr": "IMIT#\nCUSE#\nUCONN\n#AMES\n#LITA",
             "clues": {
-                "across": [
-                    "Quick photo",
-                    "Subtraction word",
-                    "Socrates taught him, and he taught Aristotle",
-                    "Nikki ___, Republican presidential candidate",
-                    "What American customers do"
-                ],
-                "down": [
-                    "Rice dish",
-                    "Totaling everything",
-                    "Adorable person, using an unusual spelling",
-                    "Speed limit abbr.",
-                    "What tofu is made of"
-                ]
-            },
-            "id": "di8fCj-TV00pYnousGNj4"
-        },
-        {
-            "boardDataStr": "#VARY\n#ALOE\nFLOSS\nDONE#\nARES#\n",
+              "across": [
+                "Answer to: \"Who just got tagged?\"",
+                "Carlton of Nash Bridges and Lost",
+                "Univ. whose women's basketball team won the Big East in 2022",
+                "City in Iowa",
+                "Wrestler aka \"Miss Congeniality\" "
+              ],
+              "down": [
+                "Phoebe Bridgers song in which she \"plays dea\"",
+                "Snotty",
+                "Modular furniture brand",
+                "2020 Nolan feature",
+                "US Spying org."
+              ]
+            }
+          },
+          {
+            "id": "MPmQl0Z0aRrfMh2qssiWG",
+            "boardDataStr": "NECK#\nFLUE#\nTOPAZ\n#PINE\n#EDEN",
             "clues": {
-                "across": [
-                    "Change from case to case",
-                    "Succulent that soothes sunburns",
-                    "Dental stu__, or when parsed di__erently, what this clue su__ers _rom?",
-                    "\"All finished!\"",
-                    "Greek god of war"
-                ],
-                "down": [
-                    "Courage in the face of danger",
-                    "\"Leave me ___!\"",
-                    "Flowers handed out on \"The Bachelor\"",
-                    "Y, on a questionnaire",
-                    "Medicine-approving org."
-                ]
-            },
-            "id": "TtYn2ehowegm6PWH2iCcn"
-        },
-        {
-            "boardDataStr": "##FEW##\n#TRAIT#\nHAIRTIE\nABE#NBA\nMONKEES\nMODESTY\n##SYS##\n",
+              "across": [
+                "Makeout",
+                "Chimney",
+                "Gemstone",
+                "Yearn",
+                "Paradise"
+              ],
+              "down": [
+                "1 of 1 art and currency, briefly",
+                "Quickly wed",
+                "Valentine's day mascot",
+                "Band that plays \"somewhere only we know\"",
+                "A branch of Buddhism that values meditation"
+              ]
+            }
+          },
+          {
+            "id": "TgRqzhVudzHksrU6Xf96M",
+            "boardDataStr": "UNDO#\nFOOT#\nABLOH\n#LONE\n#EROS",
             "clues": {
-                "across": [
-                    "Not many",
-                    "Distinguishing quality",
-                    "It keeps a bun together",
-                    "Pres. Lincoln",
-                    "League with an inaugural 2023 in-season tournament, for short",
-                    "\"I'm a Believer\" band, with \"The\"",
-                    "What a humblebrag attempts to show, but doesn't",
-                    "Method: Abbr."
-                ],
-                "down": [
-                    "Nearly all of its episode titles start \"The One With ...\"",
-                    "Where an Airpod goes",
-                    "Courtroom testifier",
-                    "Forbidden",
-                    "It borders Nepal and Bhutan",
-                    "Jon who plays an Elon Musk-like billionaire on \"The Morning Show\"",
-                    "No sweat",
-                    "Lock opener"
-                ]
-            },
-            "id": "pxC1HL0wRyNSJIIDB-VgW"
-        },
-        {
-            "boardDataStr": "##CGI\n#BOOS\nMORON\nDRAFT\nSELF#\n",
+              "across": [
+                "Control-z",
+                "Take care of the bill",
+                "Former Louis Vuitton creative director Virgil",
+                "Like a wolf or a gunman",
+                "Greek god of love"
+              ],
+              "down": [
+                "City in Russia whose flag depicts a weasel",
+                "Gentlemanly intentions",
+                "Great sorrow or distress",
+                "Fall in Meicali",
+                "\"___ All That\" 1999 feature reboot"
+              ]
+            }
+          },
+          {
+            "id": "pF-fw2IClm-5JgCZsl1Ny",
+            "boardDataStr": "AMAS#\nMART#\nCILIA\n#DONE\n#SSKO",
             "clues": {
-                "across": [
-                    "Big budget item for a Marvel movie, for short",
-                    "Unhappy crowd noises",
-                    "Nincompoop",
-                    "Start of a fantasy football season",
-                    "___-checkout, feature of many grocery stores nowadays"
-                ],
-                "down": [
-                    "Ocean organism that can resemble the human brain",
-                    "Start angrily ranting",
-                    "\"Winning ___ everything\"",
-                    "Total snoozefest",
-                    "Hospital professionals, for short"
-                ]
-            },
-            "id": "s43KnfAfyYvrvX91kya3T"
-        },
-        {
-            "boardDataStr": "#WALK\n#ODIE\nGRAVY\nEDGE#\nEYES#\n",
+              "across": [
+                "Reddit celeb interviews",
+                "K, Wal, Quik, etc.",
+                "Fine hairs inside the nose",
+                "Finished",
+                "New game mode in Madden 20, for short"
+              ],
+              "down": [
+                "Walking Dead and Breaking Bad airer",
+                "Counterparts to butlers",
+                "Parks & Guthrie",
+                "Odorous",
+                "US clothing retailer, briefly"
+              ]
+            }
+          },
+          {
+            "id": "kwqLckjAiHY6Qo-XsofXL",
+            "boardDataStr": "SPAS#\nLLPC#\nEEAAO\n#BCNR\n#SETS",
             "clues": {
-                "across": [
-                    "What a little white silhouette means for a pedestrian",
-                    "Garfield's dog friend",
-                    "Turkey dressing",
-                    "Straight ___ (not into drugs or alcohol)",
-                    "They're usually closed in the middle of the night"
-                ],
-                "down": [
-                    "Overly verbose",
-                    "Familiar saying",
-                    "Chances to replay, in video games",
-                    "Space bar, for one",
-                    "\"___ whillikers!\""
-                ]
-            },
-            "id": "JGa7nfK4omZrx9QtrKPFy"
-        },
-        {
-            "boardDataStr": "COMMA\nUNION\nPENNY\n#ACT#\n#MEH#\n",
+              "across": [
+                "Places for shiatsus",
+                "Jr. therapist",
+                "2022 Best Picture winner, for short",
+                "Briefly, \"Ants From Up There\" band",
+                "Places (down)"
+              ],
+              "down": [
+                "Lupus aka",
+                "Gen-Z slang for hoi polloi",
+                "Quickly",
+                "Thin, in terms of number",
+                "Theaters for MDs"
+              ]
+            }
+          },
+          {
+            "id": "fCHG3qZruGIL6bj9yzLQW",
+            "boardDataStr": "FABO#\nACAB#\nMAFIA\n#ITTY\n#SASS",
             "clues": {
-                "across": [
-                    "Punctuation for a pause",
-                    "Labor group",
-                    "1943 Bronze Lincoln ___, coin that has sold for more than $200,000",
-                    "Pretend (like)",
-                    "\"It's ... just okay\""
-                ],
-                "down": [
-                    "Beer pong target",
-                    "Late bedtime",
-                    "Chop into small pieces",
-                    "Its days are numbered",
-                    "Whichever"
-                ]
-            },
-            "id": "C7DZoU3uOVsSghbLNCA32"
-        },
-        {
-            "boardDataStr": "#THIN\n#RAKE\nPILES\nCAVES\nSLAP#\n",
+              "across": [
+                "Snap rap frontman of D4L",
+                "BLM refrain",
+                "Tony Soprano's family",
+                "Teeny",
+                "Cheek"
+              ],
+              "down": [
+                "Gen-Z slang for friend",
+                "Bowls of berries",
+                "UK TV award",
+                "Death announcements for journos",
+                "Yeses"
+              ]
+            }
+          },
+          {
+            "id": "GQrG1ddBXWD9tBYIIc_PY",
+            "boardDataStr": "HASP#\nOBTI#\nTEEZO\n#ORZO\n#SNAP\n",
             "clues": {
-                "across": [
-                    "Opposite of thick",
-                    "Do some fall cleanup",
-                    "What [circled letters] are gathered into",
-                    "Bats' hangouts",
-                    "Light punishment on the wrist"
-                ],
-                "down": [
-                    "Drug testing stage",
-                    "Middle Eastern confection made from sesame paste",
-                    "\"___ Forgettin'\" (Michael McDonald hit)",
-                    "Loch ___ monster",
-                    "Alternatives to Macs"
-                ]
-            },
-            "id": "J4gxd3XcZREOsCcKgfxvH"
-        },
-        {
-            "boardDataStr": "#MUSH\nGUSTO\nOCEAN\nTHUNK\nHOPS#\n",
+              "across": [
+                "Part of a door lock",
+                "Forensic test for human blood",
+                "_____ Touchdown, artist known for nails in his hair",
+                "Rice-shaped pasta",
+                "Thanos killed half of all life with one"
+              ],
+              "down": [
+                "Scorching",
+                "Pair of shoes focused on arch suport",
+                "Back part of a boat",
+                "\"_____ time!\" (quote from Spiderman 2)",
+                "Alley-___"
+              ]
+            }
+          },
+          {
+            "id": "wh8c3iMEZ7tSPLqzXFJKv",
+            "boardDataStr": "BOFA#\nPLUG#\nAPBIO\n#HANK\n#SRGS",
             "clues": {
-                "across": [
-                    "What your brain might feel like after a long day",
-                    "Fervent enthusiasm",
-                    "Arctic or Atlantic",
-                    "\"Who woulda ___ it?\"",
-                    "Bunny's movements"
-                ],
-                "down": [
-                    "\"Te quiero ___\" (\"I love you very much\")",
-                    "Completely deplete ",
-                    "Superfans, in social media lingo",
-                    "Traffic jam sound",
-                    "Subculture with dyed black hair"
-                ]
-            },
-            "id": "185VklGKnzeHeqY2TD04y"
-        },
-        {
-            "boardDataStr": "#YAY#\n#AVA#\nRHODE\nVOIDS\nSODAS\n",
+              "across": [
+                "Fake disease rampant in the streamer community",
+                "Stop up",
+                "Sci. class for smart high schoolers",
+                "Aaron or Hill",
+                "NYPD specialized teams"
+              ],
+              "down": [
+                "Water bottles promise to be free of it",
+                "Catholic church names, abbreviated",
+                "Army slang for really messed up",
+                "Getting old",
+                "Signs off on some docs"
+              ]
+            }
+          },
+          {
+            "id": "_Cmy-cls6GGHIz26J-d5y",
+            "boardDataStr": "#ADA#\nLWORD\nEARTH\nIKKIL\n#ESE#",
             "clues": {
-                "across": [
-                    "Celebratory shout that's a palindrome",
-                    "Popular girl's name that's a palindrome",
-                    "First word of a state in New England",
-                    "Vast, empty expanses",
-                    "Bubbly drinks"
-                ],
-                "down": [
-                    "Internet company with a purple logo",
-                    "Steer clear of",
-                    "When tripled, \"I'll skip the boring part\"",
-                    "Vehicles for cross-country camping trips",
-                    "Suffix with host or lion"
-                ]
-            },
-            "id": "Roxc3Et_6VD0R5c3wdYX5"
-        },
-        {
-            "boardDataStr": "##BUS##\n#LEPEW#\nMUSTARD\nOCTOBER\nSKIPASS\n#YEAST#\n##SRS##\n",
-            "clues": {
-                "across": [
-                    "Public transit option",
-                    "Pepe ___, cartoon skunk",
-                    "Hot dog condiment",
-                    "Fall month",
-                    "Card that grants access to the slopes",
-                    "Breadmaking ingredient",
-                    "12th graders: Abbr."
-                ],
-                "down": [
-                    "Closest pals",
-                    "Suitably capable",
-                    "Marine fish that can reach sizes of 8+ feet and 800+ pounds",
-                    "Like getting the Wordle on your first guess",
-                    "Wrench away",
-                    "Rapper ___ Def",
-                    "Medical practitioners: Abbr."
-                ]
-            },
-            "id": "h2SSE-IY5iesNr1DFR09F"
-        },
-        {
-            "boardDataStr": "###UMP\nBIGSUR\nACADIA\nROTARY\nNNE###\n",
-            "clues": {
-                "across": [
-                    "Baseball official",
-                    "Scenic stretch of California's coast",
-                    "Scenic stretch of Maine's coast",
-                    "Retro type of phone",
-                    "Opposite of SSW"
-                ],
-                "down": [
-                    "Food safety org.",
-                    "Environmentalist John known as the \"Father of the National Parks\"",
-                    "Hope against hope",
-                    "Farm building",
-                    "Total superstar",
-                    "Something added to stairs once a baby starts walking"
-                ]
-            },
-            "id": "ZXMqaimY4yXnOx1vEbOuE"
-        },
-        {
-            "boardDataStr": "#CAB#\nCELLS\nADIOS\nTACOS\n#RED#\n",
-            "clues": {
-                "across": [
-                    "Taxi",
-                    "See 8-Across",
-                    "Farewell that literally means \"to God\"",
-                    "Doritos Locos ___ (fast-food products)",
-                    "With 3-Down and 4-Across, the human body makes around 200 billion of them per day"
-                ],
-                "down": [
-                    "Evergreen tree with sweet-smelling wood",
-                    "Wonderland girl",
-                    "See 8-Across",
-                    "Pet that can hiss",
-                    "Sound of sizzling bacon"
-                ]
-            },
-            "id": "BAeB2UuiLyPOkBDsiskGo"
-        },
-        {
-            "boardDataStr": "CHATS\nHAIRY\nITSON\nRELIC\nPRESS\n",
-            "clues": {
-                "across": [
-                    "Sends a Slack message, e.g.",
-                    "In need of a shave",
-                    "\"You've got yourself a contest!\"",
-                    "Historical object",
-                    "\"Any ___ is good ___\" (dubious advice)"
-                ],
-                "down": [
-                    "Sound from a smoke alarm or a cricket",
-                    "Constant critic",
-                    "Airplane divider",
-                    "Un, deux, ___",
-                    "Connects data across two devices"
-                ]
-            },
-            "id": "wfQX85PvWtYKM2W7CDY3Y"
-        },
-        {
-            "boardDataStr": "LAST#\nAPART\nOLLIE\nSUSAN\n#SALT\n",
-            "clues": {
-                "across": [
-                    "Like Zimbabwe, among all countries alphabetically",
-                    "Come ___ at the seams",
-                    "Simple skateboarding jump",
-                    "Senator Collins of Maine",
-                    "A seasoning so valuable that it was once used as currency"
-                ],
-                "down": [
-                    "Neighbor of Thailand",
-                    "Stellar grade",
-                    "Red dip for chips",
-                    "Central event of the 1960 movie \"Inherit the Wind\"",
-                    "Protection for an outdoor wedding reception"
-                ]
-            },
-            "id": "kk-IHKvY-tDvrRmLMhZUv"
-        },
-        {
-            "boardDataStr": "SCIFI\nLOGIC\nILLBE\nMOOED\n#NOR#\n",
-            "clues": {
-                "across": [
-                    "Genre with robots and aliens",
-                    "\"If A>B and B>C, then A>C,\" e.g.",
-                    "\"Will ya look at that!\"",
-                    "Mimicked a cow",
-                    "Neither's partner"
-                ],
-                "down": [
-                    "___ pickings",
-                    "Two vertical dots",
-                    "Home made of compacted snow",
-                    "Beans and bran are rich in it",
-                    "Put a cold pack on"
-                ]
-            },
-            "id": "5FVqP9FHaOHPUskoO3TRG"
-        },
-        {
-            "boardDataStr": "#NEW#\nMAXIM\nACCRA\nSHEEP\n#OLD#\n",
-            "clues": {
-                "across": [
-                    "\"Mint,\" to a seller",
-                    "Aphorism",
-                    "Capital of Ghana",
-                    "Lambs and rams",
-                    "\"Vintage,\" to a seller"
-                ],
-                "down": [
-                    "Cheesy chip",
-                    "Popular spreadsheet program",
-                    "Full of caffeinated energy",
-                    "Spanish for \"more\"",
-                    "Background for a TV meteorologist, perhaps"
-                ]
-            },
-            "id": "07-ASfUoKruLg1qrSfTa1"
-        }
+              "across": [
+                "19th century mathematician Lovelace",
+                "TV drama about lesbians in LA",
+                "3rd planet from the sun",
+                "Natural wonder in Mexico",
+                "Language ender"
+              ],
+              "down": [
+                "Not asleep",
+                "Nerd types",
+                "Comedian Lange",
+                "Elvis wore one in \"Blue Hawaii\"",
+                "Fed-Ex alternative"
+              ]
+            }
+          }
     ],
     "biggies": [
         {
