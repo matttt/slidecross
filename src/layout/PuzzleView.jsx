@@ -22,18 +22,18 @@ const pixiConfig = {
   autoDensity: true,
 };
 
-const backButtonStyle = {
-  position: "absolute",
-  top: "10px",
-  left: "10px",
-  background: "none",
-  border: "none",
-  padding: "10px",
-  // borderRadius: "5px",
-  // boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-  cursor: "pointer",
-  color: "#EEE",
-};
+// const backButtonStyle = {
+//   position: "absolute",
+//   top: "10px",
+//   left: "10px",
+//   background: "none",
+//   border: "none",
+//   padding: "10px",
+//   // borderRadius: "5px",
+//   // boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+//   cursor: "pointer",
+//   color: "#EEE",
+// };
 
 
 export const PuzzleView = ({ puzzle, onBack }) => {
