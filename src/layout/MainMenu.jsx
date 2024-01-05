@@ -22,6 +22,7 @@ export const MainMenu = ({ onPuzzleSelect }) => {
   };
 
   const miniButtons = puzzles.minis.map(createPuzzleButton);
+  const middlieButtons = puzzles.middlies.map(createPuzzleButton);
   const biggieButtons = puzzles.biggies.map(createPuzzleButton);
 
   return (
@@ -29,9 +30,14 @@ export const MainMenu = ({ onPuzzleSelect }) => {
       <h1 className="text-4xl font-bold mb-4 text-center md:text-left" style={{ color: 'white', marginTop: "50px" }}>slidecross</h1>
       <h4 className="text-xs mb-4 text-center md:text-left" style={{ color: 'white' }}>a puzzle game by <a href="https://twitter.com/mateomartori" style={{ color: 'white' }}>matthew martori</a></h4>
 
-      <h2 className="text-2xl text-center md:text-left" style={{ color: 'white', marginTop: "50px" }}>minis</h2>
+      <h2 className="text-2xl text-center md:text-left" style={{ color: 'white', marginTop: "50px" }}>smallies</h2>
       <div className="grid grid-cols-3 gap-4 md:grid-cols-8">
         {miniButtons}
+      </div>
+
+      <h2 className="text-2xl text-center md:text-left" style={{ color: 'white', marginTop: "50px" }}>middlies</h2>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+        {middlieButtons}
       </div>
 
       <h2 className="text-2xl text-center md:text-left" style={{ color: 'white', marginTop: "50px" }}>biggies</h2>

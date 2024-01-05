@@ -6,7 +6,6 @@ import reportWebVitals from "./game/reportWebVitals.js";
 import { PuzzleView } from "./layout/PuzzleView.jsx";
 import { MainMenu } from "./layout/MainMenu.jsx";
 
-export const resolution = Math.min(window.innerWidth, window.innerHeight)
 
 
 const Main = () => {

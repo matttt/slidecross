@@ -1,7 +1,7 @@
 import { Container, TextStyle, BitmapFont, Graphics } from "pixi.js";
 
 import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.jsx';
-import { resolution } from '../index.jsx';
+import { resolution } from '../layout/PuzzleView.jsx';
 import { Conveyor } from "./Conveyor";
 import { Cell } from "./Cell.js";
 import { HORIZONTAL, VERTICAL } from "./App.js";
@@ -36,16 +36,17 @@ export class Board {
     const textStyle = new TextStyle({
       fontSize: this.w / 3,
       fontWeight: '400',
-      fill: '#000000',
+      fill: '#0D1821',
       fontName: 'Arial',
     });
-    // Create black rectangles on the left and right sides
-    BitmapFont.from('AnswerFont', textStyle, { chars: BitmapFont.ALPHA, resolution: 3 });
 
+    BitmapFont.from('AnswerFont', textStyle, { chars: BitmapFont.ALPHA, resolution: 3 });
+    
+    // Create black rectangles on the left and right sides 
     const width = 32;
     const height = resolution;
     const baffles = new Graphics();
-    baffles.beginFill(0x000000);
+    baffles.beginFill(0x0D1821);
     baffles.drawRect(0, 0, width, height);
     baffles.drawRect(height - width, 0, width, height);
     baffles.drawRect(0, height - (width*2), height, (width*2));

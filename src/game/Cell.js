@@ -18,13 +18,13 @@ export class Cell {
     this.gfx = new Graphics();
     this.selectedGfx = new Graphics();
     this.selectedGfx.alpha = 0;
-    this.text = new BitmapText(this.letter ? this.letter : '', { fontName: 'AnswerFont' });
+    this.text = new BitmapText(this.letter ? this.letter : '', { fontName: 'AnswerFont',  });
     this.text.anchor.set(0.5, 0.5);
     this.text.x = this.w / 2;
     this.text.y = this.w / 2 - 3;
 
     if (isMobile) {
-      this.text.y -= this.w/20;
+      // this.text.y -= this.w/12;
     }
 
     this.correct = false;
@@ -97,7 +97,8 @@ export class Cell {
   }
 
   draw() {
-    this.gfx.lineStyle(2, 0, 1);
+    this.gfx.lineStyle(2, 0x0D1821, 1);
+
 
     this.selectedGfx.beginFill(0xB2D7FB);
     this.selectedGfx.drawRect(1, 1, this.w - 2, this.w - 2);
@@ -105,9 +106,9 @@ export class Cell {
     // this.selectedGfx.alpha = .5;
 
     if (this.letter) {
-      // this.gfx.beginFill(16777215);
+      // this.gfx.beginFill(0xF0F4EF);
     } else {
-      this.gfx.beginFill(0);
+      this.gfx.beginFill(0x0D1821);
     }
 
     // this.gfx.beginFill(this.letter ? 0xFFFFFF : 0x000000);

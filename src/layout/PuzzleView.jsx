@@ -10,14 +10,18 @@ import jingle from './sounds/jingle.mp3';
 import { Application } from "pixi.js";
 import app from "../game/App.js";
 import Div100vh from 'react-div-100vh'
+import Markdown from 'react-markdown'
+import {isMobile} from 'react-device-detect';
 
 
-export const resolution = Math.min(window.innerWidth, window.innerHeight)
+const min = Math.min(window.innerWidth, window.innerHeight)
+export const resolution = isMobile ? min : min * .8
+
 const pixiConfig = {
   width: resolution,
   height: resolution,
   // antialias: true,
-  backgroundColor: 0xFFFFFF,
+  backgroundColor: 0xF0F4EF,
   resolution: 3,
   autoDensity: true,
 };
@@ -64,16 +68,16 @@ export const PuzzleView = ({ puzzle, onBack }) => {
     const widthOffset = window.innerWidth>window.innerHeight?64:0;
 
     return (
-      <div style={{ width: resolution-widthOffset, height: '4rem', backgroundColor: '#DDEBFC' }} className="flex items-center fixed justify-between bottom-0 px-1 py-2">
-        <IconButton onClick={onPreviousClue} style={{ color: '#000' }} >
+      <div style={{ width: resolution-widthOffset, height: '4rem' }} className="flex items-center fixed justify-between bottom-0 px-1 py-2 bg-[#D6E5F4]">
+        <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }} >
           <NavigateBeforeIcon />
         </IconButton>
 
-        <Typography variant="h6" component="div" className="text-[#000] select-none">
-          {clue}
+        <Typography variant="h6" component="div" className="text-black text-center select-none">
+          <Markdown>{clue}</Markdown>
         </Typography>
 
-        <IconButton onClick={onNextClue} style={{ color: '#000' }}>
+        <IconButton onClick={onNextClue} style={{ color: '#0D1821' }}>
           <NavigateNextIcon />
         </IconButton>
       </div>
@@ -91,7 +95,7 @@ export const PuzzleView = ({ puzzle, onBack }) => {
 
       <div className="absolute top-2 right-2">
 
-        <IconButton onClick={onUndo} color="primary" className="absolute top-2 right-2" style={{ color: '#EEE' }}>
+        <IconButton onClick={onUndo} color="primary" style={{ color: '#EEE' }}>
           <UndoIcon />
         </IconButton>
       </div>
@@ -117,8 +121,7 @@ const Canvas = memo(({ app, puzzle, sounds, boardStateStr, setOnUndo, setOnNextC
       setClue
     };
 
-    const {
-      onUndo, onNextClue, onPreviousClue } = app(puzzleInput);
+    const { onUndo, onNextClue, onPreviousClue } = app(puzzleInput);
     setOnUndo(() => onUndo);
     setOnNextClue(() => onNextClue);
     setOnPreviousClue(() => onPreviousClue);

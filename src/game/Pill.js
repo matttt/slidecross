@@ -56,11 +56,11 @@ export class Pill {
 
     if (this.dir === VERTICAL) {
 
-      this.gfx.drawRoundedRect(x1 - barWidth / 2, y1 - endCapLength, barWidth, y2 - y1 + endCapLength * 2);
+      this.gfx.drawRoundedRect(x1 - barWidth / 2, y1 - endCapLength, barWidth, y2 - y1 + endCapLength * 2, w/10);
 
     } else if (this.dir === HORIZONTAL) {
 
-      this.gfx.drawRoundedRect(x1 - endCapLength, y1 - barWidth / 2, x2 - x1 + endCapLength * 2, barWidth);
+      this.gfx.drawRoundedRect(x1 - endCapLength, y1 - barWidth / 2, x2 - x1 + endCapLength * 2, barWidth, w/10);
 
     }
 
