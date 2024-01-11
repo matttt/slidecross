@@ -206,20 +206,44 @@ function generateSVGFromGrid(grid) {
         return acc.concat([...row]);
     }, []);
 
+    let allCorrect = true;
+
+    for (const cell of collapsedGrid) {
+        if (cell.letter && !cell.correct) {
+            allCorrect = false;
+            break;
+        }
+    }
+
     const svgCells = []
 
     const cellWidth = 8
     const cellWidthWithMargin = 9.5
 
+    const allCorrectFill = '#F7B32B'
+
     for (const cell of collapsedGrid) {
+        let fill = '#0D1821'
+
+        if (cell.letter) {
+            if (allCorrect) {
+                fill = allCorrectFill
+            } else if (cell.correct) {
+                fill = '#8bd69e'
+            } else {
+                fill = '#F0F4EF'
+            }
+        }
+
+
         const svgCell = <g key={`${cell.i}-${cell.j}-rect`}>
             <rect
                 x={cell.i * cellWidthWithMargin + 1}
                 y={cell.j * cellWidthWithMargin + 1}
                 width={cellWidth}
                 height={cellWidth}
-                fill={cell.letter ? cell.correct ? '#8bd69e' : '#F0F4EF' : '#0D1821'}
-                stroke={'#F0F4EF'}
+                fill={fill}
+                stroke={allCorrect ? allCorrectFill: cell.correct ? '#8bd69e' : '#F0F4EF'}
                 strokeWidth={.75}
             />
         </g>
