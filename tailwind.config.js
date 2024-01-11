@@ -14,5 +14,5 @@ module.exports = {
       'blue': '#B4CDED'
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-safe-area')],
 }

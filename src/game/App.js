@@ -82,6 +82,7 @@ function app({app, puzzle, sounds, boardStateStr,setClue}) {
   board.createCells(onDragStart, onClick)
 
   let targetCell = null;
+  let selectedDirection = null
 
   root.on('pointerup', onDragEnd);
   root.on('pointerupoutside', onDragEnd);
@@ -127,14 +128,16 @@ function app({app, puzzle, sounds, boardStateStr,setClue}) {
       const curPos = event.data.global;
       const delta = [curPos.x - board.startPos.x, curPos.y - board.startPos.y];
 
-      if (Math.abs(delta[0]) > DRAG_START_ZONE || Math.abs(delta[1]) > DRAG_START_ZONE) {
+      if ((Math.abs(delta[0]) > DRAG_START_ZONE || Math.abs(delta[1]) > DRAG_START_ZONE) && selectedDirection === null) {
         isClick = false;
+        selectedDirection = Math.abs(delta[0]) > Math.abs(delta[1]) ? HORIZONTAL : VERTICAL;
       }
 
-      if (Math.abs(delta[0]) > Math.abs(delta[1])) {
+      // if (Math.abs(delta[0]) > Math.abs(delta[1])) {
+      if (selectedDirection === HORIZONTAL) {
         // x case 
         shiftConveyor(targetCell.horConveyor, delta[0], true, event);
-      } else if (Math.abs(delta[1]) > Math.abs(delta[0])) {
+      } else if (selectedDirection === VERTICAL) {
         shiftConveyor(targetCell.vertConveyor, delta[1], false, event);
       }
     }
@@ -150,6 +153,7 @@ function app({app, puzzle, sounds, boardStateStr,setClue}) {
       }
       root.off('pointermove', onDragMove);
       targetCell = null;
+      selectedDirection = null
     }
   }
 

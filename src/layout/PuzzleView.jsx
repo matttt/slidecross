@@ -68,7 +68,7 @@ export const PuzzleView = ({ puzzle, onBack }) => {
     const widthOffset = window.innerWidth>window.innerHeight?64:0;
 
     return (
-      <div style={{ width: resolution-widthOffset, height: '4rem' }} className="flex items-center fixed justify-between bottom-0 px-1 py-2 bg-[#D6E5F4]">
+      <div style={{ width: resolution-widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
         <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }} >
           <NavigateBeforeIcon />
         </IconButton>

@@ -48,7 +48,7 @@ export function getHorizontalConveyors(boardData) {
     const n = boardData.length
     const conveyors = []
     for (let j = 0; j < n; j++) {
-        const row = boardData[j].map(c=>c.letter)
+        const row = boardData[j].map(c => c.letter)
         const rowCells = boardData[j]
         const handledIndicies = new Set()
         for (let i = 0; i < rowCells.length; i++) {
@@ -120,8 +120,8 @@ export function getVerticalConveyors(boardData) {
 
     //hacky bullshit inbound
     // sort conveyors so that they are ordered like down clues in the NYT
-    conveyors.sort((a,b) => a[0].j - b[0].j || a[0].i - b[0].i)
-    
+    conveyors.sort((a, b) => a[0].j - b[0].j || a[0].i - b[0].i)
+
     return conveyors
 }
 
@@ -195,102 +195,115 @@ export function scrambleBoard(boardData) {
 }
 
 export function boardStateToStr(state) {
-    const strArray = state.map(row=>row.map(l=>l===null?'#':l).join(''))
+    const strArray = state.map(row => row.map(l => l === null ? '#' : l).join(''))
     const str = strArray.join('\n')
 
     return str
 }
 
+function generateSVGFromGrid(grid) {
+    const collapsedGrid = grid.reduce((acc, row) => {
+        return acc.concat([...row]);
+    }, []);
+
+    const svgCells = []
+
+    const cellWidth = 8
+    const cellWidthWithMargin = 9.5
+
+    for (const cell of collapsedGrid) {
+        const svgCell = <g key={`${cell.i}-${cell.j}-rect`}>
+            <rect
+                x={cell.i * cellWidthWithMargin + 1}
+                y={cell.j * cellWidthWithMargin + 1}
+                width={cellWidth}
+                height={cellWidth}
+                fill={cell.letter ? cell.correct ? '#8bd69e' : '#F0F4EF' : '#0D1821'}
+                stroke={'#F0F4EF'}
+                strokeWidth={.75}
+            />
+        </g>
+
+        svgCells.push(svgCell)
+    }
+
+    const svgWidth = cellWidthWithMargin*grid.length + 1;
+    const svgHeight = cellWidthWithMargin*grid[0].length + 1;
+
+    return <svg style={{ width: svgWidth+'px', height: svgHeight+'px', margin: 'auto', display: 'block' }}>
+        {svgCells}
+    </svg>
+}
+
 export function generateBoardAsciiArt(puzzle, boardStateStr) {
-  if (!boardStateStr) {
-    let boardAsciiArt = '';
 
-    for (const char of puzzle.boardDataStr) {
-      if (char === '#') {
-        boardAsciiArt += '□';
-      } else if (char === '\n') {
-        boardAsciiArt += '\n';
-      } else {
-        boardAsciiArt += '■';
-      }
+    // return ''
+    if (!boardStateStr) {
+        const boardState = parseBoardString(puzzle.boardDataStr);
+        const fakeCellGrid = createFakeCellGrid(boardState);
+
+        return generateSVGFromGrid(fakeCellGrid);
     }
 
-    return boardAsciiArt;
-  }
+    const boardState = parseBoardString(boardStateStr);
+    const fakeCellGrid = createFakeCellGrid(boardState);
+    const horizontalConveyors = getHorizontalConveyors(fakeCellGrid);
+    const verticalConveyors = getVerticalConveyors(fakeCellGrid);
 
-  const boardState = parseBoardString(boardStateStr);
-  const fakeCellGrid = createFakeCellGrid(boardState);
-  const horizontalConveyors = getHorizontalConveyors(fakeCellGrid);
-  const verticalConveyors = getVerticalConveyors(fakeCellGrid);
+    const answerGrid = parseBoardString(puzzle.boardDataStr);
+    const answerGridCells = createFakeCellGrid(answerGrid);
+    const answerHorizontalConveyors = getHorizontalConveyors(answerGridCells);
+    const answerVerticalConveyors = getVerticalConveyors(answerGridCells);
 
-  const answerGrid = parseBoardString(puzzle.boardDataStr);
-  const answerGridCells = createFakeCellGrid(answerGrid);
-  const answerHorizontalConveyors = getHorizontalConveyors(answerGridCells);
-  const answerVerticalConveyors = getVerticalConveyors(answerGridCells);
+    for (let i = 0; i < horizontalConveyors.length; i++) {
+        const conveyor = horizontalConveyors[i];
+        const answerConveyor = answerHorizontalConveyors[i];
 
-  for (let i = 0; i < horizontalConveyors.length; i++) {
-    const conveyor = horizontalConveyors[i];
-    const answerConveyor = answerHorizontalConveyors[i];
+        let correct = true;
+        for (let j = 0; j < conveyor.length; j++) {
+            const cell = conveyor[j];
+            const answerCell = answerConveyor[j];
 
-    let correct = true;
-    for (let j = 0; j < conveyor.length; j++) {
-      const cell = conveyor[j];
-      const answerCell = answerConveyor[j];
+            if (cell.letter !== answerCell.letter) {
+                correct = false;
+                break;
+            }
+        }
 
-      if (cell.letter !== answerCell.letter) {
-        correct = false;
-        break;
-      }
+        conveyor.correct = correct;
     }
 
-    conveyor.correct = correct;
-  }
+    for (let i = 0; i < verticalConveyors.length; i++) {
+        const conveyor = verticalConveyors[i];
+        const answerConveyor = answerVerticalConveyors[i];
 
-  for (let i = 0; i < verticalConveyors.length; i++) {
-    const conveyor = verticalConveyors[i];
-    const answerConveyor = answerVerticalConveyors[i];
+        let correct = true;
+        for (let j = 0; j < conveyor.length; j++) {
+            const cell = conveyor[j];
+            const answerCell = answerConveyor[j];
 
-    let correct = true;
-    for (let j = 0; j < conveyor.length; j++) {
-      const cell = conveyor[j];
-      const answerCell = answerConveyor[j];
+            if (cell.letter !== answerCell.letter) {
+                correct = false;
+                break;
+            }
+        }
 
-      if (cell.letter !== answerCell.letter) {
-        correct = false;
-        break;
-      }
+        conveyor.correct = correct;
     }
 
-    conveyor.correct = correct;
-  }
-
-  for (const conveyor of [...horizontalConveyors, ...verticalConveyors]) {
-    if (conveyor.correct) {
-      for (const cell of conveyor) {
-        cell.correct = true;
-      }
+    for (const conveyor of [...horizontalConveyors, ...verticalConveyors]) {
+        if (conveyor.correct) {
+            for (const cell of conveyor) {
+                cell.correct = true;
+            }
+        }
     }
-  }
 
-  let boardAsciiArt = [];
 
-  const collapsedGrid = fakeCellGrid.reduce((acc, row) => {
-    return acc.concat([...row, { letter: '\n' }]);
-  }, []);
+    return generateSVGFromGrid(fakeCellGrid);
 
-  for (const cell of collapsedGrid) {
-    const letter = cell.letter;
-    if (letter === null) {
-      boardAsciiArt.push('□');
-    } else if (letter === '\n') {
-      boardAsciiArt.push(<br />);
-    } else if (cell.correct) {
-      boardAsciiArt.push(<span style={{ color: '#8bd69e' }}>■</span>);
-    } else {
-      boardAsciiArt.push('■');
-    }
-  }
+    
 
-  return boardAsciiArt;
+        ;
 }
 
