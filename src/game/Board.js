@@ -1,4 +1,5 @@
 import { Container, TextStyle, BitmapFont, Graphics } from "pixi.js";
+import { Howl } from 'howler';
 
 import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.jsx';
 import { resolution } from '../layout/PuzzleView.jsx';
@@ -8,14 +9,32 @@ import { HORIZONTAL, VERTICAL } from "./App.js";
 
 
 export class Board {
-  constructor(boardState, correctBoardState, clues, sounds, id, setClue) {
-    
+  constructor(boardState, correctBoardState, clues, id, setClue) {
+
+
     this.id = id
     this.correctData = correctBoardState;
     this.data = boardState;
     this.clues = clues;
-    this.sounds = sounds;
     this.setClue = setClue;
+
+    this.sounds = {
+      slide1: new Howl({
+        src: ['slide1.mp3'],
+        volume: 0.1,
+      }),
+      slide2: new Howl({
+        src: ['slide2.mp3'],
+        volume: 0.1,
+      }),
+      slide3: new Howl({
+        src: ['slide3.mp3'],
+        volume: 0.1,
+      }),
+      jingle: new Howl({
+        src: ['jingle.mp3']
+      })
+    }
 
     this.undoStack = [];
 
@@ -41,15 +60,15 @@ export class Board {
     });
 
     BitmapFont.from('AnswerFont', textStyle, { chars: BitmapFont.ALPHA, resolution: 3 });
-    
+
     // Create black rectangles on the left and right sides 
     const width = 32;
     const height = resolution;
     const baffles = new Graphics();
     baffles.beginFill(0x0D1821);
     baffles.drawRect(0, 0, width, height);
-    baffles.drawRect(height - width, 0, width, height);
-    baffles.drawRect(0, height - (width*2), height, (width*2));
+    baffles.drawRect(height - width, 0, width + 2, height);
+    baffles.drawRect(0, height - (width * 2), height, (width * 2) + 2);
     baffles.endFill();
 
     baffles.cacheAsBitmap = true;
@@ -153,7 +172,7 @@ export class Board {
     const allConveyors = [...this.horConveyors, ...this.vertConveyors];
 
     let isCorrect = true;
-    
+
     for (const conveyor of allConveyors) {
       const result = conveyor.checkCorrectness();
 
@@ -170,8 +189,8 @@ export class Board {
 
     if (isCorrect) {
       this.deselectAllConveyors();
+      this.sounds.jingle.play()
       this.setClue('Solved!')
-      this.sounds.playJingle()
       this.isCorrect = true;
     } else {
       this.isCorrect = false;
@@ -179,6 +198,11 @@ export class Board {
 
     localStorage.setItem(this.id, boardStateToStr(this.getSimpleData()))
 
+  }
+
+  onShift() {
+    const idx = Math.floor(Math.random() * 3) + 1
+    this.sounds['slide'+idx].play()
   }
 
   deselectAllConveyors() {
@@ -228,7 +252,7 @@ export class Board {
       const delta = reverse ? -1 : 1
       const nextIdx = ((idx + delta) + conveyors.length) % conveyors.length
       const nextConveyor = conveyors[nextIdx]
-  
+
       if (nextConveyor && (!nextConveyor.correct || this.isCorrect)) {
         nextConveyor.selected = true;
         nextConveyor.draw();
@@ -236,11 +260,11 @@ export class Board {
       } else if (nextIdx !== selectedConveyorIdx) {
         recur(nextIdx)
       }
-  
+
     }
 
     recur(selectedConveyorIdx)
-    
+
   }
 
   showClue() {
@@ -264,13 +288,13 @@ export class Board {
       //     break;
       //   }
       // }
-      
+
 
       this.setClue(selected.clue)
     }
   }
 
-  onUndoableShift(conveyor, reverse=false) {
+  onUndoableShift(conveyor, reverse = false) {
 
     this.undoStack.push({
       conveyor,

@@ -10,6 +10,7 @@ import { MainMenu } from "./layout/MainMenu.jsx";
 
 const Main = () => {
   const [puzzle, setPuzzle] = useState(null);
+  
 
 
   const handlePuzzleSelect = (selectedPuzzle) => {

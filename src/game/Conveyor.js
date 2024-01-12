@@ -84,6 +84,8 @@ export class Conveyor {
 
     // animate hidden cell
     animateCell(reverse ? this.cell1 : this.cell2, tweenTarget, reverse, null);
+    this.board.onShift()
+
 
     // animate main conveyor cells
     for (let i = 0; i < this.cells.length; i++) {

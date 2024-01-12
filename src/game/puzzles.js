@@ -745,6 +745,200 @@ export const puzzles = {
           "Utter idiot"
         ]
       }
+    },
+    {
+      "id": "BRhsVrbZ02R9pSHQlVczb",
+      "boardDataStr": "MIT#SONIC\nADO#EFILE\nRAP#ANKLE\nIHADTO###\nOOZE#TALC\n###FLEXOR\nBOWIE#IRA\nCHINA#ODS\nCHIEF#MEH",
+      "clues": {
+        "across": [
+          "Cambridge sch.",
+          "Sega's blue hedgehod mascot",
+          "Fuss",
+          "Submit one's tax returns online",
+          "Genre for Kendrick Lamar",
+          "Lower leg join",
+          "\"There was no other option\"",
+          "Much",
+          "Soft powder",
+          "Bending muscle",
+          "\"Space Oddity\" singer David",
+          "Nest egg inits.",
+          "Home country of the game companies Tencent and NetEase",
+          "Takes too much, briefly",
+          "Master _____ (Microsoft gaming mascot)",
+          "\"I'm not impressed\""
+        ],
+        "down": [
+          "Nintendo's plumber mascot",
+          "Potato state",
+          "November birthstone",
+          "Chair",
+          "Worth mentioning",
+          "Suffix with beat or peace",
+          "Sick",
+          "Bee follower",
+          "Give the meaning of",
+          "Universal truth",
+          "\"Royals\" singer, 2013",
+          "Sony's orange mascot",
+          "Power-up that helps Luigi grow a raccoon tail and fly",
+          "Secretly include in an email",
+          "\"Now I get it!\"",
+          "Nintendo console that popularized motion controls"
+        ]
+      }
+    },
+    {
+      "id": "O08akwiOqIwCL_DO3hFhw",
+      "boardDataStr": "ACDC##ZIM\nSPOIL#EMO\nPRONE#LSU\n###EVADES\nFRAMERATE\nROYALE###\nOWE#UNPIN\nYEA#PAUSE\nORR##SPAS",
+      "clues": {
+        "across": [
+          "\"High Voltage\" rock band",
+          "\"Invader ___\" (Nickelodeon cartoon series)",
+          "Ruin the ending of",
+          "Genre for My Chemical Romance",
+          "Flat on one's face",
+          "Fighting Tigers sch.",
+          "Dodges",
+          "Measure of a graphics card's effectiveness",
+          "Battle ______ (Fortnite game genre)",
+          "Be indebted to",
+          "Remove, as a badge",
+          "Opposite of nay",
+          "Game function often activated by the start button",
+          "Bobby of hockey fame",
+          "Bath houses"
+        ],
+        "down": [
+          "Cleopatra's killer",
+          "E.R. skill",
+          "Scooby-___",
+          "Movie theater",
+          "Princess of Hyrule",
+          "\"That should do it for me!\"",
+          "Aimer in a first-person shooter, often",
+          "Get stronger, in video games",
+          "Settings for many e-sports championships",
+          "Ice cream alternative, for short",
+          "Crew member",
+          "\"How do you measure, measure ___?\" (\"Rent\" lyric)",
+          "Little doggo",
+          "Original persona of Saïx in Kingdom Hearts",
+          "Console that inspired the name of the protagonist of Earthbound"
+        ]
+      }
+    },
+    {
+      "id": "F0EeePpEfUBJ8RG_er2UU",
+      "boardDataStr": "###JANGLE\n##FORREAL\n#DONTATME\nBOOZY#SEC\nLODE##TNT\nARC##LUTE\nSMOLDERED\nTAMARIND#\nSTAYSAT##",
+      "clues": {
+        "across": [
+          "Rattle around, as keys in one's pocket",
+          "\"Seriously!\"",
+          "\"I'd rather not hear your opinion,\" in a tweet",
+          "Drunken",
+          "\"Gimme a ___...\"",
+          "Mineral-rich vein",
+          "Explosive Minecraft block",
+          "Jump shot trajectory",
+          "Renaissance stringed instrument",
+          "Was jaw-droppingly attractive",
+          "Sweet-and-sour chutney ingredient",
+          "Patronizes, as an Airbnb"
+        ],
+        "down": [
+          "Spike who directed \"Her\"",
+          "Having a pretentious aesthetic ",
+          "Grp. protested by March for Our Lives",
+          "Has a lot to drink, in modern slang",
+          "Regretted",
+          "Voted into office",
+          "Lethargic post-meal state",
+          "Pushover",
+          "Throws major shade at",
+          "Carrie Fisher's role in the \"Star Wars\" films",
+          "Set (down)",
+          "Med school graduates, for short"
+        ]
+      }
+    },
+    {
+      "id": "btorPfzJhQmpcjZpRGDyP",
+      "boardDataStr": "DOH###TSA\nUDON##EON\nMOLES#END\nBREAKING#\n##PRINT##\n#HUSTLING\nBUN#SATIE\nALC##WANT\nDUH###NAS",
+      "clues": {
+        "across": [
+          "Sound trademarked by 20th Century Fox",
+          "Water bottle confiscators, for short",
+          "Japanese noodle",
+          "Long time",
+          "Agents in disguise",
+          "Finish line",
+          "With 19-Down, show about a chemistry teacher-turned-drug dealer",
+          "Computer command",
+          "Pulling a con on",
+          "Man ___ (hairstyle)",
+          "Composer Erik",
+          "Booze, informally",
+          "Desire",
+          "\"How stupid of me!\"",
+          "\"If I Ruled the World\" rapper"
+        ],
+        "down": [
+          "Idiotic",
+          "Reason to say \"Pee-yew!\"",
+          "Office tool",
+          "Robin, Raven or Beast Boy, on Cartoon Network",
+          "Something performed on \"The Voice\"",
+          "&",
+          "Gets close to",
+          "\"Saturday Night Live\" staples",
+          "One not related by blood",
+          "Platform on which to watch \"Veronica Mars\"",
+          "Dobrev of \"The Vampire Diaries\"",
+          "Receives",
+          "See 13-across"
+        ]
+      }
+    },
+    {
+      "id": "yi6W76b_i4B0S0uJR_KgC",
+      "boardDataStr": "ABCS#ACLU\nFOOT#LOIS\nABBA#LETS\nROBREINER\n###FOG###\nREALNAMES\nACME#TACO\nRIME#ODOR\nEGOT#RENE",
+      "clues": {
+        "across": [
+          "Kindergartener's lesson",
+          "Org. that defends free speech in court",
+          "12 inches",
+          "Wife of Peter on \"Family Guy\"",
+          "\"Waterloo\" band, 1974",
+          "Answer to \"Shall we?\"",
+          "\"All in the Family\" star whose political activism was made fun of on \"South Park\"",
+          "Golden Gate Bridge phenomenon",
+          "Elizabeth Stamatina Fey Jonathan Stuart Leibowitz",
+          "Company featured in Road Runner cartoons",
+          "Filled, folded fare",
+          "Popular puzzle video game for the Switch or PS4",
+          "Downside of bad hygiene",
+          "Group of awards that Tracy Morgan won on \"30 Rock,\" for short",
+          "Russo of the \"Thor\" franchise"
+        ],
+        "down": [
+          "A ways away",
+          "Mr. Burns' beloved teddy bear",
+          "Salad option",
+          "Employer of Kirk and Spock",
+          "\"___ Man,\" Emmy-winning episode of \"Atlanta\"",
+          "Either director of \"Fargo\" (the movie, not the show)",
+          "Diet, for a soda or beer",
+          "Lenin's land, for short",
+          "Long, long time",
+          "Not common",
+          "Vape, by another name",
+          "Firing range supply",
+          "Earned",
+          "Class for a future M.B.A.",
+          "Feeling it after a tough workout"
+        ]
+      }
     }
   ],
 

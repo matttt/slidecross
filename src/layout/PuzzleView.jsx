@@ -1,21 +1,19 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import Typography from '@mui/material/Typography';
-import useSound from 'use-sound';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import UndoIcon from '@mui/icons-material/Undo';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import IconButton from '@mui/material/IconButton';
-import jingle from './sounds/jingle.mp3';
 import { Application } from "pixi.js";
 import app from "../game/App.js";
 import Div100vh from 'react-div-100vh'
 import Markdown from 'react-markdown'
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 
 const min = Math.min(window.innerWidth, window.innerHeight)
-export const resolution = isMobile ? min : min * .8
+export const resolution = isMobile ? min : min * .75
 
 const pixiConfig = {
   width: resolution,
@@ -39,6 +37,40 @@ const pixiConfig = {
 //   color: "#EEE",
 // };
 
+const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
+  const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
+
+  return (
+    <div style={{ width: resolution - widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
+      <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }} >
+        <NavigateBeforeIcon />
+      </IconButton>
+
+      <Typography variant="h6" component="div" className="text-black text-center select-none">
+        <Markdown>{clue}</Markdown>
+      </Typography>
+
+      <IconButton onClick={onNextClue} style={{ color: '#0D1821' }}>
+        <NavigateNextIcon />
+      </IconButton>
+    </div>
+  );
+};
+
+const TopBar = ({ onBack, onUndo }) => {
+  const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
+
+  return <div style={{ width: resolution - widthOffset }} className="w-full top-2 fixed flex p-3 md:p-0">
+    <IconButton onClick={onBack} color="primary" style={{ color: '#EEE', left: isMobile ? '' : '-10px' }} className="left-[-3]">
+      <KeyboardBackspaceIcon />
+    </IconButton>
+    {/* spacer */}
+    <div className="grow"></div>
+    <IconButton className="right-0" onClick={onUndo} color="primary" style={{ color: '#EEE', right: isMobile ? '' : '-10px' }}>
+      <UndoIcon />
+    </IconButton>
+  </div>
+}
 
 export const PuzzleView = ({ puzzle, onBack }) => {
 
@@ -48,13 +80,9 @@ export const PuzzleView = ({ puzzle, onBack }) => {
   const [onNextClue, setOnNextClue] = useState(() => () => null);
   const [onPreviousClue, setOnPreviousClue] = useState(() => () => null);
 
-  const [playJingle] = useSound(jingle);
-  const sounds = { playJingle };
-
   const puzzleProps = {
     app,
     puzzle,
-    sounds,
     boardStateStr: localStorage.getItem(puzzle.id) || null,
     pixiConfig,
     setOnUndo,
@@ -63,51 +91,20 @@ export const PuzzleView = ({ puzzle, onBack }) => {
     setClue,
   };
 
-
-  const ClueArea = ({ clue }) => {
-    const widthOffset = window.innerWidth>window.innerHeight?64:0;
-
-    return (
-      <div style={{ width: resolution-widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
-        <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }} >
-          <NavigateBeforeIcon />
-        </IconButton>
-
-        <Typography variant="h6" component="div" className="text-black text-center select-none">
-          <Markdown>{clue}</Markdown>
-        </Typography>
-
-        <IconButton onClick={onNextClue} style={{ color: '#0D1821' }}>
-          <NavigateNextIcon />
-        </IconButton>
-      </div>
-    );
-  };
-
   return (
-    <Div100vh style={{overflow: 'hidden'}}>
-      <div className="absolute top-2 left-2">
+    <Div100vh style={{ overflow: 'hidden' }}>
 
-        <IconButton onClick={onBack} color="primary" style={{ color: '#EEE' }}>
-          <KeyboardBackspaceIcon />
-        </IconButton>
-      </div>
-
-      <div className="absolute top-2 right-2">
-
-        <IconButton onClick={onUndo} color="primary" style={{ color: '#EEE' }}>
-          <UndoIcon />
-        </IconButton>
-      </div>
       <div className="flex flex-col items-center justify-center h-screen">
+        <TopBar onBack={onBack} onUndo={onUndo} />
         <Canvas {...puzzleProps} />
-        <ClueArea clue={clue} />
+        <ClueArea clue={clue} onNextClue={onNextClue} onPreviousClue={onPreviousClue} />
       </div>
+
     </Div100vh>
   );
 };
 
-const Canvas = memo(({ app, puzzle, sounds, boardStateStr, setOnUndo, setOnNextClue, setOnPreviousClue, setClue, pixiConfig, }) => {
+const Canvas = memo(({ app, puzzle, boardStateStr, setOnUndo, setOnNextClue, setOnPreviousClue, setClue, pixiConfig, }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -116,7 +113,6 @@ const Canvas = memo(({ app, puzzle, sounds, boardStateStr, setOnUndo, setOnNextC
     const puzzleInput = {
       app: new Application({ view, ...pixiConfig }),
       puzzle,
-      sounds,
       boardStateStr,
       setClue
     };

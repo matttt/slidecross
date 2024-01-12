@@ -9,7 +9,7 @@ export const HORIZONTAL = 2
 const DRAG_START_ZONE = 5
 
 export const ANIMATION_TIME = 200
-function app({app, puzzle, sounds, boardStateStr,setClue}) {
+function app({app, puzzle, boardStateStr,setClue}) {
   const { stage, ticker } = app;
   stage.eventMode = 'passive';
 
@@ -26,7 +26,7 @@ function app({app, puzzle, sounds, boardStateStr,setClue}) {
     startingBoardState = parseBoardString(boardStateStr);
   } 
 
-  const board = new Board(startingBoardState, correctBoardState, puzzle.clues, sounds, puzzle.id, setClue)
+  const board = new Board(startingBoardState, correctBoardState, puzzle.clues, puzzle.id, setClue)
 
   let isClick = false;
 
