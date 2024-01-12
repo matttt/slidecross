@@ -19,18 +19,18 @@ export class Board {
     this.setClue = setClue;
 
     this.sounds = {
-      slide1: new Howl({
-        src: ['slide1.mp3'],
-        volume: 0.1,
-      }),
-      slide2: new Howl({
-        src: ['slide2.mp3'],
-        volume: 0.1,
-      }),
-      slide3: new Howl({
-        src: ['slide3.mp3'],
-        volume: 0.1,
-      }),
+      // slide1: new Howl({
+      //   src: ['slide1.mp3'],
+      //   volume: 0.1,
+      // }),
+      // slide2: new Howl({
+      //   src: ['slide2.mp3'],
+      //   volume: 0.1,
+      // }),
+      // slide3: new Howl({
+      //   src: ['slide3.mp3'],
+      //   volume: 0.1,
+      // }),
       jingle: new Howl({
         src: ['jingle.mp3']
       })
@@ -201,8 +201,8 @@ export class Board {
   }
 
   onShift() {
-    const idx = Math.floor(Math.random() * 3) + 1
-    this.sounds['slide'+idx].play()
+    // const idx = Math.floor(Math.random() * 3) + 1
+    // this.sounds['slide'+idx].play()
   }
 
   deselectAllConveyors() {
