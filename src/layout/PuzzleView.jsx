@@ -10,6 +10,9 @@ import app from "../game/App.js";
 import Div100vh from 'react-div-100vh'
 import Markdown from 'react-markdown'
 import { isMobile } from 'react-device-detect';
+import { puzzles } from '../game/puzzles.js';
+import {useParams, useNavigate} from "react-router-dom";
+
 
 
 const min = Math.min(window.innerWidth, window.innerHeight)
@@ -72,9 +75,12 @@ const TopBar = ({ onBack, onUndo }) => {
   </div>
 }
 
-export const PuzzleView = ({ puzzle, onBack }) => {
+export const PuzzleView = () => {
+  const navigate = useNavigate();
 
+  const {puzzleId, puzzleType} = useParams();
   const [clue, setClue] = useState('');
+  const puzzle = puzzles[puzzleType].find(p => p.id === puzzleId);
 
   const [onUndo, setOnUndo] = useState(() => () => null);
   const [onNextClue, setOnNextClue] = useState(() => () => null);
@@ -95,7 +101,7 @@ export const PuzzleView = ({ puzzle, onBack }) => {
     <Div100vh style={{ overflow: 'hidden' }}>
 
       <div className="flex flex-col items-center justify-center h-screen">
-        <TopBar onBack={onBack} onUndo={onUndo} />
+        <TopBar onBack={() => navigate('/')} onUndo={onUndo} />
         <Canvas {...puzzleProps} />
         <ClueArea clue={clue} onNextClue={onNextClue} onPreviousClue={onPreviousClue} />
       </div>

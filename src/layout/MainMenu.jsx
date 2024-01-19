@@ -2,28 +2,30 @@ import React from "react";
 import { puzzles } from '../game/puzzles.js';
 import Button from '@mui/material/Button';
 import { generateBoardAsciiArt } from "../game/utils.jsx";
+import { useNavigate } from "react-router-dom";
 
 const puzzleButtonStyle = {
   'lineHeight': '9.5px',
   'letterSpacing': '1px',
   color: '#EEE',
 };
-export const MainMenu = ({ onPuzzleSelect }) => {
-  const createPuzzleButton = (puzzle, i) => {
+export const MainMenu = () => {
+  const navigate = useNavigate();
+  const createPuzzleButton = (puzzle, i, type) => {
     const boardStateStr = localStorage.getItem(puzzle.id) || null;
 
     return <Button
       style={puzzleButtonStyle}
       key={puzzle.id}
-      onClick={() => onPuzzleSelect(puzzle)}
+      onClick={() => navigate(`/puzzles/${type}/${puzzle.id}`)}
     >
       <pre style={puzzleButtonStyle}>{generateBoardAsciiArt(puzzle, boardStateStr)}</pre>
     </Button>;
   };
 
-  const miniButtons = puzzles.minis.map(createPuzzleButton);
-  const middlieButtons = puzzles.middlies.map(createPuzzleButton);
-  const biggieButtons = puzzles.biggies.map(createPuzzleButton);
+  const miniButtons = puzzles.minis.map((p,i) => createPuzzleButton(p, i, 'minis'));
+  const middlieButtons = puzzles.middlies.map((p,i) => createPuzzleButton(p, i, 'middlies'));
+  const biggieButtons = puzzles.biggies.map((p,i) => createPuzzleButton(p, i, 'biggies'));
 
   return (
     <div className="flex flex-col justify-center items-center" style={{ width: "100%" }}>

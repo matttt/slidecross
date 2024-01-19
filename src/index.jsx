@@ -5,41 +5,27 @@ import reportWebVitals from "./game/reportWebVitals.js";
 
 import { PuzzleView } from "./layout/PuzzleView.jsx";
 import { MainMenu } from "./layout/MainMenu.jsx";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainMenu/>,
+  },
+  {
+    path: "/puzzles/:puzzleType/:puzzleId",
+    element: <PuzzleView/>,
+  },
+]);
+
+createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
 
 
-
-const Main = () => {
-  const [puzzle, setPuzzle] = useState(null);
-  
-
-
-  const handlePuzzleSelect = (selectedPuzzle) => {
-    setPuzzle(selectedPuzzle);
-  };
-
-  if (puzzle) {
-    return (
-      <PuzzleView
-        puzzle={puzzle}
-        onBack={() => setPuzzle(null)}
-      />
-    );
-  } else {
-    return (
-      <MainMenu onPuzzleSelect={handlePuzzleSelect} />
-    );
-  }
-};
-
-
-const domNode = document.getElementById('root');
-const root = createRoot(domNode);
-
-root.render(
-  // <React.StrictMode>
-  <Main />
-  // </React.StrictMode>
-)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
