@@ -243,7 +243,7 @@ function generateSVGFromGrid(grid) {
                 width={cellWidth}
                 height={cellWidth}
                 fill={fill}
-                stroke={allCorrect ? allCorrectFill: cell.correct ? '#8bd69e' : '#F0F4EF'}
+                stroke={allCorrect ? allCorrectFill : cell.correct ? '#8bd69e' : '#F0F4EF'}
                 strokeWidth={.75}
             />
         </g>
@@ -251,10 +251,55 @@ function generateSVGFromGrid(grid) {
         svgCells.push(svgCell)
     }
 
-    const svgWidth = cellWidthWithMargin*grid.length + 1;
-    const svgHeight = cellWidthWithMargin*grid[0].length + 1;
+    const svgWidth = cellWidthWithMargin * grid.length + 1;
+    const svgHeight = cellWidthWithMargin * grid[0].length + 1;
 
-    return <svg style={{ width: svgWidth+'px', height: svgHeight+'px', margin: 'auto', display: 'block' }}>
+    const correctCenterSquare = <g key="center-square">
+        <rect
+            x={svgWidth / 2 - cellWidth * 1.5}
+            y={svgHeight / 2 - cellWidth * 1.5}
+            width={cellWidth * 3}
+            height={cellWidth * 3}
+            fill={"#B38937"}
+            stroke={"#B38937"}
+            strokeWidth={.75}
+        />
+    </g>
+
+
+
+    let starPath = ""
+
+    const numPoints = 5
+    for (let i = 0; i < (numPoints * 2); i++) {
+        const angle = Math.PI*2 / (numPoints*2) * i - Math.PI/2
+        const isEven = i % 2 === 0
+        const radius = isEven ? cellWidth * 1.5 : cellWidth * .6
+        const x = Math.cos(angle) * radius
+        const y = Math.sin(angle) * radius
+
+        if (i === 0) {
+            starPath += `M ${x} ${y} `
+        } else {
+            starPath += `L ${x} ${y} `
+        }
+    }
+
+    const correctCenterStar = <g key="center-square">
+        <path
+            transform={`translate(${svgWidth / 2}, ${svgHeight / 2}) scale(0.75)`}
+            d={starPath}
+            fill={"#F0F4EF"}
+            stroke={"#F0F4EF"}
+            strokeWidth={.75}
+        />
+    </g>
+
+    if (allCorrect) {
+        svgCells.push(correctCenterSquare, correctCenterStar)
+    }
+
+    return <svg style={{ width: svgWidth + 'px', height: svgHeight + 'px', margin: 'auto', display: 'block' }}>
         {svgCells}
     </svg>
 }
@@ -326,8 +371,8 @@ export function generateBoardAsciiArt(puzzle, boardStateStr) {
 
     return generateSVGFromGrid(fakeCellGrid);
 
-    
 
-        ;
+
+    ;
 }
 
