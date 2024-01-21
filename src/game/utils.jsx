@@ -285,7 +285,7 @@ function generateSVGFromGrid(grid) {
         }
     }
 
-    const correctCenterStar = <g key="center-square">
+    const correctCenterStar = <g key="center-star">
         <path
             transform={`translate(${svgWidth / 2}, ${svgHeight / 2}) scale(0.75)`}
             d={starPath}

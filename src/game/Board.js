@@ -10,8 +10,6 @@ import { HORIZONTAL, VERTICAL } from "./App.js";
 
 export class Board {
   constructor(boardState, correctBoardState, clues, id, setClue) {
-
-
     this.id = id
     this.correctData = correctBoardState;
     this.data = boardState;
