@@ -752,7 +752,7 @@ export const puzzles = {
       "clues": {
         "across": [
           "Cambridge sch.",
-          "Sega's blue hedgehod mascot",
+          "Sega's blue hedgehog mascot",
           "Fuss",
           "Submit one's tax returns online",
           "Genre for Kendrick Lamar",
