@@ -493,7 +493,7 @@ export const puzzles = {
         ],
         "down": [
           "Scorching",
-          "Pair of shoes focused on arch suport",
+          "Pair of shoes focused on arch support",
           "Back part of a boat",
           "\"_____ time!\" (quote from Spiderman 2)",
           "Alley-___"
