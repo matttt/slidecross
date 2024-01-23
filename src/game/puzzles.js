@@ -335,7 +335,7 @@ export const puzzles = {
           "Poker giveaways",
           "A passel of people",
           "Poacher's boon",
-          "Posseses",
+          "Possesses",
           "Bomb that focuses on penetrating armor"
         ]
       }
