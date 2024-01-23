@@ -120,7 +120,19 @@ export class Conveyor {
       this.board.isAnimating = false;
 
       this.board.checkConveyorCorrectness();
-      this.board.propogateSelected()
+      this.board.propogateSelected();
+
+      // let isCorrect = true
+      // for (const cell of this.cells) {
+      //   if (cell.letter !== cell.correctLetter) {
+      //     isCorrect = false
+      //   }
+        
+      // }
+
+      // if (isCorrect) {
+      //   this.board.sounds.wordCorrect.play()
+      // }
 
 
       this.board.showClue()

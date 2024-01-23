@@ -30,8 +30,11 @@ export class Board {
       //   volume: 0.1,
       // }),
       jingle: new Howl({
-        src: ['jingle.mp3']
-      })
+        src: ['/jingle.mp3']
+      }),
+      // wordCorrect: new Howl({
+      //   src: ['/correct.mp3']
+      // })
     }
 
     this.undoStack = [];
