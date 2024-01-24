@@ -38,7 +38,7 @@ export const MainMenu = () => {
         {miniButtons}
       </div>
 
-      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>middlies</h2>
+      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>middies</h2>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {middlieButtons}
       </div>
