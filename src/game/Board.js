@@ -236,7 +236,7 @@ export class Board {
 
   }
 
-  selectNextConveyor(reverse = false) {
+  selectNextConveyor(reverse = false, loopToOtherDirection = true) {
     const conveyors = [...this.horConveyors, ...this.vertConveyors]
 
     const selectedConveyorIdx = conveyors.findIndex(c => c.selected === true)
@@ -266,6 +266,43 @@ export class Board {
 
     recur(selectedConveyorIdx)
 
+  }
+  onKeyPress(key) {
+    let selectedConveyor = [...this.horConveyors, ...this.vertConveyors].find(c => c.selected === true)
+
+    if (!selectedConveyor) {
+      selectedConveyor = this.horConveyors[0]
+      selectedConveyor.selected = true;
+      selectedConveyor.draw();
+    }
+
+    if (key === ' ' || key === 'Enter') {
+      selectedConveyor.selected = false;
+      const newDirection = selectedConveyor.dir === HORIZONTAL ? VERTICAL : HORIZONTAL;
+      const newSelectedConveyor = selectedConveyor.cells[0][newDirection === HORIZONTAL ? 'horConveyor' : 'vertConveyor']
+      newSelectedConveyor.selected=true;
+      this.propogateSelected()
+      newSelectedConveyor.draw()
+    }
+
+
+    if (selectedConveyor.dir === HORIZONTAL) {
+      if (key === 'ArrowLeft') {
+        selectedConveyor.shift(false)
+      } else if (key === 'ArrowRight') {
+        selectedConveyor.shift(true)
+      } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+        this.selectNextConveyor(key === 'ArrowUp', false)
+      }
+    } else if (selectedConveyor.dir === VERTICAL) {
+      if (key === 'ArrowUp') {
+        selectedConveyor.shift(false)
+      } else if (key === 'ArrowDown') {
+        selectedConveyor.shift(true)
+      } else if (key === 'ArrowLeft' || key === 'ArrowRight') {
+        this.selectNextConveyor(key === 'ArrowLeft', false)
+      }
+    } 
   }
 
   showClue() {

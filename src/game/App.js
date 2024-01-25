@@ -172,6 +172,9 @@ function app({app, puzzle, boardStateStr,setClue}) {
     },
     onPreviousClue() {
       board.selectNextConveyor(true)
+    },
+    onKeyPress(key) {
+      board.onKeyPress(key)
     }
   }
 }

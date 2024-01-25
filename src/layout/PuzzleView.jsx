@@ -12,6 +12,8 @@ import Markdown from 'react-markdown'
 import { isMobile } from 'react-device-detect';
 import { puzzles } from '../game/puzzles.js';
 import {useParams, useNavigate} from "react-router-dom";
+import useKeypress from 'react-use-keypress';
+
 
 
 
@@ -85,6 +87,11 @@ export const PuzzleView = () => {
   const [onUndo, setOnUndo] = useState(() => () => null);
   const [onNextClue, setOnNextClue] = useState(() => () => null);
   const [onPreviousClue, setOnPreviousClue] = useState(() => () => null);
+  const [onBoardKeyPress, setOnBoardKeyPress] = useState(() => () => null);
+
+  useKeypress(['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'Tab', 'Enter'], (event) => {
+      onBoardKeyPress(event.key)
+  });
 
   const puzzleProps = {
     app,
@@ -94,6 +101,7 @@ export const PuzzleView = () => {
     setOnUndo,
     setOnNextClue,
     setOnPreviousClue,
+    setOnBoardKeyPress,
     setClue,
   };
 
@@ -110,7 +118,7 @@ export const PuzzleView = () => {
   );
 };
 
-const Canvas = memo(({ app, puzzle, boardStateStr, setOnUndo, setOnNextClue, setOnPreviousClue, setClue, pixiConfig, }) => {
+const Canvas = memo(({ app, puzzle, boardStateStr, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setClue, pixiConfig, }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -123,10 +131,11 @@ const Canvas = memo(({ app, puzzle, boardStateStr, setOnUndo, setOnNextClue, set
       setClue
     };
 
-    const { onUndo, onNextClue, onPreviousClue } = app(puzzleInput);
+    const { onUndo, onNextClue, onKeyPress, onPreviousClue } = app(puzzleInput);
     setOnUndo(() => onUndo);
     setOnNextClue(() => onNextClue);
     setOnPreviousClue(() => onPreviousClue);
+    setOnBoardKeyPress(() => onKeyPress);
 
     // eslint-disable-next-line
   }, []);
