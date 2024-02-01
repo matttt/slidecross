@@ -35,9 +35,9 @@ export class Board {
       jingle: new Howl({
         src: ['/jingle.mp3']
       }),
-      // wordCorrect: new Howl({
-      //   src: ['/correct.mp3']
-      // })
+      wordCorrect: new Howl({
+        src: ['/correct.mp3']
+      })
     }
 
     this.undoStack = [];
@@ -143,7 +143,7 @@ export class Board {
     //   randomConveyor.shift(randomDirection);
     // }, 250)
 
-    this.checkConveyorCorrectness()
+    this.checkConveyorCorrectness(true)
   }
 
   // 2d array of cells
@@ -179,13 +179,13 @@ export class Board {
     return this.boardStateMeta
   }
 
-  checkConveyorCorrectness() {
+  checkConveyorCorrectness(muteCorrectSound = false) {
     const allConveyors = [...this.horConveyors, ...this.vertConveyors];
 
     let isCorrect = true;
 
     for (const conveyor of allConveyors) {
-      const result = conveyor.checkCorrectness();
+      const result = conveyor.checkCorrectness(muteCorrectSound);
 
       if (!result) {
         isCorrect = false;

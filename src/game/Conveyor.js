@@ -11,6 +11,7 @@ export class Conveyor {
     this.board = board;
     this.dir = direction;
     this.correct = false;
+    this.hasBeenCorrect = false;
     this.selected = false;
     this.clue = clue;
   }
@@ -232,7 +233,7 @@ export class Conveyor {
     this.draw();
   }
 
-  checkCorrectness() {
+  checkCorrectness(muteCorrectSound=false) {
     this.correct = true;
 
     for (const cell of this.cells) {
@@ -243,6 +244,15 @@ export class Conveyor {
     }
 
     this.pill.correct = this.correct;
+
+    if (this.correct && !this.hasBeenCorrect && !this.board.sounds.wordCorrect.playing() && !muteCorrectSound) {
+      this.board.sounds.wordCorrect.play();
+    }
+
+    if (this.correct) {
+      this.hasBeenCorrect = true;
+    }
+    
 
     // this.pill.draw();
     this.pill.animate();
