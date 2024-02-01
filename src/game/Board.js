@@ -34,9 +34,13 @@ export class Board {
       // }),
       jingle: new Howl({
         src: ['/jingle.mp3']
-      }),
-      wordCorrect: new Howl({
-        src: ['/correct.mp3']
+      })
+    }
+    
+    // setup word corrects 1-5
+    for (let i = 1; i < 6; i++) {
+      this.sounds['wordCorrect'+i] = new Howl({
+        src: ['/correct'+i+'.mp3']
       })
     }
 
@@ -179,17 +183,32 @@ export class Board {
     return this.boardStateMeta
   }
 
+  // this method checks if the whole puzzle is correct. also it handles playing different sounds depending on how many conveyors are correct for the first time
   checkConveyorCorrectness(muteCorrectSound = false) {
     const allConveyors = [...this.horConveyors, ...this.vertConveyors];
 
-    let isCorrect = true;
+    let boardCorrect = true;
+    let numberOfConveyorsCorrectForFirstTime = 0
 
     for (const conveyor of allConveyors) {
-      const result = conveyor.checkCorrectness(muteCorrectSound);
+      const {isCorrect, hasBeenCorrect} = conveyor.checkCorrectness();
 
-      if (!result) {
-        isCorrect = false;
+      if (isCorrect && !hasBeenCorrect) {
+        numberOfConveyorsCorrectForFirstTime++;
       }
+
+      if (!isCorrect) {
+        boardCorrect = false;
+      }
+    }
+
+    const soundIdx = Math.min(numberOfConveyorsCorrectForFirstTime, 5)
+
+    
+    let soundPlayed = false
+    if (numberOfConveyorsCorrectForFirstTime > 0 && !muteCorrectSound) {
+      this.sounds[`wordCorrect${soundIdx}`].play()
+      soundPlayed = true
     }
 
     // allConveyors.sort((x, y) => {
@@ -198,19 +217,32 @@ export class Board {
     // });
 
 
-    if (isCorrect) {
+    if (boardCorrect) {
       this.deselectAllConveyors();
-      this.sounds.jingle.play()
+      if (soundPlayed) {
+        setTimeout(() => this.sounds.jingle.play(), 1500)
+      } else {
+        this.sounds.jingle.play()
+      }
+
       this.setClue('Solved!')
       this.isCorrect = true;
     } else {
       this.isCorrect = false;
     }
 
-    console.log(JSON.stringify(this.getMetaData()))
+    // console.log(JSON.stringify(this.getMetaData()))
     localStorage.setItem(this.id, boardStateToStr(this.getSimpleData()))
     localStorage.setItem(this.id + '_meta', JSON.stringify(this.getMetaData()))
 
+  }
+
+  resetConveyorCorrectnessMemory () {
+    const allConveyors = [...this.horConveyors, ...this.vertConveyors];
+
+    for (const c of allConveyors) {
+      c.hasBeenCorrect = false;
+    }
   }
 
   onShift() {
@@ -374,6 +406,8 @@ export class Board {
 
       if (i > 0) {
         setTimeout(oneShuffle, 250)
+      } else {
+        this.resetConveyorCorrectnessMemory()
       }
     }
 

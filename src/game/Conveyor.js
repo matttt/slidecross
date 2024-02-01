@@ -233,7 +233,8 @@ export class Conveyor {
     this.draw();
   }
 
-  checkCorrectness(muteCorrectSound=false) {
+  checkCorrectness() {
+    const stachedHasBeenCorrect = !!this.hasBeenCorrect;
     this.correct = true;
 
     for (const cell of this.cells) {
@@ -245,19 +246,14 @@ export class Conveyor {
 
     this.pill.correct = this.correct;
 
-    if (this.correct && !this.hasBeenCorrect && !this.board.sounds.wordCorrect.playing() && !muteCorrectSound) {
-      this.board.sounds.wordCorrect.play();
-    }
-
     if (this.correct) {
       this.hasBeenCorrect = true;
     }
-    
 
     // this.pill.draw();
     this.pill.animate();
 
-    return this.correct
+    return {isCorrect: this.correct, hasBeenCorrect: stachedHasBeenCorrect};
 
   }
 }
