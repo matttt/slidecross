@@ -1,4 +1,3 @@
-import React from "react"
 
 export function parseBoardString(str) {
     const rowStrs = str.replace(/ /g, '').split('\n')
@@ -17,6 +16,7 @@ export function parseBoardString(str) {
         }
         rows.push(row)
     }
+
 
     return rows
 }
@@ -166,7 +166,7 @@ export function scrambleBoard(boardData) {
     const n = boardData.length
     const nullIndicies = []
     let letters = []
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < boardData[0].length; i++) {
         for (let j = 0; j < n; j++) {
             if (!boardData[j][i]) {
                 nullIndicies.push([i, j])
@@ -181,7 +181,7 @@ export function scrambleBoard(boardData) {
     const newBoard = []
     for (let j = 0; j < n; j++) {
         const row = []
-        for (let i = 0; i < n; i++) {
+        for (let i = 0; i < boardData[0].length; i++) {
             if (nullIndicies.find(n => n[0] === i && n[1] === j)) {
                 row.push(null)
             } else {
@@ -251,8 +251,8 @@ function generateSVGFromGrid(grid) {
         svgCells.push(svgCell)
     }
 
-    const svgWidth = cellWidthWithMargin * grid.length + 1;
-    const svgHeight = cellWidthWithMargin * grid[0].length + 1;
+    const svgWidth = cellWidthWithMargin * grid[0].length + 1;
+    const svgHeight = cellWidthWithMargin * grid.length + 1;
 
     const correctCenterSquare = <g key="center-square">
         <rect
@@ -306,7 +306,6 @@ function generateSVGFromGrid(grid) {
 
 export function generateBoardAsciiArt(puzzle, boardStateStr) {
 
-    // return ''
     if (!boardStateStr) {
         const boardState = parseBoardString(puzzle.boardDataStr);
         const fakeCellGrid = createFakeCellGrid(boardState);

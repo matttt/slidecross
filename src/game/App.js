@@ -9,7 +9,7 @@ export const HORIZONTAL = 2
 const DRAG_START_ZONE = 5
 
 export const ANIMATION_TIME = 200
-function app({app, puzzle, boardStateStr,setClue}) {
+function app({ app, puzzle, boardStateStr, boardStateMeta, setClue }) {
   const { stage, ticker } = app;
   stage.eventMode = 'passive';
 
@@ -24,9 +24,18 @@ function app({app, puzzle, boardStateStr,setClue}) {
   let startingBoardState = scrambleBoard(correctBoardState);
   if (boardStateStr) {
     startingBoardState = parseBoardString(boardStateStr);
-  } 
+  }
 
-  const board = new Board(startingBoardState, correctBoardState, puzzle.clues, puzzle.id, setClue)
+  const boardInput = { 
+    boardState: startingBoardState, 
+    correctBoardState: correctBoardState, 
+    boardStateMeta: boardStateMeta,
+    clues: puzzle.clues, 
+    id: puzzle.id, 
+    setClue 
+  };
+
+  const board = new Board(boardInput)
 
   let isClick = false;
 
@@ -172,6 +181,10 @@ function app({app, puzzle, boardStateStr,setClue}) {
     },
     onPreviousClue() {
       board.selectNextConveyor(true)
+    },
+    onShuffle() {
+      console.log('bkajf')
+      board.shuffle()
     },
     onKeyPress(key) {
       board.onKeyPress(key)

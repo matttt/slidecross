@@ -18,6 +18,8 @@ export class Pill {
 
     this.correct = false;
 
+    
+
   }
 
   animate() {

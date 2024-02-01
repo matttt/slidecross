@@ -4,7 +4,9 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import UndoIcon from '@mui/icons-material/Undo';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import CasinoIcon from '@mui/icons-material/Casino';
 import IconButton from '@mui/material/IconButton';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Application } from "pixi.js";
 import app from "../game/App.js";
 import Div100vh from 'react-div-100vh'
@@ -13,21 +15,10 @@ import { isMobile } from 'react-device-detect';
 import { puzzles } from '../game/puzzles.js';
 import {useParams, useNavigate} from "react-router-dom";
 import useKeypress from 'react-use-keypress';
-
-
-
+import { parseBoardString } from "../game/utils.jsx";
 
 const min = Math.min(window.innerWidth, window.innerHeight)
 export const resolution = isMobile ? min : min * .75
-
-const pixiConfig = {
-  width: resolution,
-  height: resolution,
-  // antialias: true,
-  backgroundColor: 0xF0F4EF,
-  resolution: 3,
-  autoDensity: true,
-};
 
 // const backButtonStyle = {
 //   position: "absolute",
@@ -62,15 +53,35 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
   );
 };
 
-const TopBar = ({ onBack, onUndo }) => {
+const TopBar = ({ onBack, onUndo, onShuffle }) => {
+  const [showTimer, setShowTimer] = useState(false);
   const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
+
+  const toggleTimer = () => {
+    setShowTimer(!showTimer)
+  }
 
   return <div style={{ width: resolution - widthOffset }} className="w-full top-2 fixed flex p-3 md:p-0">
     <IconButton onClick={onBack} color="primary" style={{ color: '#EEE', left: isMobile ? '' : '-10px' }} className="left-[-3]">
       <KeyboardBackspaceIcon />
     </IconButton>
+    {/* below button hidden for spacing */}
+    <IconButton  color="primary" style={{ color: '#EEE',  }} className="invisible">
+      <KeyboardBackspaceIcon />
+    </IconButton>
     {/* spacer */}
-    <div className="grow"></div>
+    <div className="grow">
+
+    </div>
+    {/* <IconButton className="" onClick={toggleTimer} color="primary" style={{ color: '#EEE' }}>
+      <AccessTimeIcon />
+    </IconButton> */}
+    <div className="grow">
+
+    </div>
+    <IconButton className="right-0" onClick={onShuffle} color="primary" style={{ color: '#EEE', right: isMobile ? '' : '-10px' }}>
+      <CasinoIcon />
+    </IconButton>
     <IconButton className="right-0" onClick={onUndo} color="primary" style={{ color: '#EEE', right: isMobile ? '' : '-10px' }}>
       <UndoIcon />
     </IconButton>
@@ -85,6 +96,7 @@ export const PuzzleView = () => {
   const puzzle = puzzles[puzzleType].find(p => p.id === puzzleId);
 
   const [onUndo, setOnUndo] = useState(() => () => null);
+  const [onShuffle, setOnShuffle] = useState(() => () => null);
   const [onNextClue, setOnNextClue] = useState(() => () => null);
   const [onPreviousClue, setOnPreviousClue] = useState(() => () => null);
   const [onBoardKeyPress, setOnBoardKeyPress] = useState(() => () => null);
@@ -93,23 +105,26 @@ export const PuzzleView = () => {
       onBoardKeyPress(event.key)
   });
 
+  const meta = JSON.parse(localStorage.getItem(puzzle.id + '_meta')) || null;
+
   const puzzleProps = {
     app,
     puzzle,
     boardStateStr: localStorage.getItem(puzzle.id) || null,
-    pixiConfig,
+    boardStateMeta: meta || null,
     setOnUndo,
     setOnNextClue,
     setOnPreviousClue,
     setOnBoardKeyPress,
     setClue,
+    setOnShuffle
   };
 
   return (
     <Div100vh style={{ overflow: 'hidden' }}>
 
       <div className="flex flex-col items-center justify-center h-screen">
-        <TopBar onBack={() => navigate('/')} onUndo={onUndo} />
+        <TopBar onBack={() => navigate('/')} onUndo={onUndo} onShuffle={onShuffle} />
         <Canvas {...puzzleProps} />
         <ClueArea clue={clue} onNextClue={onNextClue} onPreviousClue={onPreviousClue} />
       </div>
@@ -118,21 +133,42 @@ export const PuzzleView = () => {
   );
 };
 
-const Canvas = memo(({ app, puzzle, boardStateStr, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setClue, pixiConfig, }) => {
+const Canvas = memo(({ app, puzzle, boardStateStr,boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, pixiConfig }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    let ratio = 1;
+
+    if (puzzle) {
+      const boardGrid = parseBoardString(puzzle.boardDataStr)
+
+      const rows = boardGrid.length;
+      const cols = boardGrid[0].length;
+      ratio = rows/cols
+
+    }
+
+    const pixiConfig = {
+      width: resolution,
+      height: resolution * ratio - 38,
+      // antialias: true,
+      backgroundColor: 0xF0F4EF,
+      resolution: 3,
+      autoDensity: true,
+    };
 
     const view = canvasRef.current;
     const puzzleInput = {
       app: new Application({ view, ...pixiConfig }),
       puzzle,
       boardStateStr,
+      boardStateMeta,
       setClue
     };
 
-    const { onUndo, onNextClue, onKeyPress, onPreviousClue } = app(puzzleInput);
+    const { onUndo, onNextClue, onKeyPress, onPreviousClue, onShuffle } = app(puzzleInput);
     setOnUndo(() => onUndo);
+    setOnShuffle(() => onShuffle);
     setOnNextClue(() => onNextClue);
     setOnPreviousClue(() => onPreviousClue);
     setOnBoardKeyPress(() => onKeyPress);

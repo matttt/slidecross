@@ -1,4 +1,85 @@
 export const puzzles = {
+  "tutorial": [
+    {
+      "id": "1ea1OHG57u_r-3D7Hi1wa",
+      "boardDataStr": "CA\nVA",
+      "clues": {
+        "across": [
+          "California (abbr.)",
+          "\"He goes\" in Mexico City"
+        ],
+        "down": [
+          "Resumé",
+          "Sobriety support group"
+        ]
+      }
+    },
+    // {
+    //   "id": "5ohCb_KfpyjBcSiGmdAr5",
+    //   "boardDataStr": "QI\nRA",
+    //   "clues": {
+    //     "across": [
+    //       "Buddhist energy",
+    //       "Egyptian sun god"
+    //     ],
+    //     "down": [
+    //       "Scannable square",
+    //       "Iowa (abbr.)"
+    //     ]
+    //   }
+    // },
+    {
+      "id": "KrJsZPrTAX3Grrnbrau_6",
+      "boardDataStr": "ORE\nHES\nSST",
+      "clues": {
+        "across": [
+          "Unrefined mine product",
+          "\"For ___ a jolly good fellow\"",
+          "Shorthand for Concord passenger jet"
+        ],
+        "down": [
+          "Cries of surprise",
+          "Hi-___ graphics",
+          "Timezone of Boston in December"
+        ]
+      }
+    },
+    {
+      "id": "qDLfHmmEGOFoBOliZh_uD",
+      "boardDataStr": "#SPA#\nDISCO\n#NIT#",
+      "clues": {
+        "across": [
+          "Place to be pampered",
+          "Bee Gees-era music",
+          "___-picking"
+        ],
+        "down": [
+          "Go against God",
+          "Tire pressure meas.",
+          "Play a part",
+        ]
+      }
+    },
+    {
+      "id": "ETl6GIWdvhEtxlnH4BKax",
+      "boardDataStr": "EAST\nKNEE\nETAT\nDIN#",
+      "clues": {
+        "across": [
+          " Sunrise direction",
+          "Leg joint",
+          "Coup d'___",
+          "Racket"
+        ],
+        "down": [
+          "___ out a living (scraped by)",
+          "Against",
+          "Actor Penn",
+          "Holiday in Hanoi"
+        ]
+      }
+    },
+  ],
+  
   "minis": [
     {
       "id": "M87BiBbuZNRt5UeIefnVP",

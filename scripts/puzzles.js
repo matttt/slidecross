@@ -1,6 +1,23 @@
 module.exports = {
     minis: [
         {
+            "id": "VBO5-SvhAsWBfzxcB2UBk",
+            "boardDataStr": "#####\n#SPAR\nDISCO\n#RITE\n#####",
+            "clues": {
+                "across": [
+                    "To practice fighting",
+                    "Bee Gees-era music",
+                    "____ of passage"
+                ],
+                "down": [
+                    "Knightly title",
+                    "Tire pressure meas.",
+                    "Play a part",
+                    "___ v. Wade"
+                ]
+            }
+        },
+        {
             boardDataStr: '#CAN#\nOHYOU\nDIETS\nDRAMA\n#PRE#\n',
             clues: {
                 across: [

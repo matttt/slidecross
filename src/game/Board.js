@@ -9,12 +9,15 @@ import { HORIZONTAL, VERTICAL } from "./App.js";
 
 
 export class Board {
-  constructor(boardState, correctBoardState, clues, id, setClue) {
+  constructor({boardState, correctBoardState, clues, id, setClue, boardStateMeta}) {
     this.id = id
     this.correctData = correctBoardState;
     this.data = boardState;
     this.clues = clues;
     this.setClue = setClue;
+    this.boardStateMeta = boardStateMeta || {
+      elapsedTime: 0
+    };
 
     this.sounds = {
       // slide1: new Howl({
@@ -40,7 +43,9 @@ export class Board {
     this.undoStack = [];
 
     // this.data = parseBoardString(boardStr)
-    this.n = this.data.length;
+    this.n = Math.max(this.data.length, this.data[0].length);
+    this.numRows = this.data.length // num ro
+    this.numCols = this.data[0].length 
     this.w = (resolution - 64) / this.n;
     this.isAnimating = false;
     this.startPos = null;
@@ -67,9 +72,9 @@ export class Board {
     const height = resolution;
     const baffles = new Graphics();
     baffles.beginFill(0x0D1821);
-    baffles.drawRect(0, 0, width, height);
-    baffles.drawRect(height - width, 0, width + 2, height);
-    baffles.drawRect(0, height - (width * 2), height, (width * 2) + 2);
+    baffles.drawRect(0, 0, width, height);//left
+    baffles.drawRect(height - width, 0, width + 2, height);//right
+    baffles.drawRect(0, height - (width * 2), height, (width * 2) + 2);//bottom
     baffles.endFill();
 
     baffles.cacheAsBitmap = true;
@@ -89,8 +94,9 @@ export class Board {
     // their locations are derived from their i, j member vars
     this.cells = [];
 
+
     for (let j = 0; j < this.data.length; j++) {
-      for (let i = 0; i < this.data.length; i++) {
+      for (let i = 0; i < this.data[0].length; i++) {
         const newCell = new Cell(this.data[j][i], this.correctData[j][i], i, j, this.w, onDragStart, onClick, this);
         this.cells.push(newCell);
 
@@ -144,8 +150,8 @@ export class Board {
   getGridData() {
     const simpleData = [];
 
-    for (let i = 0; i < this.n; i++) {
-      const blankArr = new Array(this.n);
+    for (let i = 0; i < this.numRows; i++) {
+      const blankArr = new Array(this.numCols);
       simpleData.push(blankArr);
     }
 
@@ -167,6 +173,10 @@ export class Board {
     }
 
     return simpleData;
+  }
+
+  getMetaData() {
+    return this.boardStateMeta
   }
 
   checkConveyorCorrectness() {
@@ -197,7 +207,9 @@ export class Board {
       this.isCorrect = false;
     }
 
+    console.log(JSON.stringify(this.getMetaData()))
     localStorage.setItem(this.id, boardStateToStr(this.getSimpleData()))
+    localStorage.setItem(this.id + '_meta', JSON.stringify(this.getMetaData()))
 
   }
 
@@ -347,6 +359,25 @@ export class Board {
     if (lastAction) {
       lastAction.conveyor.shift(!lastAction.reverse, true)
     }
+  }
+
+  shuffle() {
+    const numShuffles = 20 // TODO: make this dependent on puzzle size
+    const conveyors = [...this.horConveyors, ...this.vertConveyors]
+
+    let i = numShuffles
+    const oneShuffle = () => { 
+      const conveyor = conveyors[Math.floor(Math.random() * conveyors.length)]
+      const direction = Math.random() < 0.5 ? true : false;
+      conveyor.shift(direction)
+      i--
+
+      if (i > 0) {
+        setTimeout(oneShuffle, 250)
+      }
+    }
+
+    window.confirm(`are you sure you'd like to shuffle?`) ? oneShuffle() : Math.random();
   }
 
 }
