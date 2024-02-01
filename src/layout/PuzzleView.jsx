@@ -6,7 +6,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import CasinoIcon from '@mui/icons-material/Casino';
 import IconButton from '@mui/material/IconButton';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+// import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Application } from "pixi.js";
 import app from "../game/App.js";
 import Div100vh from 'react-div-100vh'
@@ -54,12 +54,12 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
 };
 
 const TopBar = ({ onBack, onUndo, onShuffle }) => {
-  const [showTimer, setShowTimer] = useState(false);
+  // const [showTimer, setShowTimer] = useState(false);
   const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
 
-  const toggleTimer = () => {
-    setShowTimer(!showTimer)
-  }
+  // const toggleTimer = () => {
+  //   setShowTimer(!showTimer)
+  // }
 
   return <div style={{ width: resolution - widthOffset }} className="w-full top-2 fixed flex p-3 md:p-0">
     <IconButton onClick={onBack} color="primary" style={{ color: '#EEE', left: isMobile ? '' : '-10px' }} className="left-[-3]">
