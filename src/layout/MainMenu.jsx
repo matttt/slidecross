@@ -31,7 +31,7 @@ export const MainMenu = () => {
   return (
     <div className="flex flex-col justify-center items-center" style={{ width: "100%" }}>
       <h1 className="text-4xl font-bold mb-4 text-center md:text-left" style={{ color: 'white', marginTop: "50px" }}>slidecross</h1>
-      <h4 className="text-xs mb-1 text-center md:text-left" style={{ color: 'white' }}>a puzzle game by <a href="https://twitter.com/mateomartori" className="underline" style={{ color: 'white' }}>matthew martori</a></h4>
+      <h4 className="text-xs mb-1 text-center md:text-left" style={{ color: 'white' }}>a puzzle game by matthew martori</h4>
       <h4 className="text-xs mb-1 text-center md:text-left" style={{ color: 'white' }}>puzzles by alex tuchi</h4>
       <h4 className="text-xs mb-4 text-center md:text-left underline" style={{ color: 'white' }}><a href="mailto:slidecrossdev@gmail.com">email us!</a></h4>
 
