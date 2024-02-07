@@ -7,7 +7,6 @@ import { Conveyor } from "./Conveyor";
 import { Cell } from "./Cell.js";
 import { HORIZONTAL, VERTICAL } from "./App.js";
 
-
 export class Board {
   constructor({boardState, correctBoardState, clues, id, setClue, boardStateMeta}) {
     this.id = id
@@ -48,8 +47,8 @@ export class Board {
 
     // this.data = parseBoardString(boardStr)
     this.n = Math.max(this.data.length, this.data[0].length);
-    this.numRows = this.data.length // num ro
-    this.numCols = this.data[0].length 
+    this.numRows = this.data.length;
+    this.numCols = this.data[0].length;
     this.w = (resolution - 64) / this.n;
     this.isAnimating = false;
     this.startPos = null;
@@ -394,24 +393,26 @@ export class Board {
   }
 
   shuffle() {
-    const numShuffles = 20 // TODO: make this dependent on puzzle size
     const conveyors = [...this.horConveyors, ...this.vertConveyors]
+    const numShuffles = conveyors.length*3 // length of conveyors * 2 meaning two shuffles per word
 
     let i = numShuffles
     const oneShuffle = () => { 
       const conveyor = conveyors[Math.floor(Math.random() * conveyors.length)]
       const direction = Math.random() < 0.5 ? true : false;
-      conveyor.shift(direction)
+      conveyor.shift(direction, true, 150)
       i--
 
       if (i > 0) {
-        setTimeout(oneShuffle, 250)
+        setTimeout(oneShuffle, 150)
       } else {
+        // on complete
         this.resetConveyorCorrectnessMemory()
+        this.undoStack = []
       }
     }
 
-    window.confirm(`are you sure you'd like to shuffle?`) ? oneShuffle() : Math.random();
+    oneShuffle();
   }
 
 }

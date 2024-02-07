@@ -4,8 +4,11 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import UndoIcon from '@mui/icons-material/Undo';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import CasinoIcon from '@mui/icons-material/Casino';
 import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 // import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Application } from "pixi.js";
 import app from "../game/App.js";
@@ -13,7 +16,7 @@ import Div100vh from 'react-div-100vh'
 import Markdown from 'react-markdown'
 import { isMobile } from 'react-device-detect';
 import { puzzles } from '../game/puzzles.js';
-import {useParams, useNavigate} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useKeypress from 'react-use-keypress';
 import { parseBoardString } from "../game/utils.jsx";
 
@@ -32,6 +35,54 @@ export const resolution = isMobile ? min : min * .75
 //   cursor: "pointer",
 //   color: "#EEE",
 // };
+
+const ShuffleWarning = ({ open, handleClose, onShuffle }) =>
+  <Dialog
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="shuffle-warning-title"
+    aria-describedby="shuffle-warning-description"
+  >
+    <DialogTitle id="shuffle-warning-title">{"Shuffle Puzzle?"}</DialogTitle>
+    <DialogContent>
+      <DialogContentText id="shuffle-warning-description">
+        Shuffling the puzzle will reset your progress. Are you sure you want to continue?
+      </DialogContentText>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={handleClose}>Cancel</Button>
+      <Button onClick={() => {
+        // Add your shuffle logic here
+        handleClose();
+        onShuffle();
+      }} autoFocus>
+        Shuffle
+      </Button>
+    </DialogActions>
+  </Dialog>;
+
+const TutorialCard = ({ open, handleClose }) =>
+  <Dialog
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="tutorial-card-title"
+    aria-describedby="tutorial-card-description"
+  >
+    <div className="flex">
+      <DialogTitle id="tutorial-card-title">{"How to Play"}</DialogTitle>
+      <div className="grow"></div>
+      <DialogActions>
+        <IconButton onClick={handleClose} color="primary" style={{ color: '#0D1821', }}>
+          <CloseIcon />
+        </IconButton>
+      </DialogActions>
+    </div>
+    <DialogContent>
+      <DialogContentText id="tutorial-card-description">
+        To play the game, slide and shuffle the letters!
+      </DialogContentText>
+    </DialogContent>
+  </Dialog>;
 
 const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
   const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
@@ -53,7 +104,7 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
   );
 };
 
-const TopBar = ({ onBack, onUndo, onShuffle }) => {
+const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard }) => {
   // const [showTimer, setShowTimer] = useState(false);
   const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
 
@@ -66,7 +117,11 @@ const TopBar = ({ onBack, onUndo, onShuffle }) => {
       <KeyboardBackspaceIcon />
     </IconButton>
     {/* below button hidden for spacing */}
-    <IconButton  color="primary" style={{ color: '#EEE',  }} className="invisible">
+    <IconButton color="primary" style={{ color: '#EEE', }} className="invisible">
+      <KeyboardBackspaceIcon />
+    </IconButton>
+    {/* below button hidden for spacing */}
+    <IconButton color="primary" style={{ color: '#EEE', }} className="invisible">
       <KeyboardBackspaceIcon />
     </IconButton>
     {/* spacer */}
@@ -79,7 +134,10 @@ const TopBar = ({ onBack, onUndo, onShuffle }) => {
     <div className="grow">
 
     </div>
-    <IconButton className="right-0" onClick={onShuffle} color="primary" style={{ color: '#EEE', right: isMobile ? '' : '-10px' }}>
+    <IconButton className="right-0" onClick={openTutorialCard} color="primary" style={{ color: '#EEE', right: isMobile ? '' : '-10px' }}>
+      <HelpOutlineIcon />
+    </IconButton>
+    <IconButton className="right-0" onClick={openShuffleWarning} color="primary" style={{ color: '#EEE', right: isMobile ? '' : '-10px' }}>
       <CasinoIcon />
     </IconButton>
     <IconButton className="right-0" onClick={onUndo} color="primary" style={{ color: '#EEE', right: isMobile ? '' : '-10px' }}>
@@ -91,8 +149,10 @@ const TopBar = ({ onBack, onUndo, onShuffle }) => {
 export const PuzzleView = () => {
   const navigate = useNavigate();
 
-  const {puzzleId, puzzleType} = useParams();
+  const { puzzleId, puzzleType } = useParams();
   const [clue, setClue] = useState('');
+  const [isShuffleWarningOpen, setIsShuffleWarningOpen] = useState(false);
+  const [isTutorialCardOpen, setIsTutorialCardOpen] = useState(false);
   const puzzle = puzzles[puzzleType].find(p => p.id === puzzleId);
 
   const [onUndo, setOnUndo] = useState(() => () => null);
@@ -102,8 +162,25 @@ export const PuzzleView = () => {
   const [onBoardKeyPress, setOnBoardKeyPress] = useState(() => () => null);
 
   useKeypress(['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'Tab', 'Enter'], (event) => {
-      onBoardKeyPress(event.key)
+    onBoardKeyPress(event.key)
   });
+
+  const handleOpenShuffleWarning = () => {
+    setIsShuffleWarningOpen(true);
+  };
+
+  const handleCloseShuffleWarning = () => {
+    setIsShuffleWarningOpen(false);
+  };
+
+  const handleCloseTutorialCard = () => {
+    setIsTutorialCardOpen(false)
+  }
+
+  const handleOpenTutorialCard = () => {
+    setIsTutorialCardOpen(true)
+  }
+
 
   const meta = JSON.parse(localStorage.getItem(puzzle.id + '_meta')) || null;
 
@@ -122,9 +199,11 @@ export const PuzzleView = () => {
 
   return (
     <Div100vh style={{ overflow: 'hidden' }}>
+      <ShuffleWarning open={isShuffleWarningOpen} handleClose={handleCloseShuffleWarning} onShuffle={onShuffle} />
+      <TutorialCard open={isTutorialCardOpen} handleClose={handleCloseTutorialCard} />
 
       <div className="flex flex-col items-center justify-center h-screen">
-        <TopBar onBack={() => navigate('/')} onUndo={onUndo} onShuffle={onShuffle} />
+        <TopBar onBack={() => navigate('/')} onUndo={onUndo} openShuffleWarning={handleOpenShuffleWarning} openTutorialCard={handleOpenTutorialCard} />
         <Canvas {...puzzleProps} />
         <ClueArea clue={clue} onNextClue={onNextClue} onPreviousClue={onPreviousClue} />
       </div>
@@ -133,7 +212,7 @@ export const PuzzleView = () => {
   );
 };
 
-const Canvas = memo(({ app, puzzle, boardStateStr,boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, pixiConfig }) => {
+const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, pixiConfig }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -144,8 +223,7 @@ const Canvas = memo(({ app, puzzle, boardStateStr,boardStateMeta, setOnUndo, set
 
       const rows = boardGrid.length;
       const cols = boardGrid[0].length;
-      ratio = rows/cols
-
+      ratio = rows / cols
     }
 
     const pixiConfig = {

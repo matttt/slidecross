@@ -16,10 +16,7 @@ export class Conveyor {
     this.clue = clue;
   }
 
-
-  shift(reverse, isUndo = false) {
-
-
+  shift(reverse, isUndo = false, animationTime=ANIMATION_TIME) {
     const tweenTarget = {};
 
     if (this.dir === HORIZONTAL) {
@@ -36,7 +33,7 @@ export class Conveyor {
     const animateCell = (cell, tweenTarget, reverse, idx) => {
       // idx is either the idx of the cell within the conveyor or null if it is the hidden cell
       new TWEEN.Tween(cell.bgOffsetContainer.position)
-        .to(tweenTarget, ANIMATION_TIME)
+        .to(tweenTarget, animationTime)
         .easing(TWEEN.Easing.Quadratic.Out)
         .start()
         .onComplete(() => {
@@ -46,7 +43,7 @@ export class Conveyor {
         });
 
       new TWEEN.Tween(cell.fgOffsetContainer.position)
-        .to(tweenTarget, ANIMATION_TIME)
+        .to(tweenTarget, animationTime)
         .easing(TWEEN.Easing.Quadratic.Out)
         .start()
         .onComplete(() => {
@@ -75,7 +72,7 @@ export class Conveyor {
       }
 
       new TWEEN.Tween(cell.selectedGfx)
-        .to({ alpha: alphaValue }, ANIMATION_TIME)
+        .to({ alpha: alphaValue }, animationTime)
         .easing(TWEEN.Easing.Quadratic.Out)
         .start()
         .onComplete(() => {
