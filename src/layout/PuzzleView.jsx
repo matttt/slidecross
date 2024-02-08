@@ -8,7 +8,6 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, B
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import CasinoIcon from '@mui/icons-material/Casino';
 import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 // import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Application } from "pixi.js";
 import app from "../game/App.js";
@@ -19,6 +18,8 @@ import { puzzles } from '../game/puzzles.js';
 import { useParams, useNavigate } from "react-router-dom";
 import useKeypress from 'react-use-keypress';
 import { parseBoardString } from "../game/utils.jsx";
+import { TutorialCard } from "./TutorialCard.jsx";
+
 
 const min = Math.min(window.innerWidth, window.innerHeight)
 export const resolution = isMobile ? min : min * .75
@@ -35,6 +36,7 @@ export const resolution = isMobile ? min : min * .75
 //   cursor: "pointer",
 //   color: "#EEE",
 // };
+
 
 const ShuffleWarning = ({ open, handleClose, onShuffle }) =>
   <Dialog
@@ -59,29 +61,6 @@ const ShuffleWarning = ({ open, handleClose, onShuffle }) =>
         Shuffle
       </Button>
     </DialogActions>
-  </Dialog>;
-
-const TutorialCard = ({ open, handleClose }) =>
-  <Dialog
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="tutorial-card-title"
-    aria-describedby="tutorial-card-description"
-  >
-    <div className="flex">
-      <DialogTitle id="tutorial-card-title">{"How to Play"}</DialogTitle>
-      <div className="grow"></div>
-      <DialogActions>
-        <IconButton onClick={handleClose} color="primary" style={{ color: '#0D1821', }}>
-          <CloseIcon />
-        </IconButton>
-      </DialogActions>
-    </div>
-    <DialogContent>
-      <DialogContentText id="tutorial-card-description">
-        To play the game, slide and shuffle the letters!
-      </DialogContentText>
-    </DialogContent>
   </Dialog>;
 
 const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {

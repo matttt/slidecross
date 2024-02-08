@@ -23,10 +23,15 @@ export const MainMenu = () => {
     </Button>;
   };
 
-  const tutorialButtons = puzzles.tutorial.map((p,i) => createPuzzleButton(p, i, 'tutorial'));
-  const miniButtons = puzzles.minis.map((p,i) => createPuzzleButton(p, i, 'minis'));
-  const middlieButtons = puzzles.middlies.map((p,i) => createPuzzleButton(p, i, 'middlies'));
-  const biggieButtons = puzzles.biggies.map((p,i) => createPuzzleButton(p, i, 'biggies'));
+  // where category matches a section name in game/puzzles.js
+  const createPuzzleButtonArr = (category) => puzzles[category].map((p,i) => createPuzzleButton(p, i, category));
+
+  // const tutorialButtons = puzzles.tutorial.map((p,i) => createPuzzleButton(p, i, 'tutorial'));
+  // const threesButtons = puzzles.threes.map((p,i) => createPuzzleButton(p, i, 'threes'));
+  // const foursButtons = puzzles.fours.map((p,i) => createPuzzleButton(p, i, 'fours'));
+  // const fivesButtons = puzzles.fives.map((p,i) => createPuzzleButton(p, i, 'fives'));
+  // const ninesButtons = puzzles.nines.map((p,i) => createPuzzleButton(p, i, 'nines'));
+  // const fifteensButtons = puzzles.biggies.map((p,i) => createPuzzleButton(p, i, 'fifteensButtons'));
 
   return (
     <div className="flex flex-col justify-center items-center" style={{ width: "100%" }}>
@@ -35,23 +40,28 @@ export const MainMenu = () => {
       <h4 className="text-xs mb-1 text-center md:text-left" style={{ color: 'white' }}>puzzles by alex tuchi</h4>
       <h4 className="text-xs mb-4 text-center md:text-left underline" style={{ color: 'white' }}><a href="mailto:slidecrossdev@gmail.com">email us!</a></h4>
 
-      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>tutorial</h2>
-      <div className="grid grid-cols-3 gap-4 md:grid-cols-4">
-        {tutorialButtons}
+      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>3x3</h2>
+      <div className="grid grid-cols-4 gap-1 md:grid-cols-4">
+        {createPuzzleButtonArr`threes`}
       </div>
 
-      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>minis</h2>
+      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>4x4</h2>
+      <div className="grid grid-cols-4 gap-1 md:grid-cols-4">
+      {createPuzzleButtonArr`fours`}
+      </div>
+
+      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>5x5</h2>
       <div className="grid grid-cols-3 gap-4 md:grid-cols-8">
-        {miniButtons}
+      {createPuzzleButtonArr`fives`}
       </div>
 
-      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>middies</h2>
+      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>9x9</h2>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-        {middlieButtons}
+      {createPuzzleButtonArr`nines`}
       </div>
 
-      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>biggies</h2>
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-3">{biggieButtons}</div>
+      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>15x15</h2>
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-3 mb-10">{createPuzzleButtonArr`fifteens`}</div>
     </div>
   );
 };

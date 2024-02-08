@@ -138,6 +138,13 @@ export class Board {
     this.horConveyors = horConveyorCellArrs.map((cells, i) => createConveyor(cells, HORIZONTAL, this.clues.across[i]));
     this.vertConveyors = verConveyorCellArrs.map((cells, i) => createConveyor(cells, VERTICAL, this.clues.down[i]));
 
+    if (this.horConveyors[0]) {
+
+      this.horConveyors[0].selected = true;
+  
+      this.propogateSelected()
+      this.showClue()
+    }
 
     // setInterval(() => {
 
