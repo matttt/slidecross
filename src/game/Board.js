@@ -403,10 +403,24 @@ export class Board {
     const conveyors = [...this.horConveyors, ...this.vertConveyors]
     const numShuffles = conveyors.length*3 // length of conveyors * 2 meaning two shuffles per word
 
+    let prevShuffle = null
     let i = numShuffles
     const oneShuffle = () => { 
-      const conveyor = conveyors[Math.floor(Math.random() * conveyors.length)]
-      const direction = Math.random() < 0.5 ? true : false;
+      const pickConveyorAndDirection = () => {
+        const idx = Math.floor(Math.random() * conveyors.length);
+        const conveyor = conveyors[idx]
+        const direction = Math.random() < 0.5 ? true : false;
+
+        return {conveyor, direction}
+      }
+
+      let conveyorAndDirection = pickConveyorAndDirection()
+      while (conveyorAndDirection.conveyor === prevShuffle && !conveyorAndDirection.direction === prevShuffle.direction) {
+        conveyorAndDirection = pickConveyorAndDirection()
+      }
+      
+      const {conveyor, direction} = conveyorAndDirection
+
       conveyor.shift(direction, true, 150)
       i--
 

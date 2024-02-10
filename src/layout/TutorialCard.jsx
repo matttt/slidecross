@@ -127,7 +127,7 @@ export const TutorialCard = ({ open, handleClose }) => {
 
             <video src="/slide_tut_basic_swap.mp4" autoPlay loop muted playsInline className="w-full rounded-xl" />
             <div className="h-3"></div>
-            <span className="">We move the column down, swap the <span className="italic">"U"</span> for the <span className="italic">"O"</span> that we want, and finally return the column back up.</span>
+            <span className="">We move the column down, swap the "U" for the "O" that we want, and finally return the column back up.</span>
 
           </CardContent>
         </Card>
