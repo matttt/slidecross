@@ -118,6 +118,7 @@ export const puzzles = {
     {"id":"GSRidM2kf7jvGiYqeOZVg","boardDataStr":"BBS\nERA\nNAP\n","clues":{"across":["Air-gun ammo","Historical period","Siesta"],"down":["Jerry's partner","Sports ___","Maple syrup source"]}},
     {"id":"HlekjlG0u06ONwoYVfL7h","boardDataStr":"IFS\nTAP\nAMY\n","clues":{"across":["Conditions","Faucet","Singer Winehouse"],"down":["Give ___ whirl","Gp. of relatives","Secret agent"]}},
     {"id":"A82Ar3V2Sv0UJ3miCgXux","boardDataStr":"EWE\nMAN\nSSE\n","clues":{"across":["Female sheep","Isle of ___","Opposite of NNW"],"down":["Dash lengths","Used to be","Opposite of WSW"]}},
+    {"id":"04kG9IvKSYsq99VxjdfD2","boardDataStr":"TON\nENE\nESS\n","clues":{"across":["2,000 pounds","Opposite of WSW","Pothook shape"],"down":["Golf peg","Add-___ (extras)","Super ___ (video game console)"]}}
   ],
   "fours": [
     {
