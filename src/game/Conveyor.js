@@ -63,7 +63,7 @@ export class Conveyor {
 
       let destinationCell
 
-      if (idx === null) {
+      if (idx === null) { // null idx means hidden cell
         destinationCell = reverse ? this.cells[0] : this.cells.at(-1);
       } else {
         const delta = reverse ? 1 : -1;
