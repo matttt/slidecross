@@ -122,11 +122,9 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue }) {
 
     for (const cell of [...conveyor.cells, ...hiddenCellsToAnimate]) {
       if (isHorizontal) {
-        cell.bgOffsetContainer.x = delta / 3;
-        cell.fgOffsetContainer.x = delta / 3;
+        cell.setOffset(delta/3, 0)
       } else {
-        cell.bgOffsetContainer.y = delta / 3;
-        cell.fgOffsetContainer.y = delta / 3;
+        cell.setOffset(0, delta/3)
       }
     }
   }

@@ -86,12 +86,13 @@ export class Board {
   }
 
   createCells(onDragStart, onClick) {
+    this.selectionContainer = new Container();
     this.textContainer = new Container();
     this.overlayContainer = new Container();
     this.whiteContainer = new Container();
     this.blackContainer = new Container();
 
-    this.offsetContainer.addChild(this.overlayContainer, this.whiteContainer, this.blackContainer, this.textContainer);
+    this.offsetContainer.addChild(this.selectionContainer, this.overlayContainer, this.whiteContainer, this.blackContainer, this.textContainer);
 
     // cells are stored in a 1 dimensional array. 
     // their locations are derived from their i, j member vars
@@ -105,6 +106,7 @@ export class Board {
 
         if (newCell.letter) {
           this.whiteContainer.addChild(newCell.bgContainer);
+          this.selectionContainer.addChild(newCell.selectionContainer);
           this.textContainer.addChild(newCell.fgContainer);
         } else {
           this.blackContainer.addChild(newCell.bgContainer);

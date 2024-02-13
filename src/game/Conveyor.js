@@ -51,6 +51,15 @@ export class Conveyor {
           cell.fgOffsetContainer.position.y = 0;
           onComplete();
         });
+      new TWEEN.Tween(cell.selectionOffsetContainer.position)
+        .to(tweenTarget, animationTime)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start()
+        .onComplete(() => {
+          cell.selectionOffsetContainer.position.x = 0;
+          cell.selectionOffsetContainer.position.y = 0;
+          onComplete();
+        });
 
       let destinationCell
 
@@ -152,6 +161,11 @@ export class Conveyor {
         .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
         .start();
 
+      new TWEEN.Tween(cell.selectionOffsetContainer.position)
+        .to(tweenTarget, ANIMATION_TIME) // Move to (300, 200) in 1 second.
+        .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
+        .start()
+     
       new TWEEN.Tween(cell.fgOffsetContainer.position)
         .to(tweenTarget, ANIMATION_TIME) // Move to (300, 200) in 1 second.
         .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.

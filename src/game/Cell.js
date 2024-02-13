@@ -1,6 +1,6 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
-import { isMobile } from 'react-device-detect';
-// const TWEEN = require('@tweenjs/tween.js');
+// import { isMobile } from 'react-device-detect';
+// import * as TWEEN from '@tweenjs/tween.js'
 
 
 export class Cell {
@@ -15,6 +15,8 @@ export class Cell {
     this.bgOffsetContainer = new Container();
     this.fgContainer = new Container();
     this.fgOffsetContainer = new Container();
+    this.selectionContainer = new Container();
+    this.selectionOffsetContainer = new Container();
     // this.container = new Container();
     this.gfx = new Graphics();
     this.selectedGfx = new Graphics();
@@ -24,9 +26,9 @@ export class Cell {
     this.text.x = this.w / 2;
     this.text.y = this.w / 2 - 3;
 
-    if (isMobile) {
-      // this.text.y -= this.w/12;
-    }
+    // if (isMobile) {
+    //   // this.text.y -= this.w/12;
+    // }
 
     this.correct = false;
     this.selected = false;
@@ -44,11 +46,14 @@ export class Cell {
     this.horConveyor = null;
     this.vertConveyor = null;
 
-    this.bgOffsetContainer.addChild(this.gfx, this.selectedGfx);
+    this.bgOffsetContainer.addChild(this.gfx);
     this.bgContainer.addChild(this.bgOffsetContainer);
 
     this.fgOffsetContainer.addChild(this.text);
     this.fgContainer.addChild(this.fgOffsetContainer);
+
+    this.selectionOffsetContainer.addChild(this.selectedGfx);
+    this.selectionContainer.addChild(this.selectionOffsetContainer);
 
     if (onDragStart && this.letter) {
       this.bgContainer.interactive = true
@@ -79,8 +84,42 @@ export class Cell {
     this.fgContainer.x = this.w * this.i;
     this.fgContainer.y = this.w * this.j;
 
+    this.selectionContainer.x = this.w * this.i;
+    this.selectionContainer.y = this.w * this.j;
+
     this.draw();
   }
+
+  setOffset(x, y) {
+    this.bgOffsetContainer.x = x;
+    this.bgOffsetContainer.y = y;
+
+    this.fgOffsetContainer.x = x;
+    this.fgOffsetContainer.y = y;
+
+    this.selectionOffsetContainer.x = x;
+    this.selectionOffsetContainer.y = y;
+  }
+
+  // animateOffsetTo(x, y, time = 500, onComplete = () => {}) {
+  //   new TWEEN.Tween(this.bgOffsetContainer.position)
+  //       .to({x,y}, time)
+  //       .easing(TWEEN.Easing.Quadratic.Out)
+  //       .start()
+  //       .onComplete(() => {
+  //         onComplete();
+  //       });
+  //   new TWEEN.Tween(this.fgOffsetContainer.position)
+  //       .to({x,y}, time)
+  //       .easing(TWEEN.Easing.Quadratic.Out)
+  //       .start()
+
+  //   new TWEEN.Tween(this.selectionOffsetContainer.position)
+  //       .to({x,y}, time)
+  //       .easing(TWEEN.Easing.Quadratic.Out)
+  //       .start()
+
+  // }
 
   updateText() {
     this.text.text = this.letter;
