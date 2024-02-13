@@ -1,5 +1,6 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
 import { isMobile } from 'react-device-detect';
+// const TWEEN = require('@tweenjs/tween.js');
 
 
 export class Cell {
@@ -18,7 +19,7 @@ export class Cell {
     this.gfx = new Graphics();
     this.selectedGfx = new Graphics();
     this.selectedGfx.alpha = 0;
-    this.text = new BitmapText(this.letter ? this.letter : '', { fontName: 'AnswerFont',  });
+    this.text = new BitmapText(this.letter ? this.letter : '', { fontName: 'AnswerFont', });
     this.text.anchor.set(0.5, 0.5);
     this.text.x = this.w / 2;
     this.text.y = this.w / 2 - 3;
@@ -91,14 +92,29 @@ export class Cell {
   updateSelected() {
     if (this.selected) {
       this.selectedGfx.alpha = .5;
+
+      // new TWEEN.Tween(this.selectedGfx)
+      //   .to({alpha: .5}, 500)
+      //   .easing(TWEEN.Easing.Quadratic.Out)
+      //   .start()
+      //   .onComplete(() => {
+          
+      //   });
     } else {
       this.selectedGfx.alpha = 0;
+
+      // new TWEEN.Tween(this.selectedGfx)
+      // .to({alpha: 0}, 500)
+      // .easing(TWEEN.Easing.Quadratic.Out)
+      // .start()
+      // .onComplete(() => {
+        
+      // });
     }
   }
 
   draw() {
     this.gfx.lineStyle(2, 0x0D1821, 1);
-
 
     this.selectedGfx.beginFill(0xB2D7FB);
     this.selectedGfx.drawRect(1, 1, this.w - 2, this.w - 2);

@@ -1,8 +1,8 @@
-import { rotateCells } from './utils.jsx';
-import { HORIZONTAL, VERTICAL, ANIMATION_TIME } from "./App";
+import { rotateCells } from './utils.js';
+import { HORIZONTAL, VERTICAL, ANIMATION_TIME } from "./App.js";
 import { Cell } from "./Cell.js";
 import { Pill } from './Pill.js';
-const TWEEN = require('@tweenjs/tween.js');
+import * as TWEEN from '@tweenjs/tween.js'
 
 export class Conveyor {
   constructor(cells, board, direction, clue) {

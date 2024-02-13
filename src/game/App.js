@@ -1,7 +1,7 @@
 import { Container } from "pixi.js";
 import { Board } from "./Board.js";
-import { parseBoardString, scrambleBoard } from "./utils.jsx";
-const TWEEN = require('@tweenjs/tween.js')
+import { parseBoardString, scrambleBoard } from "./utils.js";
+import * as TWEEN from '@tweenjs/tween.js'
 
 export const VERTICAL = 1
 export const HORIZONTAL = 2

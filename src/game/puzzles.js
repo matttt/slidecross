@@ -64,82 +64,139 @@ export const puzzles = {
           "Morning moisture"
         ]
       }
-    }
+    },
+    {
+      "id": "ZeIx7bmlzFCr_AcxzBGU3",
+      "boardDataStr": "ASU\nCAM\nLPS",
+      "clues": {
+        "across": [
+          "Sun Devils' sch.",
+          "Filming device, for short",
+          "Vinyl albums, for short"
+        ],
+        "down": [
+          "Knee rehab target, for short",
+          "Maple syrup source",
+          "Sounds of hesitation"
+        ]
+      }
+    },
+    {
+      "id": "QgZkYZzAdELGG-Nvv7XIq",
+      "boardDataStr": "RNA\nUSC\nEAT",
+      "clues": {
+        "across": [
+          "Genetic letters",
+          "UCLA rival",
+          "Consume"
+        ],
+        "down": [
+          "Regret",
+          "Code-breaking org.",
+          "Play part"
+        ]
+      }
+    },
+    {
+      "id": "4KyCLrmPitkAVNLzSMLkP",
+      "boardDataStr": "ATM\nHER\nANT",
+      "clues": {
+        "across": [
+          "PIN requester",
+          "That woman",
+          "Picnic pest"
+        ],
+        "down": [
+          "Cry of discovery",
+          "Hamilton's bill",
+          "\"The A-Team\" star"
+        ]
+      }
+    },
+    { "id": "VcwPXABMht_SKEVMviEz0", "boardDataStr": "YES\nESL\nAPR\n", "clues": { "across": ["\"You bet!\"", "Subj. for immigrants", "Earth Day mo."], "down": ["Affirmative vote", "Sixth sense, for short", "Camera type, briefly"] } },
+    {"id":"1L1CXLckjs6tPvPi-GQbF","boardDataStr":"DIP\nONE\nCNN\n","clues":{"across":["Quick swim","___ in a million","Anderson Cooper's channel"],"down":["\"What's up, ___?\"","Bed-and-breakfast","Write"]}},
+    {"id":"GSRidM2kf7jvGiYqeOZVg","boardDataStr":"BBS\nERA\nNAP\n","clues":{"across":["Air-gun ammo","Historical period","Siesta"],"down":["Jerry's partner","Sports ___","Maple syrup source"]}},
+    {"id":"HlekjlG0u06ONwoYVfL7h","boardDataStr":"IFS\nTAP\nAMY\n","clues":{"across":["Conditions","Faucet","Singer Winehouse"],"down":["Give ___ whirl","Gp. of relatives","Secret agent"]}},
+    {"id":"A82Ar3V2Sv0UJ3miCgXux","boardDataStr":"EWE\nMAN\nSSE\n","clues":{"across":["Female sheep","Isle of ___","Opposite of NNW"],"down":["Dash lengths","Used to be","Opposite of WSW"]}},
   ],
   "fours": [
     {
-        "id": "ETl6GIWdvhEtxlnH4BKax",
-        "boardDataStr": "EAST\nKNEE\nETAT\nDIN#",
-        "clues": {
-          "across": [
-            " Sunrise direction",
-            "Leg joint",
-            "Coup d'___",
-            "Racket"
-          ],
-          "down": [
-            "___ out a living (scraped by)",
-            "Against",
-            "Actor Penn",
-            "Holiday in Hanoi"
-          ]
-        }
-      },
-      {
-        "id": "Xw5JHxSnn5AY6vU4t7qdg",
-        "boardDataStr": "BLUE\nOUST\nNADA\nDUAL",
-        "clues": {
-          "across": [
-            "Color of the sky",
-            "Remove from office",
-            "Nothing, in Mexico",
-            "Citizenship descriptor"
-          ],
-          "down": [
-            "Agent 007",
-            "Hawaiian feast",
-            "Meat inspection agcy.",
-            "And others: Abbr."
-          ]
-        }
-      },
-      {
-        "id": "NXt4kvtRJqVuxsQR11SAs",
-        "boardDataStr": "RAIN\nURSA\nMIST\nPEAS",
-        "clues": {
-          "across": [
-            "Showery forecast",
-            "___ Minor",
-            "Atomizer output",
-            "Pod occupants"
-          ],
-          "down": [
-            "Keister",
-            "Grammy winner India.___",
-            "\"Insecure\" star Rae",
-            "Cole and Turner"
-          ]
-        }
-      },
-      {
-        "id": "17wY6z-B9Q4BvQw1p_KpS",
-        "boardDataStr": "BOAR\nUPTO\nMUTT\nPSAS",
-        "clues": {
-          "across": [
-            "Wild hog",
-            "No more than",
-            "Mixed-breed dog",
-            "Unpaid TV spots"
-          ],
-          "down": [
-            "Road imperfection",
-            "Major work",
-            "\"___ boy!\"",
-            "Goes bad"
-          ]
-        }
+      "id": "ETl6GIWdvhEtxlnH4BKax",
+      "boardDataStr": "EAST\nKNEE\nETAT\nDIN#",
+      "clues": {
+        "across": [
+          " Sunrise direction",
+          "Leg joint",
+          "Coup d'___",
+          "Racket"
+        ],
+        "down": [
+          "___ out a living (scraped by)",
+          "Against",
+          "Actor Penn",
+          "Holiday in Hanoi"
+        ]
       }
-  ],
+    },
+    {
+      "id": "Xw5JHxSnn5AY6vU4t7qdg",
+      "boardDataStr": "BLUE\nOUST\nNADA\nDUAL",
+      "clues": {
+        "across": [
+          "Color of the sky",
+          "Remove from office",
+          "Nothing, in Mexico",
+          "Citizenship descriptor"
+        ],
+        "down": [
+          "Agent 007",
+          "Hawaiian feast",
+          "Meat inspection agcy.",
+          "And others: Abbr."
+        ]
+      }
+    },
+    {
+      "id": "NXt4kvtRJqVuxsQR11SAs",
+      "boardDataStr": "RAIN\nURSA\nMIST\nPEAS",
+      "clues": {
+        "across": [
+          "Showery forecast",
+          "___ Minor",
+          "Atomizer output",
+          "Pod occupants"
+        ],
+        "down": [
+          "Keister",
+          "Grammy winner India.___",
+          "\"Insecure\" star Rae",
+          "Cole and Turner"
+        ]
+      }
+    },
+    {
+      "id": "17wY6z-B9Q4BvQw1p_KpS",
+      "boardDataStr": "BOAR\nUPTO\nMUTT\nPSAS",
+      "clues": {
+        "across": [
+          "Wild hog",
+          "No more than",
+          "Mixed-breed dog",
+          "Unpaid TV spots"
+        ],
+        "down": [
+          "Road imperfection",
+          "Major work",
+          "\"___ boy!\"",
+          "Goes bad"
+        ]
+      }
+    },
+    {"id":"SK-kbe0Ag6igF_jrqGOLm","boardDataStr":"POSE\nIWAS\nLEST\nESSO\n","clues":{"across":["Sit for a portrait","\"As ___ saying...\"","\"___ we forget\"","Exxon, once"],"down":["Heap","Has debts","Back talk","This, in Tijuana"]}},
+    {"id":"l13ygk06FRkv05XmlwGcL","boardDataStr":".HAD\nCOPS\nPLOT\nREP.\n","clues":{"across":["Possessed","Police officers","Story line","Agent"],"down":["Golfer's target","Each","Summer hrs.","EMT's skill"]}},
+    {"id":"Zj6CPx6u9wHpcJwo6tvke","boardDataStr":"HIDE\nAKIN\nREPO\nPASS\n","clues":{"across":["Conceal","Analogous","Bank take-back","Free ticket"],"down":["Plucked instrument","Swedish furniture chain","Quick swims","Son of Seth"]}},
+    {"id":"hT3Vnpn0TkQAY7bkf09Y3","boardDataStr":".CCS\nALOT\nLAVA\nAPEX\n","clues":{"across":["Includes in an email","Oodles","Volcanic flow","Pinnacle"],"down":["Thunder sound","Sheltered inlet","Pringles alternative","In the style of"]}}
+    ],
   // "tutorial": [
   //   {
   //     "id": "1ea1OHG57u_r-3D7Hi1wa",
@@ -201,26 +258,26 @@ export const puzzles = {
   //       ]
   //     }
   //   },
-    // {
-    //   "id": "ETl6GIWdvhEtxlnH4BKax",
-    //   "boardDataStr": "EAST\nKNEE\nETAT\nDIN#",
-    //   "clues": {
-    //     "across": [
-    //       " Sunrise direction",
-    //       "Leg joint",
-    //       "Coup d'___",
-    //       "Racket"
-    //     ],
-    //     "down": [
-    //       "___ out a living (scraped by)",
-    //       "Against",
-    //       "Actor Penn",
-    //       "Holiday in Hanoi"
-    //     ]
-    //   }
-    // },
+  // {
+  //   "id": "ETl6GIWdvhEtxlnH4BKax",
+  //   "boardDataStr": "EAST\nKNEE\nETAT\nDIN#",
+  //   "clues": {
+  //     "across": [
+  //       " Sunrise direction",
+  //       "Leg joint",
+  //       "Coup d'___",
+  //       "Racket"
+  //     ],
+  //     "down": [
+  //       "___ out a living (scraped by)",
+  //       "Against",
+  //       "Actor Penn",
+  //       "Holiday in Hanoi"
+  //     ]
+  //   }
+  // },
   // ],
-  
+
   "fives": [
     {
       "id": "M87BiBbuZNRt5UeIefnVP",
@@ -904,7 +961,7 @@ export const puzzles = {
         ]
       }
     },
-      {
+    {
       "id": "NvlyG1F8b5eqwvktqH0r6",
       "boardDataStr": "RUFF##JUT\nOMIT#BONO\nTAXCREDIT\n####ALITO\n#BARKLEY#\nOLDIE####\nDUMPSTERS\nIRIS#ATOP\nEST##NANA",
       "clues": {
@@ -986,7 +1043,7 @@ export const puzzles = {
         ]
       }
     },
-    
+
     // {
     //   "id": "F0EeePpEfUBJ8RG_er2UU",
     //   "boardDataStr": "###JANGLE\n##FORREAL\n#DONTATME\nBOOZY#SEC\nLODE##TNT\nARC##LUTE\nSMOLDERED\nTAMARIND#\nSTAYSAT##",
@@ -1099,6 +1156,14 @@ export const puzzles = {
     //     ]
     //   }
     // }
+  ],
+  "elevens": [
+    {
+      "id": "vUhlH9HwVlxN8qToi18lW",
+      "boardDataStr": "DEFORM.ACDC\nEXITED.BRIE\nCOBRAS.READ\nATEAM.LADLE\nFIR..MIDI..\n.COMICPETS.\n..PEDS..SET\nASTRO.ULCER\nSOIL.SNOOPY\nARCO.ATARIS\nPEST.MOMENT\n",
+      "clues":
+        { "across": ["Bend out of shape", "Electrical current choice", "Left", "French cheese", "Venomous snakes", "Enjoy a book", "First-stringers", "Soup server", "Christmas tree", "This puzzle's size", "Animals doing stand-up? Or 31-Across and others, for instance", "XING users, for short", "Harden", "Houston baseball player", "Stomach problem", "Earth", "Charlie Brown's dog", "With the bow, in music", "Some old gaming consoles", "Nuisance", "Brief instant of time"], "down": ["Low-power coffee", "Uniquely unusual", "Data transmission science", "Other, in Oaxaca", "Paper unit", "Some E.R. personnel", "Wear down", "Loan officer's consideration", "Old phone feature", "Give up", "Back talk", "Hosts, for short", "Dry red wine", "Swear words?", "Enter gradually, as water", "Covert romantic meeting", "\"Stat!\"", "Achy", "\"Do ___ others...\"", "Garden dirt", "America's Uncle"] }
+    }
   ],
   "fifteens": [
     {

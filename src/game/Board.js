@@ -1,9 +1,9 @@
 import { Container, TextStyle, BitmapFont, Graphics } from "pixi.js";
 import { Howl } from 'howler';
 
-import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.jsx';
+import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.js';
 import { resolution } from '../layout/PuzzleView.jsx';
-import { Conveyor } from "./Conveyor";
+import { Conveyor } from "./Conveyor.js";
 import { Cell } from "./Cell.js";
 import { HORIZONTAL, VERTICAL } from "./App.js";
 
@@ -195,6 +195,7 @@ export class Board {
 
     let boardCorrect = true;
     let numberOfConveyorsCorrectForFirstTime = 0
+    // let selectedConveyorBecameCorrect = false; // code related to this variable is for highlighting next clue after currently selected one becomes correct
 
     for (const conveyor of allConveyors) {
       const {isCorrect, hasBeenCorrect} = conveyor.checkCorrectness();
@@ -203,19 +204,23 @@ export class Board {
         numberOfConveyorsCorrectForFirstTime++;
       }
 
+      // if (isCorrect && conveyor.selected) {
+      //   selectedConveyorBecameCorrect = true
+      // }
+
       if (!isCorrect) {
         boardCorrect = false;
       }
-    }
+    } 
 
     const soundIdx = Math.min(numberOfConveyorsCorrectForFirstTime, 5)
-
     
     let soundPlayed = false
     if (numberOfConveyorsCorrectForFirstTime > 0 && !muteCorrectSound) {
       this.sounds[`wordCorrect${soundIdx}`].play()
       soundPlayed = true
     }
+
 
     // allConveyors.sort((x, y) => {
     //   // false values first
@@ -225,17 +230,23 @@ export class Board {
 
     if (boardCorrect) {
       this.deselectAllConveyors();
+      setTimeout(() => this.deselectAllCells(), 50)
       if (soundPlayed) {
         setTimeout(() => this.sounds.jingle.play(), 1500)
       } else {
         this.sounds.jingle.play()
       }
 
-      this.setClue('Solved!')
+      this.setClue('Solved!');
       this.isCorrect = true;
     } else {
       this.isCorrect = false;
     }
+
+    // if (selectedConveyorBecameCorrect && !boardCorrect) {
+    //   this.selectNextConveyor(false, false);
+    // }
+
 
     // console.log(JSON.stringify(this.getMetaData()))
     localStorage.setItem(this.id, boardStateToStr(this.getSimpleData()))
@@ -268,7 +279,7 @@ export class Board {
   deselectAllCells() {
     for (const cell of this.cells) {
       cell.selected = false;
-      // cell.draw();
+      cell.draw();
     }
   }
 
@@ -315,7 +326,6 @@ export class Board {
     }
 
     recur(selectedConveyorIdx)
-
   }
   onKeyPress(key) {
     let selectedConveyor = [...this.horConveyors, ...this.vertConveyors].find(c => c.selected === true)
@@ -423,9 +433,10 @@ export class Board {
 
       conveyor.shift(direction, true, 150)
       i--
+      prevShuffle = conveyorAndDirection
 
       if (i > 0) {
-        setTimeout(oneShuffle, 150)
+        setTimeout(oneShuffle, 155)
       } else {
         // on complete
         this.resetConveyorCorrectnessMemory()

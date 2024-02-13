@@ -1,6 +1,6 @@
-import { HORIZONTAL, VERTICAL, ANIMATION_TIME } from "./App";
+import { HORIZONTAL, VERTICAL, ANIMATION_TIME } from "./App.js";
 import { Container, Graphics } from 'pixi.js';
-const TWEEN = require('@tweenjs/tween.js');
+import * as TWEEN from '@tweenjs/tween.js'
 
 export class Pill {
   constructor(cells, dir) {

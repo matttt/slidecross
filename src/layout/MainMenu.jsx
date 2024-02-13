@@ -1,7 +1,7 @@
 import React from "react";
 import { puzzles } from '../game/puzzles.js';
 import Button from '@mui/material/Button';
-import { generateBoardAsciiArt } from "../game/utils.jsx";
+import { generateBoardAsciiArt } from "../game/generateSVG.jsx";
 import { useNavigate } from "react-router-dom";
 
 const puzzleButtonStyle = {
@@ -58,6 +58,11 @@ export const MainMenu = () => {
       <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>9x9</h2>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
       {createPuzzleButtonArr`nines`}
+      </div>
+
+      <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>11x11</h2>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
+      {createPuzzleButtonArr`elevens`}
       </div>
 
       <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>15x15</h2>

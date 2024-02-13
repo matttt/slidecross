@@ -17,7 +17,7 @@ import { isMobile } from 'react-device-detect';
 import { puzzles } from '../game/puzzles.js';
 import { useParams, useNavigate } from "react-router-dom";
 import useKeypress from 'react-use-keypress';
-import { parseBoardString } from "../game/utils.jsx";
+import { parseBoardString } from "../game/utils.js";
 import { TutorialCard } from "./TutorialCard.jsx";
 
 
