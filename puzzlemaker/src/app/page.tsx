@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {nanoid} from "nanoid";
+import { nanoid } from "nanoid";
+import { FileUploader } from "react-drag-drop-files";
+const { default: parse } = require('@dylanarmstrong/puz');
+
+
+const fileTypes = ["PUZ", "puz"];
+
 
 import { parseBoardString, getHorizontalConveyors, getVerticalConveyors, createFakeCellGrid } from '../../../src/game/utils'
 import { Dir } from "fs";
@@ -16,12 +22,72 @@ type Clues = {
   down: string[]
 }
 
+
 export default function Home() {
 
   const [squareSize, setSquareSize] = useState(0);
   const [puzzleShape, setPuzzleShape] = useState('');
 
-  const [clues, setClues] = useState<Clues>({across: [], down: []})
+  const [clues, setClues] = useState<Clues>({ across: [], down: [] })
+
+  const [file, setFile] = useState(null);
+  const handleFileDrop = (file: any) => {
+    file.arrayBuffer().then((buff: any) => {
+      const data = new Uint8Array(buff); // x is your uInt8Array
+
+      const puz = parse(data);
+      // console.log(String.fromCharCode(...puz.solution))
+
+      let solutionRaw = String.fromCharCode(...puz.solution);
+      let solutionShaped = ""
+
+      while (solutionRaw.length > 0) {
+        let row = solutionRaw.slice(0, puz.header.width[0]);
+        solutionRaw = solutionRaw.slice(puz.header.width[0]);
+
+        solutionShaped += row + "\n";
+      }
+      // console.log(solutionShaped)
+
+      const boardState = parseBoardString(solutionShaped);
+      const fakeCellGrid = createFakeCellGrid(boardState);
+      const horizontalConveyors = getHorizontalConveyors(fakeCellGrid);
+      const verticalConveyors = getVerticalConveyors(fakeCellGrid);
+
+      const acrossClues = []
+      const downClues = []
+
+      for (const c of horizontalConveyors) {
+        const firstCell = c[0]
+        const pairCell = puz.grid[firstCell.j][firstCell.i]
+        const clue = pairCell.across.clue
+
+        console.log(c.map((cell: any) => cell.letter).join(''), clue)
+
+        acrossClues.push(clue)
+      }
+
+      for (const c of verticalConveyors) {
+        const firstCell = c[0]
+        const pairCell = puz.grid[firstCell.j][firstCell.i]
+        const clue = pairCell.down.clue
+
+        console.log(c.map((cell: any) => cell.letter).join(''), clue)
+
+        downClues.push(clue)
+      }
+
+
+
+      setPuzzleShape(solutionShaped);
+      setClues({
+        across: acrossClues,
+        down: downClues
+      })
+
+    });
+    setFile(file);
+  };
 
   const parsedPuzzleShape = puzzleShape.length > 0 ? parseBoardString(puzzleShape) : [[null]];
   const fakeCellGrid = createFakeCellGrid(parsedPuzzleShape);
@@ -44,7 +110,7 @@ export default function Home() {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       const val = e.target.value;
 
-      const newClues = {...clues};
+      const newClues = { ...clues };
       newClues[dir][idx] = val;
       setClues(newClues);
     }
@@ -112,12 +178,13 @@ export default function Home() {
   }, []);
 
   const margin = 8
-  const mSquareSize = squareSize - (margin*2);
+  const mSquareSize = squareSize - (margin * 2);
   const tileSize = mSquareSize / Math.max(rows, cols);
 
   return (
     <div className="flex h-screen text-black">
       <div className="flex flex-col mr-4">
+        <FileUploader handleChange={handleFileDrop} name="file" types={fileTypes} />
         {/* First box on the top-left */}
         <div style={{ height: squareSize, width: squareSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="border-2 border-black-1000 mb-4">
           <svg style={{ height: mSquareSize, width: mSquareSize, margin: 'auto', display: 'block' }}>
@@ -127,8 +194,8 @@ export default function Home() {
                 {Array.from({ length: cols }, (_, col) => (
                   <g key={`${row}-${col}-rect`}>
                     <rect
-                     x={col * tileSize + 2}
-                     y={row * tileSize + 2}
+                      x={col * tileSize + 2}
+                      y={row * tileSize + 2}
                       width={Math.abs(tileSize * 0.95)}
                       height={Math.abs(tileSize * 0.95)}
                       fill={parsedPuzzleShape[row][col] ? 'white' : 'black'}
@@ -147,7 +214,7 @@ export default function Home() {
                         {parsedPuzzleShape[row][col]}
                       </text>
                     )}
-                    
+
                   </g>
                 ))}
               </g>
@@ -175,7 +242,7 @@ export default function Home() {
               </div>
 
             ))}
-            <input type="text" onChange={handleClueChange(Direction.Across, i)} className="flex-grow border-2 border-black-1000" />
+            <input type="text" value={clues.across[i]} onChange={handleClueChange(Direction.Across, i)} className="flex-grow border-2 border-black-1000" />
 
           </div>
         ))}
@@ -195,7 +262,7 @@ export default function Home() {
               </div>
 
             ))}
-            <input type="text" onChange={handleClueChange(Direction.Down, i)} className="flex-grow border-2 border-black-1000" />
+            <input type="text" value={clues.down[i]} onChange={handleClueChange(Direction.Down, i)} className="flex-grow border-2 border-black-1000" />
 
           </div>
         ))}
