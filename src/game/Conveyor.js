@@ -76,9 +76,11 @@ export class Conveyor {
 
       const outOfSelection = cell.selected && !destinationCell.selected
       const intoSelection = !cell.selected && destinationCell.selected
+
       if (!(outOfSelection || intoSelection)) {
         return
       }
+
 
       new TWEEN.Tween(cell.selectedGfx)
         .to({ alpha: alphaValue }, animationTime)

@@ -124,6 +124,8 @@ export class Board {
 
       this.whiteContainer.addChild(...newCells.map(c => c.bgContainer));
       this.textContainer.addChild(...newCells.map(c => c.fgContainer));
+      this.selectionContainer.addChild(...newCells.map(c => c.selectionContainer));
+
 
       this.overlayContainer.addChild(conveyor.pill.container);
 
