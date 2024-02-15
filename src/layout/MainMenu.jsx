@@ -56,12 +56,12 @@ export const MainMenu = () => {
       </div>
 
       <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>9x9</h2>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
       {createPuzzleButtonArr`nines`}
       </div>
 
       <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>11x11</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
       {createPuzzleButtonArr`elevens`}
       </div>
 

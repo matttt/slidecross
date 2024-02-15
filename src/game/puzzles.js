@@ -82,6 +82,54 @@ export const puzzles = {
       }
     },
     {
+      "id": "KoMTFTLFdmEqSXA_UgvYo",
+      "boardDataStr": "EBB\nRUE\nSSE\n",
+      "clues": {
+        "across": [
+          "Flow back",
+          "Regret",
+          "Opposite of NNW"
+        ],
+        "down": [
+          "Hosp. areas",
+          "Clear tables",
+          "Nectar collector"
+        ]
+      }
+    },
+    {
+      "id": "mzHmycF_HDSXvCoPnc9Sc",
+      "boardDataStr": "BAE\nARM\nGOO\n",
+      "clues": {
+        "across": [
+          "Modern term of endearment",
+          "Branch",
+          "Sticky stuff"
+        ],
+        "down": [
+          "Tea holder",
+          "Orinoco tributary",
+          "Moody music genre"
+        ]
+      }
+    },
+    {
+      "id": "our5BbIF7yjGS5X3gTbrY",
+      "boardDataStr": "ISP\nDRS\nKOI\n",
+      "clues": {
+        "across": [
+          "AT&T or AOL",
+          "JAMA readers",
+          "Garden-pond fish"
+        ],
+        "down": [
+          "Texting shrug",
+          "\"No seats\" sign",
+          "Pressure meas."
+        ]
+      }
+    },
+    {
       "id": "QgZkYZzAdELGG-Nvv7XIq",
       "boardDataStr": "RNA\nUSC\nEAT",
       "clues": {
@@ -1044,7 +1092,46 @@ export const puzzles = {
         ]
       }
     },
-
+    {
+      "id": "sXxZa7t7Tjm776Wj-lNfD",
+      "boardDataStr": "SAP...MAP\nAREA.WILE\nWEAR.INTO\n.STALLION\n...BED...\nMARIACHI.\nIKEA.AIDS\nLIEN.TREE\nEND...EAT\n",
+      "clues": {
+        "across": [
+          "Plant fluid",
+          "Atlas page",
+          "Space occupied",
+          "Cunning; trickery",
+          "Put on",
+          "Towards interior",
+          "Mare's partner",
+          "Sleeping place",
+          "Mexican music",
+          "Swedish store",
+          "Gives help",
+          "Property claim",
+          "Big plant",
+          "Finish; conclude",
+          "Consume food"
+        ],
+        "down": [
+          "Cutting tool",
+          "War god",
+          "Fuel material",
+          "Smaller crossword",
+          "Voice range",
+          "Day laborer",
+          "Saudi peninsula",
+          "Untamed feline",
+          "Open field",
+          "Long distance",
+          "Similar (to)",
+          "Oboe feature",
+          "Employ someone",
+          "Illuminated thought?",
+          "Complete collection"
+        ]
+      }
+    }
     // {
     //   "id": "F0EeePpEfUBJ8RG_er2UU",
     //   "boardDataStr": "###JANGLE\n##FORREAL\n#DONTATME\nBOOZY#SEC\nLODE##TNT\nARC##LUTE\nSMOLDERED\nTAMARIND#\nSTAYSAT##",
@@ -1163,7 +1250,59 @@ export const puzzles = {
       "id": "vUhlH9HwVlxN8qToi18lW",
       "boardDataStr": "DEFORM.ACDC\nEXITED.BRIE\nCOBRAS.READ\nATEAM.LADLE\nFIR..MIDI..\n.COMICPETS.\n..PEDS..SET\nASTRO.ULCER\nSOIL.SNOOPY\nARCO.ATARIS\nPEST.MOMENT\n",
       "clues":
-        { "across": ["Bend out of shape", "Electrical current choice", "Left", "French cheese", "Venomous snakes", "Enjoy a book", "First-stringers", "Soup server", "Christmas tree", "This puzzle's size", "Animals doing stand-up? Or 31-Across and others, for instance", "XING users, for short", "Harden", "Houston baseball player", "Stomach problem", "Earth", "Charlie Brown's dog", "With the bow, in music", "Some old gaming consoles", "Nuisance", "Brief instant of time"], "down": ["Low-power coffee", "Uniquely unusual", "Data transmission science", "Other, in Oaxaca", "Paper unit", "Some E.R. personnel", "Wear down", "Loan officer's consideration", "Old phone feature", "Give up", "Back talk", "Hosts, for short", "Dry red wine", "Swear words?", "Enter gradually, as water", "Covert romantic meeting", "\"Stat!\"", "Achy", "\"Do ___ others...\"", "Garden dirt", "America's Uncle"] }
+        { "across": ["Bend out of shape", "Electrical current choice", "Left", "French cheese", "Venomous snakes", "Enjoy a book", "First-stringers", "Soup server", "Christmas tree", "This puzzle's size", "Animals doing stand-up? Or 31-Across and others, for instance", "XING users, for short", "Harden", "Houston baseball player", "Stomach problem", "Earth", "Charlie Brown's dog", "With the bow, in music", "Some old gaming consoles", "Nuisance", "Brief instant of time"], "down": ["Low-power coffee", "Uniquely unusual", "Data transmission science", "Other, in Oaxaca", "Paper unit", "Some E.R. personnel", "Wear down", "Loan officer's consideration", "Old phone feature", "Give up", "Back talk", "Hosts, for short", "Dry red wine", "Swear words?", "Enter gradually, as water", "Covert romantic meeting", "\"Stat!\"", "Achy", "\"Do ___ others...\"", "Garden dirt", "America's Uncle"] },
+    },
+    {
+      "id": "9tuLDfsBd-XbLlnilbwAj",
+      "boardDataStr": "..ATP.OPEN.\nMARIE.CLUE.\nTROJANHORSE\nGROUCHO.OTC\n...AHA.APEG\nEBONY.AREAS\nSANA.CLE...\nTAB.HALCYON\nDIANAPRINCE\n.NINA.EBERT\n.GLEN.DOZ..\n",
+      "clues": {
+        "across": [
+          "Molecular energy in cells",
+          "Dental hygienist's request",
+          "___ Antoinette",
+          "Hint",
+          "Another name for malware disguised as a legitimate program",
+          "___ Marx",
+          "Available without a prescription (abbr)",
+          "Eureka",
+          "Take down ___ (demote)",
+          "Magazine with a middle-class African-American audience",
+          "Zones",
+          "Capital of Yemen (var.)",
+          "Cavs, on a scoreboard",
+          "Bar bill",
+          "Like the good old days",
+          "Another name for the Amazonian superhero, Wonder Woman",
+          "One of Columbus's ships",
+          "Film critic Roger",
+          "Secluded valley",
+          "Egg qty."
+        ],
+        "down": [
+          "Suffix of kang or buck",
+          "City that boasts \"the most crossed border in the world\"",
+          "Hunky-dory",
+          "Eight in Madrid",
+          "Mahmoud Abbas's org.",
+          "Area between Africa and Asia",
+          "Since 2019, ___ has rebranded as an all-natural beverage, with stevia replacing corn syrup.",
+          "Initials of far-right Georgia rep, who was removed from all House committee roles in 2021",
+          "Part of ETA: Abbr.",
+          "New Deal home loan org.",
+          "Ticker tapes, for short?",
+          "Puerto Rican home to the Western Hemisphere's largest radio telescope, until its collapse in 2020",
+          "Founded: Abbr.",
+          "Sheep crooning",
+          "Out ___ ___",
+          "Flushed with anger",
+          "An upper limit (as on expenditures)",
+          "Cole ___ shoes",
+          "Santa ___ Valley: California wine region",
+          "Text-scanning technology, briefly",
+          "Court divider",
+          "22.5 degrees"
+        ]
+      }
     }
   ],
   "fifteens": [
