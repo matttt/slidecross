@@ -8,10 +8,10 @@ ___] |___ | |__/ |___ |___ |  \ |__| ___] ___]
 
 first,
 
-’npm install’
+`npm install`
 
 then,
 
-’npm run start’
+`npm run start`
 
 navigate to localhost:3000 and you're off to the races!
