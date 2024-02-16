@@ -905,6 +905,48 @@ export const puzzles = {
   ],
   "nines": [
     {
+  "id": "ustDiqi5M6DIzl0_Mp5P8",
+  "boardDataStr": "MEAT.SPAM\nARCO.COMA\nRAINDROPS\nYTD.WURST\n...DAB...\nPAGER.PST\nSNOWFLAKE\nATRA.ENOS\nTIER.XERS\n",
+  "clues": {
+    "across": [
+      "Vegetarian's no-no",
+      "Yummy 1a in a can",
+      "Shell competitor",
+      "Food ___ (overeater's state)",
+      "Parts of a shower",
+      "Since Jan. 1",
+      "Brat______",
+      "Smidgen",
+      "Beeper",
+      "L.A. clock setting",
+      "Hexagonal sign of winter",
+      "Razor brand",
+      "Son of Seth",
+      "Stadium level",
+      "Gen-___ (boomers' kids)"
+    ],
+    "down": [
+      "Gardener of rhyme",
+      "Part of QED",
+      "Etcher's need",
+      "2,000 pounds",
+      "Second-stringer",
+      "Low-quality",
+      "Current units",
+      "Ship's pole",
+      "Tower over",
+      "Double-walled flask",
+      "H.S. junior's exam",
+      "Against",
+      "Clinton's vice president",
+      "Window part",
+      "Heath bar competitor",
+      "Hardy heroine",
+      "Superman foe Luthor"
+    ]
+  }
+},
+    {
       "id": "Bqnyicr00p9IdPtAvnOTo",
       "boardDataStr": "FAKE#GOOD\nIPAD#USDA\nJERUSALEM\nIDO#CROSS\n###RED###\nONION#CBS\nVELVETEEN\nERIE#IDEA\nROAR#PERP",
       "clues": {
