@@ -1,5 +1,53 @@
 export const puzzles = {
   "threes": [
+    {
+  "id": "8aeRangaH1G-miwne2HH3",
+  "boardDataStr": "GIG\nRNA\nEGG",
+  "clues": {
+    "across": [
+      "Job for a Doordasher",
+      "DNA’s partner",
+      "It might have come before the chicken"
+    ],
+    "down": [
+      "Test for masters students ",
+      "Present progressive ending",
+      "Choke"
+    ]
+  }
+},
+{
+  "id": "7LiuqzM1xoQoVaJkad_63",
+  "boardDataStr": "DAD\nUNO\nDDS",
+  "clues": {
+    "across": [
+      "Mom and ___",
+      "One in Cartagena",
+      "Teeth expert, for short"
+    ],
+    "down": [
+      "Eg, a bad firework",
+      "Additive conjunction",
+      "Two in Madrid"
+    ]
+  }
+},#
+		{
+  "id": "keHGE3I_8_kZzbbLi20DX",
+  "boardDataStr": "APE\nWOW\nWWW",
+  "clues": {
+    "across": [
+      "Monkey without a tail",
+      "Fantasy MMORPG",
+      "Website address lead in"
+    ],
+    "down": [
+      " ”So cute!”",
+      "Batman attack word",
+      "Sound of disgust"
+    ]
+  }
+},
 
     {
       "id": "Pv-sEJPKD2Ng9LIdDnhDY",
