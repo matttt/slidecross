@@ -1,21 +1,6 @@
 export const puzzles = {
   "threes": [
-    {
-  "id": "8aeRangaH1G-miwne2HH3",
-  "boardDataStr": "GIG\nRNA\nEGG",
-  "clues": {
-    "across": [
-      "Job for a Doordasher",
-      "DNA’s partner",
-      "It might have come before the chicken"
-    ],
-    "down": [
-      "Test for masters students ",
-      "Present progressive ending",
-      "Choke"
-    ]
-  }
-},
+  
 {
   "id": "7LiuqzM1xoQoVaJkad_63",
   "boardDataStr": "DAD\nUNO\nDDS",
