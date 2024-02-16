@@ -31,7 +31,7 @@ export const puzzles = {
       "Two in Madrid"
     ]
   }
-},#
+},
 		{
   "id": "keHGE3I_8_kZzbbLi20DX",
   "boardDataStr": "APE\nWOW\nWWW",
