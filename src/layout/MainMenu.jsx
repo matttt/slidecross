@@ -36,9 +36,7 @@ export const MainMenu = () => {
   return (
     <div className="flex flex-col justify-center items-center" style={{ width: "100%" }}>
       <h1 className="text-4xl font-bold mb-4 text-center md:text-left" style={{ color: 'white', marginTop: "50px" }}>slidecross</h1>
-      <h4 className="text-xs mb-1 text-center md:text-left" style={{ color: 'white' }}>a puzzle game by matthew martori</h4>
-      <h4 className="text-xs mb-1 text-center md:text-left" style={{ color: 'white' }}>puzzles by alex tuchi</h4>
-      <h4 className="text-xs mb-4 text-center md:text-left underline" style={{ color: 'white' }}><a href="mailto:slidecrossdev@gmail.com">email us!</a></h4>
+      
 
       <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>3x3</h2>
       <div className="grid grid-cols-4 gap-1 md:grid-cols-4">
@@ -67,6 +65,10 @@ export const MainMenu = () => {
 
       <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>15x15</h2>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-3 mb-10">{createPuzzleButtonArr`fifteens`}</div>
+
+      <h4 className="text-xs mb-1 mt-4 text-center md:text-left" style={{ color: 'white' }}>a puzzle game by matthew martori</h4>
+      <h4 className="text-xs mb-1 text-center md:text-left" style={{ color: 'white' }}>puzzles by alex tuchi</h4>
+      <h4 className="text-xs mb-4 text-center md:text-left underline" style={{ color: 'white' }}><a href="mailto:slidecrossdev@gmail.com">email us!</a></h4>
     </div>
   );
 };
