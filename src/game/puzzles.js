@@ -1,38 +1,38 @@
 export const puzzles = {
   "threes": [
-  
-{
-  "id": "7LiuqzM1xoQoVaJkad_63",
-  "boardDataStr": "DAD\nUNO\nDDS",
-  "clues": {
-    "across": [
-      "Mom and ___",
-      "One in Cartagena",
-      "Teeth expert, for short"
-    ],
-    "down": [
-      "Eg, a bad firework",
-      "Additive conjunction",
-      "Two in Madrid"
-    ]
-  }
-},
-		{
-  "id": "keHGE3I_8_kZzbbLi20DX",
-  "boardDataStr": "APE\nWOW\nWWW",
-  "clues": {
-    "across": [
-      "Monkey without a tail",
-      "Fantasy MMORPG",
-      "Website address lead in"
-    ],
-    "down": [
-      " ”So cute!”",
-      "Batman attack word",
-      "Sound of disgust"
-    ]
-  }
-},
+
+    {
+      "id": "7LiuqzM1xoQoVaJkad_63",
+      "boardDataStr": "DAD\nUNO\nDDS",
+      "clues": {
+        "across": [
+          "Mom and ___",
+          "One in Cartagena",
+          "Teeth expert, for short"
+        ],
+        "down": [
+          "Eg, a bad firework",
+          "Additive conjunction",
+          "Two in Madrid"
+        ]
+      }
+    },
+    {
+      "id": "keHGE3I_8_kZzbbLi20DX",
+      "boardDataStr": "APE\nWOW\nWWW",
+      "clues": {
+        "across": [
+          "Monkey without a tail",
+          "Fantasy MMORPG",
+          "Website address lead in"
+        ],
+        "down": [
+          " ”So cute!”",
+          "Batman attack word",
+          "Sound of disgust"
+        ]
+      }
+    },
 
     {
       "id": "Pv-sEJPKD2Ng9LIdDnhDY",
@@ -147,21 +147,21 @@ export const puzzles = {
       }
     },
     {
-  "id": "7TFWLwzzPiwHwppBR8EX0",
-  "boardDataStr": "AMP\nRAT\nMOO",
-  "clues": {
-    "across": [
-      "Ohm’s partner",
-      "Snitch",
-      "Cow sound"
-    ],
-    "down": [
-      "Give weapons to",
-      "China leader",
-      "Vacay days, for short"
-    ]
-  }
-},
+      "id": "7TFWLwzzPiwHwppBR8EX0",
+      "boardDataStr": "AMP\nRAT\nMOO",
+      "clues": {
+        "across": [
+          "Ohm’s partner",
+          "Snitch",
+          "Cow sound"
+        ],
+        "down": [
+          "Give weapons to",
+          "China leader",
+          "Vacay days, for short"
+        ]
+      }
+    },
     {
       "id": "our5BbIF7yjGS5X3gTbrY",
       "boardDataStr": "ISP\nDRS\nKOI\n",
@@ -211,27 +211,27 @@ export const puzzles = {
       }
     },
     { "id": "VcwPXABMht_SKEVMviEz0", "boardDataStr": "YES\nESL\nAPR\n", "clues": { "across": ["\"You bet!\"", "Subj. for immigrants", "Earth Day mo."], "down": ["Affirmative vote", "Sixth sense, for short", "Camera type, briefly"] } },
-    {"id":"1L1CXLckjs6tPvPi-GQbF","boardDataStr":"DIP\nONE\nCNN\n","clues":{"across":["Quick swim","___ in a million","Anderson Cooper's channel"],"down":["\"What's up, ___?\"","Bed-and-breakfast","Write"]}},
-    {"id":"GSRidM2kf7jvGiYqeOZVg","boardDataStr":"BBS\nERA\nNAP\n","clues":{"across":["Air-gun ammo","Historical period","Siesta"],"down":["Jerry's partner","Sports ___","Maple syrup source"]}},
-    {"id":"HlekjlG0u06ONwoYVfL7h","boardDataStr":"IFS\nTAP\nAMY\n","clues":{"across":["Conditions","Faucet","Singer Winehouse"],"down":["Give ___ whirl","Gp. of relatives","Secret agent"]}},
-    {"id":"A82Ar3V2Sv0UJ3miCgXux","boardDataStr":"EWE\nMAN\nSSE\n","clues":{"across":["Female sheep","Isle of ___","Opposite of NNW"],"down":["Dash lengths","Used to be","Opposite of WSW"]}},
-    {"id":"04kG9IvKSYsq99VxjdfD2","boardDataStr":"TON\nENE\nESS\n","clues":{"across":["2,000 pounds","Opposite of WSW","Pothook shape"],"down":["Golf peg","Add-___ (extras)","Super ___ (video game console)"]}},
+    { "id": "1L1CXLckjs6tPvPi-GQbF", "boardDataStr": "DIP\nONE\nCNN\n", "clues": { "across": ["Quick swim", "___ in a million", "Anderson Cooper's channel"], "down": ["\"What's up, ___?\"", "Bed-and-breakfast", "Write"] } },
+    { "id": "GSRidM2kf7jvGiYqeOZVg", "boardDataStr": "BBS\nERA\nNAP\n", "clues": { "across": ["Air-gun ammo", "Historical period", "Siesta"], "down": ["Jerry's partner", "Sports ___", "Maple syrup source"] } },
+    { "id": "HlekjlG0u06ONwoYVfL7h", "boardDataStr": "IFS\nTAP\nAMY\n", "clues": { "across": ["Conditions", "Faucet", "Singer Winehouse"], "down": ["Give ___ whirl", "Gp. of relatives", "Secret agent"] } },
+    { "id": "A82Ar3V2Sv0UJ3miCgXux", "boardDataStr": "EWE\nMAN\nSSE\n", "clues": { "across": ["Female sheep", "Isle of ___", "Opposite of NNW"], "down": ["Dash lengths", "Used to be", "Opposite of WSW"] } },
+    { "id": "04kG9IvKSYsq99VxjdfD2", "boardDataStr": "TON\nENE\nESS\n", "clues": { "across": ["2,000 pounds", "Opposite of WSW", "Pothook shape"], "down": ["Golf peg", "Add-___ (extras)", "Super ___ (video game console)"] } },
     {
-  "id": "nyVAaQpSs6AV2T-HlOVQt",
-  "boardDataStr": "EMT\nBLU\nBBB",
-  "clues": {
-    "across": [
-      "First responders, briefly",
-      "Protagonist of Rio (2011)",
-      "Org. for companies"
-    ],
-    "down": [
-      "___ and flow",
-      "US baseball grp.",
-      "Home for a rubber ducky"
-    ]
-  }
-}
+      "id": "nyVAaQpSs6AV2T-HlOVQt",
+      "boardDataStr": "EMT\nBLU\nBBB",
+      "clues": {
+        "across": [
+          "First responders, briefly",
+          "Protagonist of Rio (2011)",
+          "Org. for companies"
+        ],
+        "down": [
+          "___ and flow",
+          "US baseball grp.",
+          "Home for a rubber ducky"
+        ]
+      }
+    }
   ],
   "fours": [
     {
@@ -306,12 +306,49 @@ export const puzzles = {
         ]
       }
     },
-    {"id":"SK-kbe0Ag6igF_jrqGOLm","boardDataStr":"POSE\nIWAS\nLEST\nESSO\n","clues":{"across":["Sit for a portrait","\"As ___ saying...\"","\"___ we forget\"","Exxon, once"],"down":["Heap","Has debts","Back talk","This, in Tijuana"]}},
-    {"id":"l13ygk06FRkv05XmlwGcL","boardDataStr":".HAD\nCOPS\nPLOT\nREP.\n","clues":{"across":["Possessed","Police officers","Story line","Agent"],"down":["Golfer's target","Each","Summer hrs.","EMT's skill"]}},
-    {"id":"Zj6CPx6u9wHpcJwo6tvke","boardDataStr":"HIDE\nAKIN\nREPO\nPASS\n","clues":{"across":["Conceal","Analogous","Bank take-back","Free ticket"],"down":["Plucked instrument","Swedish furniture chain","Quick swims","Son of Seth"]}},
-    {"id":"hT3Vnpn0TkQAY7bkf09Y3","boardDataStr":".CCS\nALOT\nLAVA\nAPEX\n","clues":{"across":["Includes in an email","Oodles","Volcanic flow","Pinnacle"],"down":["Thunder sound","Sheltered inlet","Pringles alternative","In the style of"]}}
-    ],
-  
+    { "id": "SK-kbe0Ag6igF_jrqGOLm", "boardDataStr": "POSE\nIWAS\nLEST\nESSO\n", "clues": { "across": ["Sit for a portrait", "\"As ___ saying...\"", "\"___ we forget\"", "Exxon, once"], "down": ["Heap", "Has debts", "Back talk", "This, in Tijuana"] } },
+    { "id": "l13ygk06FRkv05XmlwGcL", "boardDataStr": ".HAD\nCOPS\nPLOT\nREP.\n", "clues": { "across": ["Possessed", "Police officers", "Story line", "Agent"], "down": ["Golfer's target", "Each", "Summer hrs.", "EMT's skill"] } },
+    { "id": "Zj6CPx6u9wHpcJwo6tvke", "boardDataStr": "HIDE\nAKIN\nREPO\nPASS\n", "clues": { "across": ["Conceal", "Analogous", "Bank take-back", "Free ticket"], "down": ["Plucked instrument", "Swedish furniture chain", "Quick swims", "Son of Seth"] } },
+    { "id": "hT3Vnpn0TkQAY7bkf09Y3", "boardDataStr": ".CCS\nALOT\nLAVA\nAPEX\n", "clues": { "across": ["Includes in an email", "Oodles", "Volcanic flow", "Pinnacle"], "down": ["Thunder sound", "Sheltered inlet", "Pringles alternative", "In the style of"] } },
+    {
+      "id": "CZxY0EY91J48-ef0f5hwL",
+      "boardDataStr": "GOKU\nLAND\nOHIO\nMUTT",
+      "clues": {
+        "across": [
+          "Dragon Ball Z hero",
+          "“____ ho!”",
+          "Lebron’s home",
+          "Mixed breed dog"
+        ],
+        "down": [
+          "Become stuck or attached to",
+          "Hawaiian locale",
+          "Make a sweater out of yarn",
+          "Org. for drivers in Salt Lake City"
+        ]
+      }
+    },
+    {
+      "id": "GIY9HgyhmCdawGucAmJrH",
+      "boardDataStr": "CARE\nAMOR\nNITS\nTSET",
+      "clues": {
+        "across": [
+          "The C in TLC",
+          "Love in Granada",
+          "Lice",
+          "Abbreviator’s fine china?"
+        ],
+        "down": [
+          "Inside baseball language",
+          "Parisian pals",
+          "Type of memorization",
+          "Long ago, long ago"
+        ]
+      }
+    }
+
+  ],
+
 
   "fives": [
     {
@@ -875,47 +912,47 @@ export const puzzles = {
   ],
   "nines": [
     {
-  "id": "ustDiqi5M6DIzl0_Mp5P8",
-  "boardDataStr": "MEAT.SPAM\nARCO.COMA\nRAINDROPS\nYTD.WURST\n...DAB...\nPAGER.PST\nSNOWFLAKE\nATRA.ENOS\nTIER.XERS\n",
-  "clues": {
-    "across": [
-      "Vegetarian's no-no",
-      "Yummy 1a in a can",
-      "Shell competitor",
-      "Food ___ (overeater's state)",
-      "Parts of a shower",
-      "Since Jan. 1",
-      "Brat______",
-      "Smidgen",
-      "Beeper",
-      "L.A. clock setting",
-      "Hexagonal sign of winter",
-      "Razor brand",
-      "Son of Seth",
-      "Stadium level",
-      "Gen-___ (boomers' kids)"
-    ],
-    "down": [
-      "Gardener of rhyme",
-      "Part of QED",
-      "Etcher's need",
-      "2,000 pounds",
-      "Second-stringer",
-      "Low-quality",
-      "Current units",
-      "Ship's pole",
-      "Tower over",
-      "Double-walled flask",
-      "H.S. junior's exam",
-      "Against",
-      "Clinton's vice president",
-      "Window part",
-      "Heath bar competitor",
-      "Hardy heroine",
-      "Superman foe Luthor"
-    ]
-  }
-},
+      "id": "ustDiqi5M6DIzl0_Mp5P8",
+      "boardDataStr": "MEAT.SPAM\nARCO.COMA\nRAINDROPS\nYTD.WURST\n...DAB...\nPAGER.PST\nSNOWFLAKE\nATRA.ENOS\nTIER.XERS\n",
+      "clues": {
+        "across": [
+          "Vegetarian's no-no",
+          "Yummy 1a in a can",
+          "Shell competitor",
+          "Food ___ (overeater's state)",
+          "Parts of a shower",
+          "Since Jan. 1",
+          "Brat______",
+          "Smidgen",
+          "Beeper",
+          "L.A. clock setting",
+          "Hexagonal sign of winter",
+          "Razor brand",
+          "Son of Seth",
+          "Stadium level",
+          "Gen-___ (boomers' kids)"
+        ],
+        "down": [
+          "Gardener of rhyme",
+          "Part of QED",
+          "Etcher's need",
+          "2,000 pounds",
+          "Second-stringer",
+          "Low-quality",
+          "Current units",
+          "Ship's pole",
+          "Tower over",
+          "Double-walled flask",
+          "H.S. junior's exam",
+          "Against",
+          "Clinton's vice president",
+          "Window part",
+          "Heath bar competitor",
+          "Hardy heroine",
+          "Superman foe Luthor"
+        ]
+      }
+    },
     {
       "id": "Bqnyicr00p9IdPtAvnOTo",
       "boardDataStr": "FAKE#GOOD\nIPAD#USDA\nJERUSALEM\nIDO#CROSS\n###RED###\nONION#CBS\nVELVETEEN\nERIE#IDEA\nROAR#PERP",
