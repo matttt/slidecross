@@ -147,6 +147,22 @@ export const puzzles = {
       }
     },
     {
+  "id": "7TFWLwzzPiwHwppBR8EX0",
+  "boardDataStr": "AMP\nRAT\nMOO",
+  "clues": {
+    "across": [
+      "Ohm’s partner",
+      "Snitch",
+      "Cow sound"
+    ],
+    "down": [
+      "Give weapons to",
+      "China leader",
+      "Vacay days, for short"
+    ]
+  }
+},
+    {
       "id": "our5BbIF7yjGS5X3gTbrY",
       "boardDataStr": "ISP\nDRS\nKOI\n",
       "clues": {
