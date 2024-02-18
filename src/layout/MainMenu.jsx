@@ -49,7 +49,7 @@ export const MainMenu = () => {
       </div>
 
       <h2 className="text-2xl text-center md:text-left mt-3" style={{ color: 'white' }}>5x5</h2>
-      <div className="grid grid-cols-3 gap-4 md:grid-cols-8">
+      <div className="grid grid-cols-3 gap-4 md:grid-cols-4">
       {createPuzzleButtonArr`fives`}
       </div>
 
