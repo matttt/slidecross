@@ -19,6 +19,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import useKeypress from 'react-use-keypress';
 import { parseBoardString } from "../game/utils.js";
 import { TutorialCard } from "./TutorialCard.jsx";
+import { MiniTutCard } from "./MiniTutCard.jsx";
 
 
 const min = Math.min(window.innerWidth, window.innerHeight)
@@ -128,11 +129,16 @@ const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard }) => {
 export const PuzzleView = () => {
   const navigate = useNavigate();
 
+  const hasPlayed = localStorage.getItem('hasPlayed') || false;
+
   const { puzzleId, puzzleType } = useParams();
   const [clue, setClue] = useState('');
   const [isShuffleWarningOpen, setIsShuffleWarningOpen] = useState(false);
   const [isTutorialCardOpen, setIsTutorialCardOpen] = useState(false);
+  const [isMiniTutCardOpen, setIsMiniTutCardOpen] = useState(!hasPlayed);
   const puzzle = puzzles[puzzleType].find(p => p.id === puzzleId);
+
+  localStorage.setItem('hasPlayed', true);
 
   const [onUndo, setOnUndo] = useState(() => () => null);
   const [onShuffle, setOnShuffle] = useState(() => () => null);
@@ -160,6 +166,14 @@ export const PuzzleView = () => {
     setIsTutorialCardOpen(true)
   }
 
+  const handleCloseMiniTutCard = () => {
+    setIsMiniTutCardOpen(false)
+  }
+
+  const handleOpenMiniTutCard = () => {
+    setIsMiniTutCardOpen(true)
+  }
+
 
   const meta = JSON.parse(localStorage.getItem(puzzle.id + '_meta')) || null;
 
@@ -180,6 +194,7 @@ export const PuzzleView = () => {
     <Div100vh style={{ overflow: 'hidden' }}>
       <ShuffleWarning open={isShuffleWarningOpen} handleClose={handleCloseShuffleWarning} onShuffle={onShuffle} />
       <TutorialCard open={isTutorialCardOpen} handleClose={handleCloseTutorialCard} />
+      <MiniTutCard open={isMiniTutCardOpen} handleClose={handleCloseMiniTutCard} openFullTutorial={handleOpenTutorialCard} />
 
       <div className="flex flex-col items-center justify-center h-screen">
         <TopBar onBack={() => navigate('/')} onUndo={onUndo} openShuffleWarning={handleOpenShuffleWarning} openTutorialCard={handleOpenTutorialCard} />

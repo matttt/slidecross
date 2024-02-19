@@ -271,6 +271,116 @@ export const puzzles = {
       }
     },
     {
+      "id": "OoTs2-GysI5gk7Lo2DwG7",
+      "boardDataStr": "LOCI\nACES\nITEM\nDOSE",
+      "clues": {
+        "across": [
+          "Places to put things in a memory palace",
+          "4 of 52 in a deck of cards",
+          "Object",
+          "Unit of medication"
+        ],
+        "down": [
+          "To have set something down",
+          "Prefix meaning “eight”",
+          "Average grades",
+          "Breakup question: “is __ __?”"
+        ]
+      }
+    },
+    {
+      "id": "C1zJnAnJbHx0pcPl6iMnA",
+      "boardDataStr": "#PAL\nSAFE\nOVEN\nPEW#",
+      "clues": {
+        "across": [
+          "Bud",
+          "Sound’s partner",
+          "Place to heat food",
+          "Star Wars blaster sound effect"
+        ],
+        "down": [
+          "Make road",
+          "More than a couple",
+          "Nickname for Leonard",
+          "Soak (up)"
+        ]
+      }
+    },
+    {
+      "id": "5bLVUsSLYX5Q2sX2WJoUj",
+      "boardDataStr": "#ODS\nQWOP\nULLA\nEST#",
+      "clues": {
+        "across": [
+          "Takes too much of a drug",
+          "2008 browser game that uses only 4 keys",
+          "Role for Uma in The Producers (2005)",
+          "Suffix meaning “most”"
+        ],
+        "down": [
+          "Nocturnal birds",
+          "Simpleton",
+          "Place for a mud bath",
+          "“Huh?” in Pamplona"
+        ]
+      }
+    },
+    {
+      "id": "MVDSbnj1jJmKuiBjVwmau",
+      "boardDataStr": "MUNA\nOROS\nOGRE\nREDA",
+      "clues": {
+        "across": [
+          "“Silk Chiffon”group",
+          "Suit in a Catalan deck of cards",
+          "Shrek, for one",
+          "Inciting symbol in “The Scarlet Letter”"
+        ],
+        "down": [
+          "Affix a boat to the dock",
+          "Desire",
+          "VPN company prefix",
+          "Out on the ocean"
+        ]
+      }
+    },
+    {
+      "id": "yWNwfu3b2Ra5t6szN4joZ",
+      "boardDataStr": "#CAL\nGORE\nEROS\nMED#",
+      "clues": {
+        "across": [
+          "Nutrition info. unit",
+          "Guts",
+          "Greek god of love",
+          "Pill, slangily"
+        ],
+        "down": [
+          "Center",
+          "Former Mariners 3B",
+          "Documentary filmmaker Blank",
+          "Valuable stone"
+        ]
+      }
+    },
+    {
+      "id": "MX_cVet2IP_YzCtzK7meU",
+      "boardDataStr": "#VAT\nNEPO\nAERO\nGPS#",
+      "clues": {
+        "across": [
+          "Tub",
+          "____ baby",
+          "Flight prefix",
+          "Digital maps, in a way"
+        ],
+        "down": [
+          "HBO show for Julia Louis-Dreyfus",
+          "Rates of interest, briefly ",
+          "Also",
+          "Bother"
+        ]
+      }
+    },
+
+
+    {
       "id": "NXt4kvtRJqVuxsQR11SAs",
       "boardDataStr": "RAIN\nURSA\nMIST\nPEAS",
       "clues": {
