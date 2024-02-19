@@ -58,7 +58,7 @@ const ShuffleWarning = ({ open, handleClose, onShuffle }) =>
         // Add your shuffle logic here
         handleClose();
         onShuffle();
-      }} autoFocus>
+      }} variant='contained' autoFocus>
         Shuffle
       </Button>
     </DialogActions>
