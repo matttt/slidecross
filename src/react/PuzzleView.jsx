@@ -20,6 +20,7 @@ import useKeypress from 'react-use-keypress';
 import { parseBoardString } from "../game/utils.js";
 import { TutorialCard } from "./TutorialCard.jsx";
 import { MiniTutCard } from "./MiniTutCard.jsx";
+import { PuzzleWinCard } from "./PuzzleWinCard.jsx";
 
 
 const min = Math.min(window.innerWidth, window.innerHeight)
@@ -128,7 +129,6 @@ const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard }) => {
 
 export const PuzzleView = () => {
   const navigate = useNavigate();
-
   const hasPlayed = localStorage.getItem('hasPlayed') || false;
 
   const { puzzleId, puzzleType } = useParams();
@@ -136,9 +136,16 @@ export const PuzzleView = () => {
   const [isShuffleWarningOpen, setIsShuffleWarningOpen] = useState(false);
   const [isTutorialCardOpen, setIsTutorialCardOpen] = useState(false);
   const [isMiniTutCardOpen, setIsMiniTutCardOpen] = useState(!hasPlayed);
-  const puzzle = puzzles[puzzleType].find(p => p.id === puzzleId);
+  const [isPuzzleWinCardOpen, setIsPuzzleWinCardOpen] = useState(false);
+  // const puzzle = puzzles[puzzleType].find(p => p.id === puzzleId);
 
-  localStorage.setItem('hasPlayed', true);
+  const [puzzle, setPuzzle] = useState(puzzles[puzzleType].find(p => p.id === puzzleId));
+
+  useEffect(() => {
+    setPuzzle(puzzles[puzzleType].find(p => p.id === puzzleId))
+  }, [puzzleId, puzzleType])
+
+  localStorage.setItem('hasPlayed', true); // for first play card (MiniTutCard)
 
   const [onUndo, setOnUndo] = useState(() => () => null);
   const [onShuffle, setOnShuffle] = useState(() => () => null);
@@ -174,6 +181,18 @@ export const PuzzleView = () => {
   //   setIsMiniTutCardOpen(true)
   // }
 
+  const handleClosePuzzleWinCard = () => {
+    setIsPuzzleWinCardOpen(false)
+  }
+
+  const handleOpenPuzzleWinCard = () => {
+    setIsPuzzleWinCardOpen(true)
+  }
+
+  const puzzleSolved = () => {
+    handleOpenPuzzleWinCard()
+  }
+
 
   const meta = JSON.parse(localStorage.getItem(puzzle.id + '_meta')) || null;
 
@@ -187,6 +206,7 @@ export const PuzzleView = () => {
     setOnPreviousClue,
     setOnBoardKeyPress,
     setClue,
+    puzzleSolved,
     setOnShuffle
   };
 
@@ -195,6 +215,7 @@ export const PuzzleView = () => {
       <ShuffleWarning open={isShuffleWarningOpen} handleClose={handleCloseShuffleWarning} onShuffle={onShuffle} />
       <TutorialCard open={isTutorialCardOpen} handleClose={handleCloseTutorialCard} />
       <MiniTutCard open={isMiniTutCardOpen} handleClose={handleCloseMiniTutCard} openFullTutorial={handleOpenTutorialCard} />
+      <PuzzleWinCard open={isPuzzleWinCardOpen} handleClose={handleClosePuzzleWinCard} puzzleId={puzzle.id} />
 
       <div className="flex flex-col items-center justify-center h-screen">
         <TopBar onBack={() => navigate('/')} onUndo={onUndo} openShuffleWarning={handleOpenShuffleWarning} openTutorialCard={handleOpenTutorialCard} />
@@ -206,10 +227,11 @@ export const PuzzleView = () => {
   );
 };
 
-const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, pixiConfig }) => {
+const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, puzzleSolved, pixiConfig }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+
     let ratio = 1;
 
     if (puzzle) {
@@ -225,7 +247,7 @@ const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, se
       height: resolution * ratio - 38,
       // antialias: true,
       backgroundColor: 0xF0F4EF,
-      resolution: 3,
+      resolution: 2,
       autoDensity: true,
     };
 
@@ -235,19 +257,37 @@ const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, se
       puzzle,
       boardStateStr,
       boardStateMeta,
-      setClue
+      setClue,
+      puzzleSolved
     };
 
-    const { onUndo, onNextClue, onKeyPress, onPreviousClue, onShuffle } = app(puzzleInput);
+    const { 
+      onUndo, 
+      onNextClue, 
+      onKeyPress, 
+    onPreviousClue, 
+      onShuffle, 
+      // renderer, 
+      stage, 
+      ticker 
+    } = app(puzzleInput);
     setOnUndo(() => onUndo);
     setOnShuffle(() => onShuffle);
     setOnNextClue(() => onNextClue);
     setOnPreviousClue(() => onPreviousClue);
     setOnBoardKeyPress(() => onKeyPress);
 
+    return () => {
+      ticker.stop()
+      stage.destroy({ children: true, texture: true, baseTexture: true });
+      // renderer.destroy(true); // causes Error: Invalid value of `0` passed to `checkMaxIfStatementsInShader`
+    }
+
     // eslint-disable-next-line
-  }, []);
+  }, [puzzle.id]);
 
   return <canvas ref={canvasRef}></canvas>;
-}, (a, b) => true);
+}, (a, b) => {
+  return a.puzzle.id === b.puzzle.id
+});
 

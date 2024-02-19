@@ -1,10 +1,10 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
-import "./layout/index.css";
+import "./react/index.css";
 import reportWebVitals from "./game/reportWebVitals.js";
 
-import { PuzzleView } from "./layout/PuzzleView.jsx";
-import { MainMenu } from "./layout/MainMenu.jsx";
+import { PuzzleView } from "./react/PuzzleView.jsx";
+import { MainMenu } from "./react/MainMenu.jsx";
 import {
   createBrowserRouter,
   RouterProvider,

@@ -17,9 +17,6 @@ export class Pill {
     this.draw();
 
     this.correct = false;
-
-    
-
   }
 
   animate() {
@@ -72,6 +69,4 @@ export class Pill {
     this.gfx.cacheAsBitmapResolution = 2;
     this.gfx.cacheAsBitmap = true;
   }
-
-
 }

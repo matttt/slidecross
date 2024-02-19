@@ -2,21 +2,27 @@ import { Container, TextStyle, BitmapFont, Graphics } from "pixi.js";
 import { Howl } from 'howler';
 
 import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.js';
-import { resolution } from '../layout/PuzzleView.jsx';
+import { resolution } from '../react/PuzzleView.jsx';
 import { Conveyor } from "./Conveyor.js";
 import { Cell } from "./Cell.js";
 import { HORIZONTAL, VERTICAL } from "./App.js";
 
+const initBoardStateMeta = {
+  elapsedTime: 0,
+  hasBeenCorrect: false
+}
+
 export class Board {
-  constructor({boardState, correctBoardState, clues, id, setClue, boardStateMeta}) {
+  constructor({boardState, correctBoardState, clues, id, setClue, puzzleSolved, boardStateMeta}) {
     this.id = id
     this.correctData = correctBoardState;
     this.data = boardState;
     this.clues = clues;
     this.setClue = setClue;
-    this.boardStateMeta = boardStateMeta || {
-      elapsedTime: 0
-    };
+    this.puzzleSolved = puzzleSolved;
+    this.boardStateMeta = boardStateMeta || {...initBoardStateMeta};
+
+    this.timerInterval = this.startTimer()
 
     this.sounds = {
       // slide1: new Howl({
@@ -32,14 +38,16 @@ export class Board {
       //   volume: 0.1,
       // }),
       jingle: new Howl({
-        src: ['/jingle.mp3']
+        src: ['/jingle.mp3'],
+        volume: 0.5
       })
     }
     
     // setup word corrects 1-5
     for (let i = 1; i < 6; i++) {
       this.sounds['wordCorrect'+i] = new Howl({
-        src: ['/correct'+i+'.mp3']
+        src: ['/correct'+i+'.mp3'],
+        volume: 0.3
       })
     }
 
@@ -83,6 +91,14 @@ export class Board {
     baffles.cacheAsBitmap = true;
 
     this.container.addChild(baffles);
+  }
+
+  startTimer() {
+    return setInterval(() => {
+      if (!this.boardStateMeta.hasBeenCorrect) {
+        this.boardStateMeta.elapsedTime++
+      }
+    }, 1000)
   }
 
   createCells(onDragStart, onClick) {
@@ -236,13 +252,17 @@ export class Board {
       this.deselectAllConveyors();
       setTimeout(() => this.deselectAllCells(), 50)
       if (soundPlayed) {
-        setTimeout(() => this.sounds.jingle.play(), 1500)
+        !muteCorrectSound && setTimeout(() => this.sounds.jingle.play(), 1500)
       } else {
-        this.sounds.jingle.play()
+        !muteCorrectSound && this.sounds.jingle.play()
       }
 
-      this.setClue('Solved!');
+      // this.setClue('Solved!');
+      if (!this.boardStateMeta.hasBeenCorrect) {
+        this.puzzleSolved();
+      }
       this.isCorrect = true;
+      this.boardStateMeta.hasBeenCorrect = true;
     } else {
       this.isCorrect = false;
     }
@@ -253,10 +273,15 @@ export class Board {
 
 
     // console.log(JSON.stringify(this.getMetaData()))
-    localStorage.setItem(this.id, boardStateToStr(this.getSimpleData()))
-    localStorage.setItem(this.id + '_meta', JSON.stringify(this.getMetaData()))
+    this.writeBoardStateToLocalStorage()
 
   }
+
+  writeBoardStateToLocalStorage() {
+    localStorage.setItem(this.id, boardStateToStr(this.getSimpleData()))
+    localStorage.setItem(this.id + '_meta', JSON.stringify(this.getMetaData()))
+  }
+
 
   resetConveyorCorrectnessMemory () {
     const allConveyors = [...this.horConveyors, ...this.vertConveyors];
@@ -413,6 +438,13 @@ export class Board {
     }
   }
 
+  resetPuzzleToFactorySettings() {
+    this.resetConveyorCorrectnessMemory()
+    this.boardStateMeta = {...initBoardStateMeta};
+    this.undoStack = []
+    this.writeBoardStateToLocalStorage()
+  }
+
   shuffle() {
     const conveyors = [...this.horConveyors, ...this.vertConveyors]
     const numShuffles = conveyors.length*3 // length of conveyors * 2 meaning two shuffles per word
@@ -443,8 +475,7 @@ export class Board {
         setTimeout(oneShuffle, 155)
       } else {
         // on complete
-        this.resetConveyorCorrectnessMemory()
-        this.undoStack = []
+        this.resetPuzzleToFactorySettings()
       }
     }
 

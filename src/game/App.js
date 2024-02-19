@@ -9,8 +9,8 @@ export const HORIZONTAL = 2
 const DRAG_START_ZONE = 5
 
 export const ANIMATION_TIME = 200
-function app({ app, puzzle, boardStateStr, boardStateMeta, setClue }) {
-  const { stage, ticker } = app;
+function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved }) {
+  const { stage, ticker, renderer } = app;
   stage.eventMode = 'passive';
 
   const root = new Container();
@@ -32,7 +32,8 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue }) {
     boardStateMeta: boardStateMeta,
     clues: puzzle.clues, 
     id: puzzle.id, 
-    setClue 
+    setClue,
+    puzzleSolved 
   };
 
   const board = new Board(boardInput)
@@ -186,7 +187,10 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue }) {
     },
     onKeyPress(key) {
       board.onKeyPress(key)
-    }
+    },
+    renderer,
+    stage,
+    ticker
   }
 }
 
