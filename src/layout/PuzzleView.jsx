@@ -170,9 +170,9 @@ export const PuzzleView = () => {
     setIsMiniTutCardOpen(false)
   }
 
-  const handleOpenMiniTutCard = () => {
-    setIsMiniTutCardOpen(true)
-  }
+  // const handleOpenMiniTutCard = () => {
+  //   setIsMiniTutCardOpen(true)
+  // }
 
 
   const meta = JSON.parse(localStorage.getItem(puzzle.id + '_meta')) || null;
