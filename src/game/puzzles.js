@@ -1027,7 +1027,7 @@ export const puzzles = {
       "clues": {
         "across": [
           "Vegetarian's no-no",
-          "Yummy 1a in a can",
+          "Yummy [1a] in a can",
           "Shell competitor",
           "Food ___ (overeater's state)",
           "Parts of a shower",

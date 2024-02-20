@@ -68,6 +68,9 @@ const ShuffleWarning = ({ open, handleClose, onShuffle }) =>
 const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
   const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
 
+
+  // console.log(/\[(.*?)\]/g.exec(clue))
+
   return (
     <div style={{ width: resolution - widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
       <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }}  >
