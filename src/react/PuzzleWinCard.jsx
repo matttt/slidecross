@@ -117,7 +117,7 @@ export const PuzzleWinCard = ({ open, puzzleId, handleClose }) => {
 
     useEffect(() => {
         setCongrats(sample(congratulationsMessages));
-    }, [])
+    }, [puzzleId])
 
     const ConfettiDrop = () => <Backdrop open={open} onClick={handleClose}><Confetti
         width={width}
