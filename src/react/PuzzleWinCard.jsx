@@ -40,7 +40,7 @@ function getNextPuzzleCategoryAndId(curPuzzleId) {
         const state = localStorage.getItem(testId);
         const correctState = puzzles[testCategory].find(p => p.id === testId).boardDataStr
         
-        const currentlyCorrect = state.trim() === correctState.trim();
+        const currentlyCorrect = state?.trim() === correctState?.trim() && !!state && !!correctState;
         console.log(state, '\n\n', correctState, currentlyCorrect)
 
         if (!meta?.hasBeenCorrect && !currentlyCorrect) {
