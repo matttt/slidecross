@@ -259,7 +259,7 @@ export class Board {
 
       // this.setClue('Solved!');
       if (!this.boardStateMeta.hasBeenCorrect) {
-        !muteCorrectSound && this.puzzleSolved();
+        !muteCorrectSound && setTimeout(()=>{this.puzzleSolved()}, 1000)
       }
       this.isCorrect = true;
       this.boardStateMeta.hasBeenCorrect = true;
