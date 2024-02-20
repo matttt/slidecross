@@ -24,7 +24,7 @@ import { PuzzleWinCard } from "./PuzzleWinCard.jsx";
 
 
 const min = Math.min(window.innerWidth, window.innerHeight)
-export const resolution = isMobile ? min : min * .75
+export const resolution = (isMobile && min < 480) ? min : min * .75
 
 // const backButtonStyle = {
 //   position: "absolute",
