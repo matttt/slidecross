@@ -37,8 +37,11 @@ function getNextPuzzleCategoryAndId(curPuzzleId) {
         const testCategory = idCategories[currentIdx];
 
         const meta = JSON.parse(localStorage.getItem(testId + '_meta'));
+        const state = localStorage.getItem(testId);
 
-        if (!meta?.hasBeenCorrect) {
+        const currentlyCorrect = state === puzzles[testCategory].find(p => p.id === testId).boardDataStr;
+
+        if (!meta?.hasBeenCorrect && !currentlyCorrect) {
             return [testCategory, testId];
         } else {
             return testNext();
