@@ -324,24 +324,7 @@ export const puzzles = {
         ]
       }
     },
-    {
-      "id": "MVDSbnj1jJmKuiBjVwmau",
-      "boardDataStr": "MUNA\nOROS\nOGRE\nREDA",
-      "clues": {
-        "across": [
-          "“Silk Chiffon”group",
-          "Suit in a Catalan deck of cards",
-          "Shrek, for one",
-          "Inciting symbol in “The Scarlet Letter”"
-        ],
-        "down": [
-          "Affix a boat to the dock",
-          "Desire",
-          "VPN company prefix",
-          "Out on the ocean"
-        ]
-      }
-    },
+    
     {
       "id": "yWNwfu3b2Ra5t6szN4joZ",
       "boardDataStr": "#CAL\nGORE\nEROS\nMED#",
@@ -455,32 +438,30 @@ export const puzzles = {
           "Long ago, long ago"
         ]
       }
-    }
+    },
+    {
+      "id": "MVDSbnj1jJmKuiBjVwmau",
+      "boardDataStr": "MUNA\nOROS\nOGRE\nREDA",
+      "clues": {
+        "across": [
+          "“Silk Chiffon”group",
+          "Suit in a Catalan deck of cards",
+          "Shrek, for one",
+          "Inciting symbol in “The Scarlet Letter”"
+        ],
+        "down": [
+          "Affix a boat to the dock",
+          "Desire",
+          "VPN company prefix",
+          "Out on the ocean"
+        ]
+      }
+    },
 
   ],
 
 
   "fives": [
-    {
-      "id": "M87BiBbuZNRt5UeIefnVP",
-      "boardDataStr": "#DOT#\nRISES\nANISE\nMOTTO\n#SOY#",
-      "clues": {
-        "across": [
-          "Org headed by Pete Buttigieg",
-          "Comes up",
-          "\"Celestial\" spice",
-          "Words to live by",
-          "___bean"
-        ],
-        "down": [
-          "Shape of some nuggets",
-          "Teddy in spanish",
-          "Annoyed by a pop quiz?",
-          "Horny animal",
-          "Google metric, briefly"
-        ]
-      }
-    },
     {
       "id": "RoqfBmDXiDD-VS3TItctX",
       "boardDataStr": "#ACE#\nWILMA\nEBOOK\nBASTA\n#NEE#",
@@ -501,6 +482,27 @@ export const puzzles = {
         ]
       }
     },
+    {
+      "id": "M87BiBbuZNRt5UeIefnVP",
+      "boardDataStr": "#DOT#\nRISES\nANISE\nMOTTO\n#SOY#",
+      "clues": {
+        "across": [
+          "Org headed by Pete Buttigieg",
+          "Comes up",
+          "\"Celestial\" spice",
+          "Words to live by",
+          "___bean"
+        ],
+        "down": [
+          "Shape of some nuggets",
+          "Teddy in spanish",
+          "Annoyed by a pop quiz?",
+          "Horny animal",
+          "Google metric, briefly"
+        ]
+      }
+    },
+    
     {
       "id": "VU_489tKlRuzdT2DwU4Kg",
       "boardDataStr": "#PHD#\nPEERS\nENNUI\nINDIA\n#EOD#",
@@ -1027,7 +1029,7 @@ export const puzzles = {
       "clues": {
         "across": [
           "Vegetarian's no-no",
-          "Yummy [1a] in a can",
+          "Yummy [1A] in a can",
           "Shell competitor",
           "Food ___ (overeater's state)",
           "Parts of a shower",

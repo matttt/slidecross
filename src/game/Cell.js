@@ -21,6 +21,8 @@ export class Cell {
     this.gfx = new Graphics();
     this.selectedGfx = new Graphics();
     this.selectedGfx.alpha = 0;
+    this.highlightedGfx = new Graphics();
+    this.highlightedGfx.alpha = 0;
     this.text = new BitmapText(this.letter ? this.letter : '', { fontName: 'AnswerFont', });
     this.text.anchor.set(0.5, 0.5);
     this.text.x = this.w / 2;
@@ -32,6 +34,7 @@ export class Cell {
 
     this.correct = false;
     this.selected = false;
+    this.highlighted = false;
 
     this.fgContainer.eventMode = 'none'
 
@@ -52,7 +55,7 @@ export class Cell {
     this.fgOffsetContainer.addChild(this.text);
     this.fgContainer.addChild(this.fgOffsetContainer);
 
-    this.selectionOffsetContainer.addChild(this.selectedGfx);
+    this.selectionOffsetContainer.addChild(this.selectedGfx, this.highlightedGfx);
     this.selectionContainer.addChild(this.selectionOffsetContainer);
 
     if (onDragStart && this.letter) {
@@ -152,12 +155,25 @@ export class Cell {
     }
   }
 
+  updateHighlighted() {
+    if (this.highlighted) {
+      this.highlightedGfx.alpha = 1;
+
+    } else {
+      this.highlightedGfx.alpha = 0;
+    }
+  }
+
   draw() {
     this.gfx.lineStyle(2, 0x0D1821, 1);
 
     this.selectedGfx.beginFill(0xB2D7FB);
     this.selectedGfx.drawRect(1, 1, this.w - 2, this.w - 2);
     this.selectedGfx.endFill();
+
+    this.highlightedGfx.beginFill(0xF8ECCA);
+    this.highlightedGfx.drawRect(1, 1, this.w - 2, this.w - 2);
+    this.highlightedGfx.endFill();
     // this.selectedGfx.alpha = .5;
 
     if (this.letter) {
@@ -179,6 +195,7 @@ export class Cell {
 
     this.gfx.cacheAsBitmap = true;
     this.selectedGfx.cacheAsBitmap = true;
+    this.highlightedGfx.cacheAsBitmap = true;
   }
 
 }

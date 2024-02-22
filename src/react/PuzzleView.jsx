@@ -13,6 +13,8 @@ import { Application } from "pixi.js";
 import app from "../game/App.js";
 import Div100vh from 'react-div-100vh'
 import Markdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+
 import { isMobile } from 'react-device-detect';
 import { puzzles } from '../game/puzzles.js';
 import { useParams, useNavigate } from "react-router-dom";
@@ -69,16 +71,39 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
   const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
 
 
-  // console.log(/\[(.*?)\]/g.exec(clue))
+  let clueCopy = clue;
+
+  const regex = /\[(.*?)\]/g // match anything between square brackets
+  const matches = clue.match(regex)
+  const references = []
+
+  if (matches) {
+    for (let match of matches) {  
+      const matchCopy = match.slice(1, -1) // remove square brackets
+
+      const numLetterRegex = /^\d{1,4}[adAD]$/ // match a number followed by an A or D
+      const numLetterMatch = matchCopy.match(numLetterRegex)
+
+      if (!numLetterMatch) continue; 
+
+      const formattedMatch = matchCopy.toUpperCase()
+
+      clueCopy = clueCopy.replace(match, `<ins>${formattedMatch}</ins>`)
+      references.push(formattedMatch)
+    }
+  }
+
+
+  console.log(clue)
 
   return (
-    <div style={{ width: resolution - widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
+    <div style={{ width: resolution - widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#B9D6F8]">
       <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }}  >
         <NavigateBeforeIcon />
       </IconButton>
 
       <Typography variant="h6" component="div" className="text-black text-center select-none">
-        <Markdown>{clue}</Markdown>
+        <Markdown rehypePlugins={[rehypeRaw]}>{clueCopy}</Markdown>
       </Typography>
 
       <IconButton onClick={onNextClue} style={{ color: '#0D1821' }}>
@@ -112,6 +137,7 @@ const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard }) => {
     <div className="grow">
 
     </div>
+    <span className="text-[#EEE] font-bold text-2xl">slidecross</span>
     {/* <IconButton className="" onClick={toggleTimer} color="primary" style={{ color: '#EEE' }}>
       <AccessTimeIcon />
     </IconButton> */}

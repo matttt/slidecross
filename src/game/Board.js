@@ -101,6 +101,13 @@ export class Board {
     }, 1000)
   }
 
+  setHighlighting() {
+    this.cells.forEach(cell => {
+      cell.highlighted = true;
+      cell.updateHighlighted();
+    })
+  }
+
   createCells(onDragStart, onClick) {
     this.selectionContainer = new Container();
     this.textContainer = new Container();

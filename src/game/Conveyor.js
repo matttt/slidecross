@@ -70,8 +70,8 @@ export class Conveyor {
         destinationCell = this.cells[(idx + this.cells.length + delta) % this.cells.length]
       }
 
-      const alphaValue = destinationCell.selected ? 0.5 : 0;
-      const oppositeAlphaValue = destinationCell.selected ? 0 : 0.5;
+      const alphaValue = destinationCell.selected ? .5 : 0;
+      const oppositeAlphaValue = destinationCell.selected ? 0 : .5;
 
 
       const outOfSelection = cell.selected && !destinationCell.selected
