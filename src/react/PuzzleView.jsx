@@ -73,31 +73,31 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
 
   let clueCopy = clue;
 
-  const regex = /\[(.*?)\]/g // match anything between square brackets
-  const matches = clue.match(regex)
-  const references = []
+  // const regex = /\[(.*?)\]/g // match anything between square brackets
+  // const matches = clue.match(regex)
+  // const references = []
 
-  if (matches) {
-    for (let match of matches) {  
-      const matchCopy = match.slice(1, -1) // remove square brackets
+  // if (matches) {
+  //   for (let match of matches) {  
+  //     const matchCopy = match.slice(1, -1) // remove square brackets
 
-      const numLetterRegex = /^\d{1,4}[adAD]$/ // match a number followed by an A or D
-      const numLetterMatch = matchCopy.match(numLetterRegex)
+  //     const numLetterRegex = /^\d{1,4}[adAD]$/ // match a number followed by an A or D
+  //     const numLetterMatch = matchCopy.match(numLetterRegex)
 
-      if (!numLetterMatch) continue; 
+  //     if (!numLetterMatch) continue; 
 
-      const formattedMatch = matchCopy.toUpperCase()
+  //     const formattedMatch = matchCopy.toUpperCase()
 
-      clueCopy = clueCopy.replace(match, `<ins>${formattedMatch}</ins>`)
-      references.push(formattedMatch)
-    }
-  }
+  //     clueCopy = clueCopy.replace(match, `<ins>${formattedMatch}</ins>`)
+  //     references.push(formattedMatch)
+  //   }
+  // }
 
 
   console.log(clue)
 
   return (
-    <div style={{ width: resolution - widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#B9D6F8]">
+    <div style={{ width: resolution - widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
       <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }}  >
         <NavigateBeforeIcon />
       </IconButton>
