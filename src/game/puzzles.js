@@ -1022,6 +1022,46 @@ export const puzzles = {
   ],
   "nines": [
     {
+  "id": "bJoWdyF_nfE7R8QsgyXwU",
+  "boardDataStr": "NAE.OSAKA\nALL.SOCAL\nPEEL.LANE\nACCOLADES\n..TWERE..\nHARDTIMES\nITOO.AINT\nFONSI.COY\nIMSET.SSE\n",
+  "clues": {
+    "across": [
+      "Scot's denial",
+      "Japanese port",
+      "The whole enchilada",
+      "L.A.'s region",
+      "Orange covering",
+      "Highway division",
+      "Kudos",
+      "Kin of 'twas",
+      "Depressions, e.g.",
+      "\"Am ___ late?\"",
+      "\"If it ___ broke...\"",
+      "\"Despacito\" singer Luis",
+      "Playfully shy",
+      "\"No more for me, thanks\"",
+      "Opposite of NNW"
+    ],
+    "down": [
+      "California wine valley",
+      "Actor Baldwin",
+      "Atomic orbiters",
+      "Windows, e.g.",
+      "Sun porches",
+      "College professors, e.g.",
+      "\"Citizen ___\"",
+      "Pub orders",
+      "Aspirin descriptor",
+      "Allow",
+      "Stereo system",
+      "Small part",
+      "Son of Seth",
+      "Eye problem",
+      "âStop __!â"
+    ]
+  }
+},
+    {
       "id": "ustDiqi5M6DIzl0_Mp5P8",
       "boardDataStr": "MEAT.SPAM\nARCO.COMA\nRAINDROPS\nYTD.WURST\n...DAB...\nPAGER.PST\nSNOWFLAKE\nATRA.ENOS\nTIER.XERS\n",
       "clues": {
