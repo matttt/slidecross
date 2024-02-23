@@ -1023,6 +1023,7 @@ export const puzzles = {
     // }
   ],
   "nines": [
+    
     {
   "id": "bJoWdyF_nfE7R8QsgyXwU",
   "boardDataStr": "NAE.OSAKA\nALL.SOCAL\nPEEL.LANE\nACCOLADES\n..TWERE..\nHARDTIMES\nITOO.AINT\nFONSI.COY\nIMSET.SSE\n",
@@ -1060,6 +1061,45 @@ export const puzzles = {
       "Son of Seth",
       "Eye problem",
       "âStop __!â"
+    ]
+  },
+  
+},
+{
+  "id": "VCGzBiYZ3soHG9yGVr7U6",
+  "boardDataStr": "WATT.SPAS\nACHY.WANT\nDEEP.IGGY\n..LETSLIE\nTEACOSIES\nCATAWBA..\nEVES.ACLU\nLEST.NCIS\nLSTS.KITS\n",
+  "clues": {
+    "across": [
+      "Power unit",
+      "Health resorts",
+      "\"___ Breaky Heart\"",
+      "Crave",
+      "Profound",
+      "Rapper ___ Azalea",
+      "Leaves alone",
+      "Pot covers, to Brits",
+      "Grape variety",
+      "12/24 and 12/31",
+      "Rights org.",
+      "\"___ we forget...\"",
+      "Mark Harmon TV series",
+      "D-Day craft",
+      "Little foxes"
+    ],
+    "down": [
+      "Bunch of bills",
+      "Expert",
+      "\"We'll be back at 10 with ___ ______ on the mayoral race\"",
+      "Lacks imagination in role-filling",
+      "Site of many clandestine accounts",
+      "Premiere conducted by Toscanini",
+      "Actress Dickinson",
+      "Eye problems",
+      "Haul",
+      "Immune system component",
+      "Roof overhangs",
+      "Ignited",
+      "\"___ Enterprise\""
     ]
   }
 },

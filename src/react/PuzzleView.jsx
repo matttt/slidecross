@@ -13,7 +13,7 @@ import { Application } from "pixi.js";
 import app from "../game/App.js";
 import Div100vh from 'react-div-100vh'
 import Markdown from 'react-markdown'
-import rehypeRaw from 'rehype-raw'
+// import rehypeRaw from 'rehype-raw'
 
 import { isMobile } from 'react-device-detect';
 import { puzzles } from '../game/puzzles.js';
@@ -103,7 +103,8 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
       </IconButton>
 
       <Typography variant="h6" component="div" className="text-black text-center select-none">
-        <Markdown rehypePlugins={[rehypeRaw]}>{clueCopy}</Markdown>
+        {/* <Markdown rehypePlugins={[rehypeRaw]}>{clueCopy}</Markdown> */}
+        <Markdown>{clueCopy}</Markdown>
       </Typography>
 
       <IconButton onClick={onNextClue} style={{ color: '#0D1821' }}>
