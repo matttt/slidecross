@@ -256,8 +256,8 @@ export class Board {
 
 
     if (boardCorrect) {
-      this.deselectAllConveyors();
-      setTimeout(() => this.deselectAllCells(), 50)
+      // this.deselectAllConveyors();
+      // setTimeout(() => this.deselectAllCells(), 50)
       if (soundPlayed) {
         !muteCorrectSound && setTimeout(() => this.sounds.jingle.play(), 1500)
       } else {

@@ -138,7 +138,7 @@ const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard }) => {
     <div className="grow">
 
     </div>
-    <span className="text-[#EEE] mt-1 font-bold text-2xl">slidecross</span>
+    <span className="text-[#EEE] mt-1 font-bold text-2xl invisible md:visible">slidecross</span>
     {/* <IconButton className="" onClick={toggleTimer} color="primary" style={{ color: '#EEE' }}>
       <AccessTimeIcon />
     </IconButton> */}
