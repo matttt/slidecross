@@ -16,7 +16,7 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
   const root = new Container();
   stage.addChild(root);
 
-  ticker.stop()
+  setTimeout(() => ticker.stop(), 500)
 
 
   // root.eventMode = 'static';
@@ -36,7 +36,8 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
     clues: puzzle.clues, 
     id: puzzle.id, 
     setClue,
-    puzzleSolved 
+    puzzleSolved,
+    ticker
   };
 
   const board = new Board(boardInput)
@@ -88,7 +89,6 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
 
     board.propogateSelected();
     board.showClue()
-
 
   }
 

@@ -13,13 +13,14 @@ const initBoardStateMeta = {
 }
 
 export class Board {
-  constructor({boardState, correctBoardState, clues, id, setClue, puzzleSolved, boardStateMeta}) {
+  constructor({boardState, correctBoardState, clues, id, setClue, puzzleSolved, boardStateMeta, ticker}) {
     this.id = id
     this.correctData = correctBoardState;
     this.data = boardState;
     this.clues = clues;
     this.setClue = setClue;
     this.puzzleSolved = puzzleSolved;
+    this.ticker = ticker;
     this.boardStateMeta = boardStateMeta || {...initBoardStateMeta};
 
     this.timerInterval = this.startTimer()
@@ -453,6 +454,7 @@ export class Board {
   }
 
   shuffle() {
+    this.ticker.start()
     const conveyors = [...this.horConveyors, ...this.vertConveyors]
     const numShuffles = conveyors.length*3 // length of conveyors * 2 meaning two shuffles per word
 
@@ -483,6 +485,8 @@ export class Board {
       } else {
         // on complete
         this.resetPuzzleToFactorySettings()
+
+        setTimeout(() => this.ticker.stop(), 1000);
       }
     }
 

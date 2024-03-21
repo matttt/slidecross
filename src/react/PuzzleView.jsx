@@ -313,16 +313,22 @@ const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, se
       ticker.start()
     }
     view.addEventListener("mousedown", mouseDown, false);
+    view.addEventListener("touchstart", mouseDown, false);
     
     const mouseUp = () => {
       if (tickerStopTimeout) clearTimeout(tickerStopTimeout)
       tickerStopTimeout = setTimeout(()=>ticker.stop(), 500)
     }
     view.addEventListener("mouseup", mouseUp, false);
+    view.addEventListener("touchend", mouseDown, false);
 
     return () => {
       ticker.stop()
       stage.destroy({ children: true, texture: true, baseTexture: true });
+      view.removeEventListener("mousedown", mouseDown, false);
+      view.removeEventListener("mouseup", mouseUp, false);
+      view.removeEventListener("touchstart", mouseDown, false);
+      view.removeEventListener("touchend", mouseDown, false);
       // renderer.destroy(true); // causes Error: Invalid value of `0` passed to `checkMaxIfStatementsInShader`
     }
 
