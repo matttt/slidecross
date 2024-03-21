@@ -16,6 +16,9 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
   const root = new Container();
   stage.addChild(root);
 
+  ticker.stop()
+
+
   // root.eventMode = 'static';
   root.interactive = true;
 
@@ -170,6 +173,8 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
   ticker.add((delta) => {
     TWEEN.update()
   });
+
+  renderer.render(stage)
 
   return {
     onUndo() {

@@ -295,9 +295,9 @@ const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, se
       onUndo, 
       onNextClue, 
       onKeyPress, 
-    onPreviousClue, 
+      onPreviousClue, 
       onShuffle, 
-      // renderer, 
+      renderer, 
       stage, 
       ticker 
     } = app(puzzleInput);
@@ -306,6 +306,19 @@ const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, se
     setOnNextClue(() => onNextClue);
     setOnPreviousClue(() => onPreviousClue);
     setOnBoardKeyPress(() => onKeyPress);
+
+    let tickerStopTimeout;
+    const mouseDown = () => {
+      if (tickerStopTimeout) clearTimeout(tickerStopTimeout)
+      ticker.start()
+    }
+    view.addEventListener("mousedown", mouseDown, false);
+    
+    const mouseUp = () => {
+      if (tickerStopTimeout) clearTimeout(tickerStopTimeout)
+      tickerStopTimeout = setTimeout(()=>ticker.stop(), 500)
+    }
+    view.addEventListener("mouseup", mouseUp, false);
 
     return () => {
       ticker.stop()
