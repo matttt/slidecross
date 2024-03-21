@@ -297,7 +297,7 @@ const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, se
       onKeyPress, 
       onPreviousClue, 
       onShuffle, 
-      renderer, 
+      // renderer, 
       stage, 
       ticker 
     } = app(puzzleInput);
