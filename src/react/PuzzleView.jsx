@@ -277,7 +277,7 @@ const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, se
       height: resolution * ratio - 38,
       // antialias: true,
       backgroundColor: 0xF0F4EF,
-      resolution: 2,
+      resolution: 3,
       autoDensity: true,
     };
 

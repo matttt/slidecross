@@ -187,7 +187,6 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
       board.selectNextConveyor(true)
     },
     onShuffle() {
-      console.log('bkajf')
       board.shuffle()
     },
     onKeyPress(key) {
