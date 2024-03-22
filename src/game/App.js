@@ -16,7 +16,7 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
   const root = new Container();
   stage.addChild(root);
 
-  setTimeout(() => ticker.stop(), 500)
+  setTimeout(() => ticker.stop(), 100)
 
 
   // root.eventMode = 'static';

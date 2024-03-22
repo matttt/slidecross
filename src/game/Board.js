@@ -439,11 +439,18 @@ export class Board {
   }
 
   undo() {
+
     const lastAction = this.undoStack.pop()
 
     if (lastAction) {
+      clearTimeout(this.timeout)
+
+      this.ticker.start()
+      this.timeout = setTimeout(() => this.ticker.stop(), 500)
+
       lastAction.conveyor.shift(!lastAction.reverse, true)
     }
+
   }
 
   resetPuzzleToFactorySettings() {
