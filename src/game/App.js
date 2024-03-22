@@ -16,8 +16,7 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
   const root = new Container();
   stage.addChild(root);
 
-  setTimeout(() => ticker.stop(), 100)
-
+  const initStopperTimeout = setTimeout(() => ticker.stop(), 1000)
 
   // root.eventMode = 'static';
   root.interactive = true;
@@ -45,6 +44,7 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
   let isClick = false;
 
   function onDragStart(e, cell) {
+    initStopperTimeout && clearTimeout(initStopperTimeout)
     board.startPos = e.data.global.clone();
     targetCell = cell;
     root.on('pointermove', onDragMove);
@@ -93,6 +93,7 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
   }
 
   board.createCells(onDragStart, onClick)
+  
 
   let targetCell = null;
   let selectedDirection = null
