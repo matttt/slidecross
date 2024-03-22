@@ -129,7 +129,8 @@ export const PuzzleWinCard = ({ open, puzzleId, handleClose }) => {
         onClose={handleClose}
         aria-labelledby="wind-card-title"
         aria-describedby="wind-card-description"
-        maxWidth="sm"
+        maxWidth="xs"
+        // width="200px"
         fullWidth={true}
         slots={{ backdrop: ConfettiDrop }}
     >
@@ -137,8 +138,8 @@ export const PuzzleWinCard = ({ open, puzzleId, handleClose }) => {
        
         <DialogContent>
             {/* <DialogContentText id="wind-card-description" color={'#0D1821'}> */}
-                <Card raised={true}>
-                    <CardContent>
+                {/* <Card > */}
+                    {/* <CardContent> */}
 
                         <div className="flex">
                             <div className="grow"></div>
@@ -160,22 +161,21 @@ export const PuzzleWinCard = ({ open, puzzleId, handleClose }) => {
                             <div className="grow"></div>
 
                         </div>
-                    </CardContent>
-                </Card>
+                    {/* </CardContent> */}
+                {/* </Card> */}
                 <div className="h-5"></div>
-                <Card raised={true}>
-                    <CardContent>
+                {/* <Card > */}
+                    {/* <CardContent> */}
                         <div className="flex">
                             <div className="grow"></div>
                             <Button onClick={handleClose}>Close</Button>
                             <div className="w-5"></div>
-                            <Button onClick={handleClickNext} variant="contained">Play Next!</Button>
+                            <Button onClick={handleClickNext} variant="contained">Play Next</Button>
                             <div className="grow"></div>
-
                         </div>
 
-                    </CardContent>
-                </Card>
+                    {/* </CardContent> */}
+                {/* </Card> */}
 
             {/* </DialogContentText> */}
         </DialogContent>
