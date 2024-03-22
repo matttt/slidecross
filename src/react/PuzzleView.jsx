@@ -166,7 +166,7 @@ export const PuzzleView = () => {
   const [isShuffleWarningOpen, setIsShuffleWarningOpen] = useState(false);
   const [isTutorialCardOpen, setIsTutorialCardOpen] = useState(false);
   const [isMiniTutCardOpen, setIsMiniTutCardOpen] = useState(!hasPlayed);
-  const [isPuzzleWinCardOpen, setIsPuzzleWinCardOpen] = useState(true);
+  const [isPuzzleWinCardOpen, setIsPuzzleWinCardOpen] = useState(false);
   // const puzzle = puzzles[puzzleType].find(p => p.id === puzzleId);
 
   const [puzzle, setPuzzle] = useState(puzzles[puzzleType].find(p => p.id === puzzleId));
