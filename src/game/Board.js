@@ -424,6 +424,11 @@ export class Board {
       //   }
       // }
 
+      clearTimeout(this.timeout)
+
+      this.ticker.start()
+      this.timeout = setTimeout(() => this.ticker.stop(), 500)
+
 
       this.setClue(selected.clue)
     }
