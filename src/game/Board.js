@@ -427,7 +427,7 @@ export class Board {
       clearTimeout(this.timeout)
 
       this.ticker.start()
-      this.timeout = setTimeout(() => this.ticker.stop(), 500)
+      // this.timeout = setTimeout(() => this.ticker.stop(), 500)
 
 
       this.setClue(selected.clue)
@@ -451,7 +451,7 @@ export class Board {
       clearTimeout(this.timeout)
 
       this.ticker.start()
-      this.timeout = setTimeout(() => this.ticker.stop(), 500)
+      // this.timeout = setTimeout(() => this.ticker.stop(), 500)
 
       lastAction.conveyor.shift(!lastAction.reverse, true)
     }
@@ -498,7 +498,7 @@ export class Board {
         // on complete
         this.resetPuzzleToFactorySettings()
 
-        setTimeout(() => this.ticker.stop(), 1000);
+        // setTimeout(() => this.ticker.stop(), 1000);
       }
     }
 

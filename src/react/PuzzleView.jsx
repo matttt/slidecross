@@ -317,13 +317,13 @@ const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, se
     
     const mouseUp = () => {
       if (tickerStopTimeout) clearTimeout(tickerStopTimeout)
-      tickerStopTimeout = setTimeout(()=>ticker.stop(), 500)
+      // tickerStopTimeout = setTimeout(()=>ticker.stop(), 500)
     }
     view.addEventListener("mouseup", mouseUp, false);
     view.addEventListener("touchend", mouseDown, false);
 
     return () => {
-      ticker.stop()
+      // ticker.stop()
       stage.destroy({ children: true, texture: true, baseTexture: true });
       view.removeEventListener("mousedown", mouseDown, false);
       view.removeEventListener("mouseup", mouseUp, false);
