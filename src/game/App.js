@@ -44,7 +44,7 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
   let isClick = false;
 
   function onDragStart(e, cell) {
-    initStopperTimeout && clearTimeout(initStopperTimeout)
+    // initStopperTimeout && clearTimeout(initStopperTimeout)
     board.startPos = e.data.global.clone();
     targetCell = cell;
     root.on('pointermove', onDragMove);
