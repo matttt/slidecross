@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Dialog, DialogContent, Card, CardContent, Backdrop } from '@mui/material';
+import { Dialog, DialogContent, Backdrop } from '@mui/material';
 import Button from '@mui/material/Button';
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'

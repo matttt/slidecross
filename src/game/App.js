@@ -20,7 +20,7 @@ async function app({ pixiApp, puzzle, boardStateStr, boardStateMeta, setClue, pu
   const root = new Container();
   stage.addChild(root);
 
-  const initStopperTimeout = setTimeout(() => ticker.stop(), 1000)
+  // const initStopperTimeout = setTimeout(() => ticker.stop(), 1000)
 
   // root.eventMode = 'static';
   root.interactive = true;
@@ -48,7 +48,7 @@ async function app({ pixiApp, puzzle, boardStateStr, boardStateMeta, setClue, pu
   let isClick = false;
 
   function onDragStart(e, cell) {
-    initStopperTimeout && clearTimeout(initStopperTimeout)
+    // initStopperTimeout && clearTimeout(initStopperTimeout)
     board.startPos = e.data.global.clone();
     targetCell = cell;
     root.on('pointermove', onDragMove);
