@@ -9,7 +9,8 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import CasinoIcon from '@mui/icons-material/Casino';
 import IconButton from '@mui/material/IconButton';
 // import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { Application } from "pixi.js";
+import 'pixi.js/text-bitmap';
+import { Application, Assets } from "pixi.js";
 import app from "../game/App.js";
 import Div100vh from 'react-div-100vh'
 import Markdown from 'react-markdown'
@@ -257,84 +258,91 @@ export const PuzzleView = () => {
   );
 };
 
-const Canvas = memo(({ app, puzzle, boardStateStr, boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, puzzleSolved, pixiConfig }) => {
+const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, puzzleSolved, pixiConfig }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    let pixiApp, view, tickerStopTimeout, mouseDown, mouseUp;
 
-    let ratio = 1;
+    const init = async () => {
+      let ratio = 1;
 
-    if (puzzle) {
-      const boardGrid = parseBoardString(puzzle.boardDataStr)
+      if (puzzle) {
+        const boardGrid = parseBoardString(puzzle.boardDataStr);
+        const rows = boardGrid.length;
+        const cols = boardGrid[0].length;
+        ratio = rows / cols;
+      }
 
-      const rows = boardGrid.length;
-      const cols = boardGrid[0].length;
-      ratio = rows / cols
+      const pixiConfig = {
+        width: resolution,
+        height: resolution * ratio - 38,
+        // antialias: true,
+        backgroundColor: 0xF0F4EF,
+        resolution: 3,
+        autoDensity: true,
+      };
+
+      view = canvasRef.current;
+      await Assets.load('/Nunito.ttf');
+
+      pixiApp = new Application();
+
+      await pixiApp.init({ canvas: view, ...pixiConfig });
+
+      const puzzleInput = {
+        pixiApp,
+        puzzle,
+        boardStateStr,
+        boardStateMeta,
+        setClue,
+        puzzleSolved
+      };
+
+      const {
+        onUndo,
+        onNextClue,
+        onKeyPress,
+        onPreviousClue,
+        onShuffle
+      } = app(puzzleInput);
+
+      setOnUndo(() => onUndo);
+      setOnShuffle(() => onShuffle);
+      setOnNextClue(() => onNextClue);
+      setOnPreviousClue(() => onPreviousClue);
+      setOnBoardKeyPress(() => onKeyPress);
+
+      mouseDown = () => {
+        if (tickerStopTimeout) clearTimeout(tickerStopTimeout);
+        pixiApp.ticker.start();
+      }
+      view.addEventListener("mousedown", mouseDown, false);
+      view.addEventListener("touchstart", mouseDown, false);
+
+      mouseUp = () => {
+        if (tickerStopTimeout) clearTimeout(tickerStopTimeout);
+        tickerStopTimeout = setTimeout(() => pixiApp.ticker.stop(), 500);
+      }
+      view.addEventListener("mouseup", mouseUp, false);
+      view.addEventListener("touchend", mouseUp, false);
     }
 
-    const pixiConfig = {
-      width: resolution,
-      height: resolution * ratio - 38,
-      // antialias: true,
-      backgroundColor: 0xF0F4EF,
-      resolution: 3,
-      autoDensity: true,
-    };
-
-    const view = canvasRef.current;
-    const puzzleInput = {
-      app: new Application({ view, ...pixiConfig }),
-      puzzle,
-      boardStateStr,
-      boardStateMeta,
-      setClue,
-      puzzleSolved
-    };
-
-    const { 
-      onUndo, 
-      onNextClue, 
-      onKeyPress, 
-      onPreviousClue, 
-      onShuffle, 
-      // renderer, 
-      stage, 
-      ticker 
-    } = app(puzzleInput);
-    setOnUndo(() => onUndo);
-    setOnShuffle(() => onShuffle);
-    setOnNextClue(() => onNextClue);
-    setOnPreviousClue(() => onPreviousClue);
-    setOnBoardKeyPress(() => onKeyPress);
-
-    let tickerStopTimeout;
-    const mouseDown = () => {
-      if (tickerStopTimeout) clearTimeout(tickerStopTimeout)
-      ticker.start()
-    }
-    view.addEventListener("mousedown", mouseDown, false);
-    view.addEventListener("touchstart", mouseDown, false);
-    
-    const mouseUp = () => {
-      if (tickerStopTimeout) clearTimeout(tickerStopTimeout)
-      tickerStopTimeout = setTimeout(()=>ticker.stop(), 500)
-    }
-    view.addEventListener("mouseup", mouseUp, false);
-    view.addEventListener("touchend", mouseDown, false);
+    init();
 
     return () => {
-      ticker.stop()
-      stage.destroy({ children: true, texture: true, baseTexture: true });
-      view.removeEventListener("mousedown", mouseDown, false);
-      view.removeEventListener("mouseup", mouseUp, false);
-      view.removeEventListener("touchstart", mouseDown, false);
-      view.removeEventListener("touchend", mouseDown, false);
-      // renderer.destroy(true); // causes Error: Invalid value of `0` passed to `checkMaxIfStatementsInShader`
-    }
+      if (pixiApp) {
+        pixiApp.destroy(true, { children: true, texture: true, baseTexture: true });
+      }
+      if (tickerStopTimeout) clearTimeout(tickerStopTimeout);
+      view?.removeEventListener("mousedown", mouseDown, false);
+      view?.removeEventListener("mouseup", mouseUp, false);
+      view?.removeEventListener("touchstart", mouseDown, false);
+      view?.removeEventListener("touchend", mouseUp, false);
+    };
 
     // eslint-disable-next-line
   }, [puzzle.id]);
-
   return <canvas ref={canvasRef}></canvas>;
 }, (a, b) => {
   return a.puzzle.id === b.puzzle.id

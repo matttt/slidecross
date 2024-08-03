@@ -1,16 +1,20 @@
 import { Container } from "pixi.js";
+import 'pixi.js/text-bitmap';
 import { Board } from "./Board.js";
 import { parseBoardString, scrambleBoard } from "./utils.js";
 import * as TWEEN from '@tweenjs/tween.js'
+import { Assets } from '@pixi/assets';
+
 
 export const VERTICAL = 1
 export const HORIZONTAL = 2
 
 const DRAG_START_ZONE = 5
 
+
 export const ANIMATION_TIME = 200
-function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved }) {
-  const { stage, ticker, renderer } = app;
+async function app({ pixiApp, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved }) {
+  const { stage, ticker, renderer } = pixiApp;
   stage.eventMode = 'passive';
 
   const root = new Container();
@@ -192,10 +196,7 @@ function app({ app, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved
     },
     onKeyPress(key) {
       board.onKeyPress(key)
-    },
-    renderer,
-    stage,
-    ticker
+    }
   }
 }
 

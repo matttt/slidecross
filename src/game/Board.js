@@ -1,4 +1,4 @@
-import { Container, TextStyle, BitmapFont, Graphics } from "pixi.js";
+import { Container, TextStyle, BitmapFontManager, Graphics } from "pixi.js";
 import { Howl } from 'howler';
 
 import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.js';
@@ -7,13 +7,23 @@ import { Conveyor } from "./Conveyor.js";
 import { Cell } from "./Cell.js";
 import { HORIZONTAL, VERTICAL } from "./App.js";
 
+export const FontEnum = Object.freeze({
+  REGULAR: 'AnswerFontRegular',
+  ITALIC: 'AnswerFontItalic',
+  BOLD: 'AnswerFontBold',
+  BOLD_ITALIC: 'AnswerFontBoldItalic'
+});
+
+
+
+
 const initBoardStateMeta = {
   elapsedTime: 0,
   hasBeenCorrect: false
 }
 
 export class Board {
-  constructor({boardState, correctBoardState, clues, id, setClue, puzzleSolved, boardStateMeta, ticker}) {
+  constructor({ boardState, correctBoardState, clues, id, setClue, puzzleSolved, boardStateMeta, ticker }) {
     this.id = id
     this.correctData = correctBoardState;
     this.data = boardState;
@@ -21,7 +31,7 @@ export class Board {
     this.setClue = setClue;
     this.puzzleSolved = puzzleSolved;
     this.ticker = ticker;
-    this.boardStateMeta = boardStateMeta || {...initBoardStateMeta};
+    this.boardStateMeta = boardStateMeta || { ...initBoardStateMeta };
 
     this.timerInterval = this.startTimer()
 
@@ -43,11 +53,11 @@ export class Board {
         volume: 0.5
       })
     }
-    
+
     // setup word corrects 1-5
     for (let i = 1; i < 6; i++) {
-      this.sounds['wordCorrect'+i] = new Howl({
-        src: ['/correct'+i+'.mp3'],
+      this.sounds['wordCorrect' + i] = new Howl({
+        src: ['/correct' + i + '.mp3'],
         volume: 0.3
       })
     }
@@ -70,24 +80,38 @@ export class Board {
 
     this.offsetContainer.position.x = resolution / 2 - this.w * this.n / 2;
 
-    const textStyle = new TextStyle({
+    const baseTextStyle = {
       fontSize: this.w / 3,
       fontWeight: '400',
-      fill: '#0D1821',
-      fontName: 'Arial',
-    });
+      fill: '#000',
+      fontFamily: 'Nunito',
+    };
 
-    BitmapFont.from('AnswerFont', textStyle, { chars: BitmapFont.ALPHA, resolution: 3 });
+    const FontStylings = {
+      [FontEnum.REGULAR]: {fontStyle: 'normal'},
+      [FontEnum.ITALIC]: { fontStyle: 'italic' },
+      [FontEnum.BOLD]: { fontWeight: 'bold' },
+      [FontEnum.BOLD_ITALIC]: { fontStyle: 'italic', fontWeight: 'bold' }
+    }
+
+    for (const [fontKey, fontName] of Object.entries(FontEnum)) {
+      BitmapFontManager.install({
+        name: fontName,
+        style: new TextStyle({ ...baseTextStyle, ...FontStylings[fontKey] }),
+        chars: BitmapFontManager.ALPHA,
+        resolution: 3
+      });
+    }
+
 
     // Create black rectangles on the left and right sides 
     const width = 32;
     const height = resolution;
     const baffles = new Graphics();
-    baffles.beginFill(0x0D1821);
-    baffles.drawRect(0, 0, width, height);//left
-    baffles.drawRect(height - width, 0, width + 2, height);//right
-    baffles.drawRect(0, height - (width * 2), height, (width * 2) + 2);//bottom
-    baffles.endFill();
+    baffles.fill(0x0D1821);
+    baffles.rect(0, 0, width, height);//left
+    baffles.rect(height - width, 0, width + 2, height);//right
+    baffles.rect(0, height - (width * 2), height, (width * 2) + 2);//bottom
 
     baffles.cacheAsBitmap = true;
 
@@ -169,7 +193,7 @@ export class Board {
     if (this.horConveyors[0]) {
 
       this.horConveyors[0].selected = true;
-  
+
       this.propogateSelected()
       this.showClue()
     }
@@ -226,7 +250,7 @@ export class Board {
     // let selectedConveyorBecameCorrect = false; // code related to this variable is for highlighting next clue after currently selected one becomes correct
 
     for (const conveyor of allConveyors) {
-      const {isCorrect, hasBeenCorrect} = conveyor.checkCorrectness();
+      const { isCorrect, hasBeenCorrect } = conveyor.checkCorrectness();
 
       if (isCorrect && !hasBeenCorrect) {
         numberOfConveyorsCorrectForFirstTime++;
@@ -239,10 +263,10 @@ export class Board {
       if (!isCorrect) {
         boardCorrect = false;
       }
-    } 
+    }
 
     const soundIdx = Math.min(numberOfConveyorsCorrectForFirstTime, 5)
-    
+
     let soundPlayed = false
     if (numberOfConveyorsCorrectForFirstTime > 0 && !muteCorrectSound) {
       this.sounds[`wordCorrect${soundIdx}`].play()
@@ -267,7 +291,7 @@ export class Board {
 
       // this.setClue('Solved!');
       if (!this.boardStateMeta.hasBeenCorrect) {
-        !muteCorrectSound && setTimeout(()=>{this.puzzleSolved()}, 1000)
+        !muteCorrectSound && setTimeout(() => { this.puzzleSolved() }, 1000)
       }
       this.isCorrect = true;
       this.boardStateMeta.hasBeenCorrect = true;
@@ -275,6 +299,7 @@ export class Board {
       this.isCorrect = false;
     }
 
+    this.applyCorrectnessFontStylings();
     // if (selectedConveyorBecameCorrect && !boardCorrect) {
     //   this.selectNextConveyor(false, false);
     // }
@@ -291,11 +316,26 @@ export class Board {
   }
 
 
-  resetConveyorCorrectnessMemory () {
+  resetConveyorCorrectnessMemory() {
     const allConveyors = [...this.horConveyors, ...this.vertConveyors];
 
     for (const c of allConveyors) {
       c.hasBeenCorrect = false;
+    }
+  }
+
+  applyCorrectnessFontStylings() {
+    // first empty the canvas
+    for (const cell of this.cells) {
+      if (cell.horConveyor?.correct && cell.vertConveyor?.isCorrect) {
+        cell.setFont(FontEnum.BOLD_ITALIC)
+      } else if (cell.horConveyor?.correct) {
+        cell.setFont(FontEnum.ITALIC)
+      } else if (cell.vertConveyor?.correct) {
+        cell.setFont(FontEnum.ITALIC)
+      } else {
+        cell.setFont(FontEnum.REGULAR)
+      }
     }
   }
 
@@ -377,7 +417,7 @@ export class Board {
       selectedConveyor.selected = false;
       const newDirection = selectedConveyor.dir === HORIZONTAL ? VERTICAL : HORIZONTAL;
       const newSelectedConveyor = selectedConveyor.cells[0][newDirection === HORIZONTAL ? 'horConveyor' : 'vertConveyor']
-      newSelectedConveyor.selected=true;
+      newSelectedConveyor.selected = true;
       this.propogateSelected()
       newSelectedConveyor.draw()
     }
@@ -399,7 +439,7 @@ export class Board {
       } else if (key === 'ArrowLeft' || key === 'ArrowRight') {
         this.selectNextConveyor(key === 'ArrowLeft', false)
       }
-    } 
+    }
   }
 
   showClue() {
@@ -455,7 +495,7 @@ export class Board {
 
   resetPuzzleToFactorySettings() {
     this.resetConveyorCorrectnessMemory()
-    this.boardStateMeta = {...initBoardStateMeta};
+    this.boardStateMeta = { ...initBoardStateMeta };
     this.undoStack = []
     this.writeBoardStateToLocalStorage()
   }
@@ -463,25 +503,25 @@ export class Board {
   shuffle() {
     this.ticker.start()
     const conveyors = [...this.horConveyors, ...this.vertConveyors]
-    const numShuffles = conveyors.length*3 // length of conveyors * 2 meaning two shuffles per word
+    const numShuffles = conveyors.length * 3 // length of conveyors * 2 meaning two shuffles per word
 
     let prevShuffle = null
     let i = numShuffles
-    const oneShuffle = () => { 
+    const oneShuffle = () => {
       const pickConveyorAndDirection = () => {
         const idx = Math.floor(Math.random() * conveyors.length);
         const conveyor = conveyors[idx]
         const direction = Math.random() < 0.5 ? true : false;
 
-        return {conveyor, direction}
+        return { conveyor, direction }
       }
 
       let conveyorAndDirection = pickConveyorAndDirection()
       while (conveyorAndDirection.conveyor === prevShuffle && !conveyorAndDirection.direction === prevShuffle.direction) {
         conveyorAndDirection = pickConveyorAndDirection()
       }
-      
-      const {conveyor, direction} = conveyorAndDirection
+
+      const { conveyor, direction } = conveyorAndDirection
 
       conveyor.shift(direction, true, 150)
       i--

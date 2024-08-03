@@ -8,7 +8,7 @@ export class Pill {
     this.dir = dir;
     this.gfx = new Graphics();
 
-    
+
     this.container = new Container();
     this.container.addChild(this.gfx);
     this.container.alpha = 0;
@@ -24,7 +24,7 @@ export class Pill {
 
     new TWEEN.Tween(this.container)
       .to(tweenTarget, ANIMATION_TIME)
-      .easing(TWEEN.Easing.Quadratic.Out) 
+      .easing(TWEEN.Easing.Quadratic.Out)
       .start();
     // .onComplete(() => {
     //   onComplete();
@@ -48,23 +48,18 @@ export class Pill {
     const y2 = cell2.j * w + w / 2;
 
     // this.gfx.lineStyle(2, 0, 1);
-    this.gfx.beginFill(0x8bd69e);
-
     const barWidth = cell1.w / 3 * 2;
     const endCapLength = cell1.w / 3;
 
     if (this.dir === VERTICAL) {
 
-      this.gfx.drawRoundedRect(x1 - barWidth / 2, y1 - endCapLength, barWidth, y2 - y1 + endCapLength * 2, w/10);
+      this.gfx.roundRect(x1 - barWidth / 2, y1 - endCapLength, barWidth, y2 - y1 + endCapLength * 2, w / 10).fill(0xbdf0ca);
 
     } else if (this.dir === HORIZONTAL) {
 
-      this.gfx.drawRoundedRect(x1 - endCapLength, y1 - barWidth / 2, x2 - x1 + endCapLength * 2, barWidth, w/10);
+      this.gfx.roundRect(x1 - endCapLength, y1 - barWidth / 2, x2 - x1 + endCapLength * 2, barWidth, w / 10).fill(0xbdf0ca);
 
     }
-
-
-    this.gfx.endFill();
 
     this.gfx.cacheAsBitmapResolution = 2;
     this.gfx.cacheAsBitmap = true;

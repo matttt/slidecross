@@ -10,6 +10,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.20",
+    "@pixi/assets": "^7.4.2",
     "@pixi/math-extras": "7.0.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^11.2.7",
@@ -19,7 +20,7 @@
     "howler": "^2.2.4",
     "nanoid": "^5.0.4",
     "node-fetch": "^3.3.2",
-    "pixi.js": "^6.5.10",
+    "pixi.js": "8.2.6",
     "react": "^18.2.0",
     "react-confetti": "^6.1.0",
     "react-device-detect": "^2.2.3",
@@ -60,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "prettier": "3.3.3",
     "tailwindcss": "^3.3.6"
   }
 }

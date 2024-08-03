@@ -1,7 +1,5 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
-// import { isMobile } from 'react-device-detect';
-// import * as TWEEN from '@tweenjs/tween.js'
-
+import { FontEnum } from "./Board.js";
 
 export class Cell {
   constructor(letter, correctLetter, i, j, width, onDragStart, onClick, board) {
@@ -10,75 +8,98 @@ export class Cell {
     this.i = i;
     this.j = j;
     this.w = width;
-    this.board = board
+    this.board = board;
     this.bgContainer = new Container();
     this.bgOffsetContainer = new Container();
     this.fgContainer = new Container();
     this.fgOffsetContainer = new Container();
     this.selectionContainer = new Container();
     this.selectionOffsetContainer = new Container();
-    // this.container = new Container();
     this.gfx = new Graphics();
     this.selectedGfx = new Graphics();
     this.selectedGfx.alpha = 0;
     this.highlightedGfx = new Graphics();
     this.highlightedGfx.alpha = 0;
-    this.text = new BitmapText(this.letter ? this.letter : '', { fontName: 'AnswerFont', });
-    this.text.anchor.set(0.5, 0.5);
-    this.text.x = this.w / 2;
-    this.text.y = this.w / 2 - 3;
 
-    // if (isMobile) {
-    //   // this.text.y -= this.w/12;
-    // }
+    this.font = FontEnum.REGULAR;
+
+    const inputLetter = letter ? letter : "";
+
+    this.texts = {
+      [FontEnum.REGULAR]: new BitmapText({
+        text: inputLetter,
+        style: { fontFamily: FontEnum.REGULAR },
+      }),
+      [FontEnum.ITALIC]: new BitmapText({
+        text: inputLetter,
+        style: { fontFamily: FontEnum.ITALIC },
+      }),
+      [FontEnum.BOLD]: new BitmapText({
+        text: inputLetter,
+        style: { fontFamily: FontEnum.BOLD },
+      }),
+      [FontEnum.BOLD_ITALIC]: new BitmapText({
+        text: inputLetter,
+        style: { fontFamily: FontEnum.BOLD_ITALIC },
+      }),
+    };
+
+    for (const [font, text] of Object.entries(this.texts)) {
+      text.anchor.set(0.5, 0.5);
+      text.x = this.w / 2;
+      text.y = this.w / 2 - 3;
+
+      // if (font === FontEnum.ITALIC || font === FontEnum.BOLD_ITALIC) {
+      //   text.x += this.w / 10;
+      // }
+    }
 
     this.correct = false;
     this.selected = false;
     this.highlighted = false;
 
-    this.fgContainer.eventMode = 'none'
+    this.fgContainer.eventMode = "none";
 
     this.previousState = {
       correct: null,
-      selected: null
-    }
+      selected: null,
+    };
 
     this.sequentialClicks = 0;
 
-    // set in cell instantiation in board
     this.horConveyor = null;
     this.vertConveyor = null;
+
+    this.updateText();
 
     this.bgOffsetContainer.addChild(this.gfx);
     this.bgContainer.addChild(this.bgOffsetContainer);
 
-    this.fgOffsetContainer.addChild(this.text);
+    for (const text of Object.values(this.texts)) {
+      this.fgOffsetContainer.addChild(text);
+    }
     this.fgContainer.addChild(this.fgOffsetContainer);
 
-    this.selectionOffsetContainer.addChild(this.selectedGfx, this.highlightedGfx);
+    this.selectionOffsetContainer.addChild(
+      this.selectedGfx,
+      this.highlightedGfx,
+    );
     this.selectionContainer.addChild(this.selectionOffsetContainer);
 
     if (onDragStart && this.letter) {
-      this.bgContainer.interactive = true
-      // this.bgContainer.eventMode = 'static'
-      // this.bgContainer.cursor = 'pointer';
-      this.bgContainer.on('pointerdown', e => {
+      this.bgContainer.interactive = true;
+      this.bgContainer.on("pointerdown", (e) => {
         onDragStart(e, this);
       });
 
-      this.bgContainer.on('pointerup', e => {
+      this.bgContainer.on("pointerup", (e) => {
         onClick(e, this);
       });
-
     } else if (this.letter === null) {
-
-      this.bgContainer.interactive = true
-
-      this.bgContainer.on('pointerdown', e => {
-        // console.log('happens')
+      this.bgContainer.interactive = true;
+      this.bgContainer.on("pointerdown", (e) => {
         this.board.deselectAllConveyors();
       });
-
     }
 
     this.bgContainer.x = this.w * this.i;
@@ -104,91 +125,60 @@ export class Cell {
     this.selectionOffsetContainer.y = y;
   }
 
-  // animateOffsetTo(x, y, time = 500, onComplete = () => {}) {
-  //   new TWEEN.Tween(this.bgOffsetContainer.position)
-  //       .to({x,y}, time)
-  //       .easing(TWEEN.Easing.Quadratic.Out)
-  //       .start()
-  //       .onComplete(() => {
-  //         onComplete();
-  //       });
-  //   new TWEEN.Tween(this.fgOffsetContainer.position)
-  //       .to({x,y}, time)
-  //       .easing(TWEEN.Easing.Quadratic.Out)
-  //       .start()
+  setFont(font) {
+    this.font = font;
+    console.log(font)
+    this.updateText();
+  }
 
-  //   new TWEEN.Tween(this.selectionOffsetContainer.position)
-  //       .to({x,y}, time)
-  //       .easing(TWEEN.Easing.Quadratic.Out)
-  //       .start()
-
-  // }
+  hideAllTexts() {
+    for (const text of Object.values(this.texts)) {
+      text.visible = false;
+    }
+  }
 
   updateText() {
-    this.text.text = this.letter;
-    this.text.dirty = true;
-    // this.text.updateText()
-    // this.text._render()
+    this.hideAllTexts();
+
+    this.texts[this.font].visible = true;
+    this.texts[this.font].text = this.letter ? this.letter : "";
+    this.texts[this.font].dirty = true;
   }
 
   updateSelected() {
     if (this.selected) {
-      this.selectedGfx.alpha = .5;
-
-      // new TWEEN.Tween(this.selectedGfx)
-      //   .to({alpha: .5}, 500)
-      //   .easing(TWEEN.Easing.Quadratic.Out)
-      //   .start()
-      //   .onComplete(() => {
-          
-      //   });
+      this.selectedGfx.alpha = 0.5;
     } else {
       this.selectedGfx.alpha = 0;
-
-      // new TWEEN.Tween(this.selectedGfx)
-      // .to({alpha: 0}, 500)
-      // .easing(TWEEN.Easing.Quadratic.Out)
-      // .start()
-      // .onComplete(() => {
-        
-      // });
     }
   }
 
   updateHighlighted() {
     if (this.highlighted) {
       this.highlightedGfx.alpha = 1;
-
     } else {
       this.highlightedGfx.alpha = 0;
     }
   }
 
   draw() {
-    this.gfx.lineStyle(2, 0x0D1821, 1);
+    this.gfx.setStrokeStyle(2, 0x0d1821, 1);
 
-    this.selectedGfx.beginFill(0xB2D7FB);
-    this.selectedGfx.drawRect(1, 1, this.w - 2, this.w - 2);
-    this.selectedGfx.endFill();
+    this.selectedGfx.fill(0xb2d7fb);
+    this.selectedGfx.rect(1, 1, this.w - 2, this.w - 2);
 
-    this.highlightedGfx.beginFill(0xF8ECCA);
-    this.highlightedGfx.drawRect(1, 1, this.w - 2, this.w - 2);
-    this.highlightedGfx.endFill();
-    // this.selectedGfx.alpha = .5;
+    this.highlightedGfx.fill(0xf8ecca);
+    this.highlightedGfx.rect(1, 1, this.w - 2, this.w - 2);
 
     if (this.letter) {
-      // this.gfx.beginFill(0xF0F4EF);
+      // this.gfx.beginFill(0xFFFFFF);
     } else {
-      this.gfx.beginFill(0x0D1821);
+      this.gfx.rect(0, 0, this.w, this.w).fill(0x0d1821);
     }
-
-    // this.gfx.beginFill(this.letter ? 0xFFFFFF : 0x000000);
-    this.gfx.drawRect(0, 0, this.w, this.w);
-    this.gfx.endFill();
 
 
     if (this.selected) {
-      this.selectedGfx.alpha = .5;
+      this.selectedGfx.alpha = 0.5;
     } else {
       this.selectedGfx.alpha = 0;
     }
@@ -197,5 +187,4 @@ export class Cell {
     this.selectedGfx.cacheAsBitmap = true;
     this.highlightedGfx.cacheAsBitmap = true;
   }
-
 }

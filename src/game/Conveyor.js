@@ -253,7 +253,7 @@ export class Conveyor {
     for (const cell of this.cells) {
       if (cell.letter !== cell.correctLetter) {
         this.correct = false;
-        // return;
+        // break;
       }
     }
 
