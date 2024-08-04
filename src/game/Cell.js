@@ -1,5 +1,5 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
-import { FontEnum, FontStylings } from "./Board.js";
+import { FontEnum } from "./Board.js";
 
 export class Cell {
   constructor(letter, correctLetter, i, j, width, onDragStart, onClick, board) {
@@ -48,14 +48,10 @@ export class Cell {
       }),
     };
 
-    for (const [font, text] of Object.entries(this.texts)) {
+    for (const text of Object.values(this.texts)) {
       text.anchor.set(0.5, 0.5);
       text.x = this.w / 2;
       text.y = this.w / 2;
-
-      // if (font === FontEnum.ITALIC || font === FontEnum.BOLD_ITALIC) {
-      //   text.x += this.w / 10;
-      // }
     }
 
     this.correct = false;

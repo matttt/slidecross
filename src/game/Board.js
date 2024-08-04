@@ -91,7 +91,7 @@ export class Board {
     };
 
     
-    for (const [fontKey, fontName] of Object.entries(FontEnum)) {
+    for (const fontName of Object.values(FontEnum)) {
       BitmapFontManager.install({
         name: fontName,
         style: new TextStyle({ ...baseTextStyle, fontFamily: FontNameMap[fontName] }),
