@@ -81,7 +81,6 @@ export class Conveyor {
         return
       }
 
-
       new TWEEN.Tween(cell.selectedGfx)
         .to({ alpha: alphaValue }, animationTime)
         .easing(TWEEN.Easing.Quadratic.Out)

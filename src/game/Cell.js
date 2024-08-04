@@ -1,5 +1,5 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
-import { FontEnum } from "./Board.js";
+import { FontEnum, FontStylings } from "./Board.js";
 
 export class Cell {
   constructor(letter, correctLetter, i, j, width, onDragStart, onClick, board) {
@@ -25,29 +25,33 @@ export class Cell {
 
     const inputLetter = letter ? letter : "";
 
+    const fontStyle = {
+      fontSize: this.w / 3.5,
+    };
+
     this.texts = {
       [FontEnum.REGULAR]: new BitmapText({
         text: inputLetter,
-        style: { fontFamily: FontEnum.REGULAR },
+        style: { fontFamily: FontEnum.REGULAR, ...fontStyle  },
       }),
       [FontEnum.ITALIC]: new BitmapText({
         text: inputLetter,
-        style: { fontFamily: FontEnum.ITALIC },
+        style: { fontFamily: FontEnum.ITALIC, ...fontStyle },
       }),
       [FontEnum.BOLD]: new BitmapText({
         text: inputLetter,
-        style: { fontFamily: FontEnum.BOLD },
+        style: { fontFamily: FontEnum.BOLD, ...fontStyle},
       }),
       [FontEnum.BOLD_ITALIC]: new BitmapText({
         text: inputLetter,
-        style: { fontFamily: FontEnum.BOLD_ITALIC },
+        style: { fontFamily: FontEnum.BOLD_ITALIC, ...fontStyle },
       }),
     };
 
     for (const [font, text] of Object.entries(this.texts)) {
       text.anchor.set(0.5, 0.5);
       text.x = this.w / 2;
-      text.y = this.w / 2 - 3;
+      text.y = this.w / 2;
 
       // if (font === FontEnum.ITALIC || font === FontEnum.BOLD_ITALIC) {
       //   text.x += this.w / 10;
@@ -126,8 +130,8 @@ export class Cell {
   }
 
   setFont(font) {
-    this.font = font;
     console.log(font)
+    this.font = font;
     this.updateText();
   }
 
@@ -164,14 +168,13 @@ export class Cell {
   draw() {
     this.gfx.setStrokeStyle(2, 0x0d1821, 1);
 
-    this.selectedGfx.fill(0xb2d7fb);
-    this.selectedGfx.rect(1, 1, this.w - 2, this.w - 2);
+    this.selectedGfx.rect(1, 1, this.w - 2, this.w - 2).fill(0xb2d7fb);
 
-    this.highlightedGfx.fill(0xf8ecca);
-    this.highlightedGfx.rect(1, 1, this.w - 2, this.w - 2);
+    this.highlightedGfx.rect(1, 1, this.w - 2, this.w - 2).fill(0xf8ecca);
 
     if (this.letter) {
-      // this.gfx.beginFill(0xFFFFFF);
+      this.gfx.rect(0, 0, this.w, this.w).fill({alpha:0, color:0xFFFFFF}).stroke({color:0x0d1821, width:2});
+
     } else {
       this.gfx.rect(0, 0, this.w, this.w).fill(0x0d1821);
     }
@@ -183,7 +186,7 @@ export class Cell {
       this.selectedGfx.alpha = 0;
     }
 
-    this.gfx.cacheAsBitmap = true;
+    // this.gfx.cacheAsBitmap = true;
     this.selectedGfx.cacheAsBitmap = true;
     this.highlightedGfx.cacheAsBitmap = true;
   }

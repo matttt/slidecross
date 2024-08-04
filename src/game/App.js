@@ -1,9 +1,7 @@
 import { Container } from "pixi.js";
-import 'pixi.js/text-bitmap';
 import { Board } from "./Board.js";
 import { parseBoardString, scrambleBoard } from "./utils.js";
 import * as TWEEN from '@tweenjs/tween.js'
-import { Assets } from '@pixi/assets';
 
 
 export const VERTICAL = 1

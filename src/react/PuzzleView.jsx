@@ -95,7 +95,6 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
   // }
 
 
-  console.log(clue)
 
   return (
     <div style={{ width: resolution - widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
@@ -183,6 +182,7 @@ export const PuzzleView = () => {
   const [onNextClue, setOnNextClue] = useState(() => () => null);
   const [onPreviousClue, setOnPreviousClue] = useState(() => () => null);
   const [onBoardKeyPress, setOnBoardKeyPress] = useState(() => () => null);
+
 
   useKeypress(['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'Tab', 'Enter'], (event) => {
     onBoardKeyPress(event.key)
@@ -284,7 +284,10 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
       };
 
       view = canvasRef.current;
-      await Assets.load('/Nunito.ttf');
+      await Assets.load('/fonts/Nunito-Bold.ttf');
+      await Assets.load('/fonts/Nunito-ExtraBoldItalic.ttf');
+      await Assets.load('/fonts/Nunito-ExtraLight.ttf');
+      await Assets.load('/fonts/Nunito-Italic.ttf');
 
       pixiApp = new Application();
 
@@ -299,13 +302,15 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
         puzzleSolved
       };
 
+      const appMethods = await app(puzzleInput)
+
       const {
         onUndo,
         onNextClue,
         onKeyPress,
         onPreviousClue,
         onShuffle
-      } = app(puzzleInput);
+      } = appMethods;
 
       setOnUndo(() => onUndo);
       setOnShuffle(() => onShuffle);

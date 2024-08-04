@@ -14,13 +14,18 @@ export const FontEnum = Object.freeze({
   BOLD_ITALIC: 'AnswerFontBoldItalic'
 });
 
-
-
-
 const initBoardStateMeta = {
   elapsedTime: 0,
   hasBeenCorrect: false
 }
+
+export const FontNameMap = {
+  [FontEnum.REGULAR]: 'Nunito ExtraLight',
+  [FontEnum.ITALIC]: 'Nunito Italic',
+  [FontEnum.BOLD]: 'Nunito Bold',
+  [FontEnum.BOLD_ITALIC]: 'Nunito ExtraBoldItalic'
+}
+
 
 export class Board {
   constructor({ boardState, correctBoardState, clues, id, setClue, puzzleSolved, boardStateMeta, ticker }) {
@@ -81,23 +86,15 @@ export class Board {
     this.offsetContainer.position.x = resolution / 2 - this.w * this.n / 2;
 
     const baseTextStyle = {
-      fontSize: this.w / 3,
-      fontWeight: '400',
-      fill: '#000',
-      fontFamily: 'Nunito',
+      fontWeight: 'bold',
+      fill: '#0d1821',
     };
 
-    const FontStylings = {
-      [FontEnum.REGULAR]: {fontStyle: 'normal'},
-      [FontEnum.ITALIC]: { fontStyle: 'italic' },
-      [FontEnum.BOLD]: { fontWeight: 'bold' },
-      [FontEnum.BOLD_ITALIC]: { fontStyle: 'italic', fontWeight: 'bold' }
-    }
-
+    
     for (const [fontKey, fontName] of Object.entries(FontEnum)) {
       BitmapFontManager.install({
         name: fontName,
-        style: new TextStyle({ ...baseTextStyle, ...FontStylings[fontKey] }),
+        style: new TextStyle({ ...baseTextStyle, fontFamily: FontNameMap[fontName] }),
         chars: BitmapFontManager.ALPHA,
         resolution: 3
       });
@@ -108,10 +105,9 @@ export class Board {
     const width = 32;
     const height = resolution;
     const baffles = new Graphics();
-    baffles.fill(0x0D1821);
-    baffles.rect(0, 0, width, height);//left
-    baffles.rect(height - width, 0, width + 2, height);//right
-    baffles.rect(0, height - (width * 2), height, (width * 2) + 2);//bottom
+    baffles.rect(0, 0, width, height).fill(0x0D1821);//left
+    baffles.rect(height - width, 0, width + 2, height).fill(0x0D1821);//right
+    baffles.rect(0, height - (width * 2), height, (width * 2) + 2).fill(0x0D1821);//bottom
 
     baffles.cacheAsBitmap = true;
 
@@ -327,8 +323,8 @@ export class Board {
   applyCorrectnessFontStylings() {
     // first empty the canvas
     for (const cell of this.cells) {
-      if (cell.horConveyor?.correct && cell.vertConveyor?.isCorrect) {
-        cell.setFont(FontEnum.BOLD_ITALIC)
+      if (cell.horConveyor?.correct && cell.vertConveyor?.correct) {
+        cell.setFont(FontEnum.ITALIC)
       } else if (cell.horConveyor?.correct) {
         cell.setFont(FontEnum.ITALIC)
       } else if (cell.vertConveyor?.correct) {
