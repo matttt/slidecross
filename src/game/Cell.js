@@ -1,5 +1,6 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
 import { FontEnum } from "./Board.js";
+import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers.js";
 
 export class Cell {
   constructor(letter, correctLetter, i, j, width, onDragStart, onClick, board) {
@@ -162,9 +163,14 @@ export class Cell {
   }
 
   draw() {
+    [this.gfx, this.selectedGfx, this.highlightedGfx].forEach((gfx) => {
+      gfx.clear();
+    });
+
     this.gfx.setStrokeStyle(2, 0x0d1821, 1);
 
     this.selectedGfx.rect(1, 1, this.w - 2, this.w - 2).fill(0xb2d7fb);
+    // this.selectedGfx.rect(1, 1, this.w - 2, this.w - 2).fill(0xFF0000);
 
     this.highlightedGfx.rect(1, 1, this.w - 2, this.w - 2).fill(0xf8ecca);
 

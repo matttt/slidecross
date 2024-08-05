@@ -284,10 +284,12 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
       };
 
       view = canvasRef.current;
-      await Assets.load('/fonts/Nunito-Bold.ttf');
-      await Assets.load('/fonts/Nunito-ExtraBoldItalic.ttf');
-      await Assets.load('/fonts/Nunito-ExtraLight.ttf');
-      await Assets.load('/fonts/Nunito-Italic.ttf');
+      await Promise.all([
+        Assets.load('/fonts/Nunito-Bold.ttf'),
+        Assets.load('/fonts/Nunito-ExtraBoldItalic.ttf'),
+        Assets.load('/fonts/Nunito-ExtraLight.ttf'),
+        Assets.load('/fonts/Nunito-Italic.ttf')
+      ])
 
       pixiApp = new Application();
 
