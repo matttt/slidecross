@@ -1,6 +1,5 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
 import { FontEnum } from "./Board.js";
-import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers.js";
 
 export class Cell {
   constructor(letter, correctLetter, i, j, width, onDragStart, onClick, board) {
