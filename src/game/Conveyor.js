@@ -258,7 +258,18 @@ export class Conveyor {
 
     this.pill.correct = this.correct;
 
+
+
     if (this.correct) {
+      if (!this.hasBeenCorrect) {
+        for (const [index, cell] of Object.entries(this.cells)) {
+          setTimeout(() => {
+            cell.animateCorrectness();
+          }, Number(index) * 75);
+        }
+      }
+      
+
       this.hasBeenCorrect = true;
     }
 

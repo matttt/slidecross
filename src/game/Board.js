@@ -1,4 +1,4 @@
-import { Container, TextStyle, BitmapFontManager, Graphics } from "pixi.js";
+import { Container, TextStyle, BitmapFontManager } from "pixi.js";
 import { Howl } from 'howler';
 
 import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.js';
@@ -70,10 +70,10 @@ export class Board {
     this.undoStack = [];
 
     // this.data = parseBoardString(boardStr)
-    this.n = Math.max(this.data.length, this.data[0].length);
+    this.n = Math.min(this.data.length, this.data[0].length);
     this.numRows = this.data.length;
     this.numCols = this.data[0].length;
-    this.w = (resolution - 64) / this.n;
+    this.w = resolution / this.n;
     this.isAnimating = false;
     this.startPos = null;
     this.mousePos = null;
@@ -102,16 +102,16 @@ export class Board {
 
 
     // Create black rectangles on the left and right sides 
-    const width = 32;
-    const height = resolution;
-    const baffles = new Graphics();
-    baffles.rect(0, 0, width, height).fill(0x0D1821);//left
-    baffles.rect(height - width, 0, width + 2, height).fill(0x0D1821);//right
-    baffles.rect(0, height - (width * 2), height, (width * 2) + 2).fill(0x0D1821);//bottom
+    // const width = 32;
+    // const height = resolution;
+    // const baffles = new Graphics();
+    // baffles.rect(0, 0, width, height).fill(0x0D1821);//left
+    // baffles.rect(height - width, 0, width + 2, height).fill(0x0D1821);//right
+    // baffles.rect(0, height - (width * 2), height, (width * 2) + 2).fill(0x0D1821);//bottom
 
-    baffles.cacheAsBitmap = true;
+    // baffles.cacheAsBitmap = true;
 
-    this.container.addChild(baffles);
+    // this.container.addChild(baffles);
   }
 
   startTimer() {

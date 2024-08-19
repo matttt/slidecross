@@ -1,5 +1,7 @@
 import { Container, Graphics, BitmapText } from "pixi.js";
 import { FontEnum } from "./Board.js";
+import * as TWEEN from '@tweenjs/tween.js'
+
 
 export class Cell {
   constructor(letter, correctLetter, i, j, width, onDragStart, onClick, board) {
@@ -20,6 +22,9 @@ export class Cell {
     this.selectedGfx.alpha = 0;
     this.highlightedGfx = new Graphics();
     this.highlightedGfx.alpha = 0;
+
+    this.animatingCorrectness = false;
+
 
     this.font = FontEnum.REGULAR;
 
@@ -129,6 +134,31 @@ export class Cell {
     console.log(font)
     this.font = font;
     this.updateText();
+  }
+
+
+  animateCorrectness() {
+    if (this.animatingCorrectness) return; 
+
+    this.animatingCorrectness = true;
+    try {
+      new TWEEN.Tween(this.fgOffsetContainer.position)
+          .to({y: -this.w/12}, 250)
+          .easing(TWEEN.Easing.Quadratic.Out)
+          .start()
+          .onComplete(() => {
+            new TWEEN.Tween(this.fgOffsetContainer.position)
+            .to({x: 0, y: 0}, 250)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start()
+            .onComplete(() => {
+              this.animatingCorrectness = false;
+            });
+          });
+
+    } catch (e) {
+      // alert(e)
+    }
   }
 
   hideAllTexts() {

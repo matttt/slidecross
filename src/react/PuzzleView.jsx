@@ -20,7 +20,6 @@ import { isMobile } from 'react-device-detect';
 import { puzzles } from '../game/puzzles.js';
 import { useParams, useNavigate } from "react-router-dom";
 import useKeypress from 'react-use-keypress';
-import { parseBoardString } from "../game/utils.js";
 import { TutorialCard } from "./TutorialCard.jsx";
 import { MiniTutCard } from "./MiniTutCard.jsx";
 import { PuzzleWinCard } from "./PuzzleWinCard.jsx";
@@ -97,7 +96,7 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
 
 
   return (
-    <div style={{ width: resolution - widthOffset }} className="flex items-center fixed justify-between bottom-0 px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
+    <div style={{ width: resolution - widthOffset }} className="flex items-center justify-between px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
       <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }}  >
         <NavigateBeforeIcon />
       </IconButton>
@@ -122,7 +121,7 @@ const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard }) => {
   //   setShowTimer(!showTimer)
   // }
 
-  return <div style={{ width: resolution - widthOffset }} className="w-full top-2 fixed flex p-3 md:p-0">
+  return <div style={{ width: resolution - widthOffset }} className="w-full mt-2 flex p-3 md:p-0">
     <IconButton onClick={onBack} color="primary" style={{ color: '#EEE', left: isMobile ? '' : '-10px' }} className="left-[-3]">
       <KeyboardBackspaceIcon />
     </IconButton>
@@ -248,9 +247,11 @@ export const PuzzleView = () => {
       <MiniTutCard open={isMiniTutCardOpen} handleClose={handleCloseMiniTutCard} openFullTutorial={handleOpenTutorialCard} />
       <PuzzleWinCard open={isPuzzleWinCardOpen} handleClose={handleClosePuzzleWinCard} puzzleId={puzzle.id} />
 
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-full">
         <TopBar onBack={() => navigate('/')} onUndo={onUndo} openShuffleWarning={handleOpenShuffleWarning} openTutorialCard={handleOpenTutorialCard} />
+        <div class="grow"/>
         <Canvas {...puzzleProps} />
+        <div class="grow"/>
         <ClueArea clue={clue} onNextClue={onNextClue} onPreviousClue={onPreviousClue} />
       </div>
 
@@ -265,18 +266,18 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
     let pixiApp, view, tickerStopTimeout, mouseDown, mouseUp;
 
     const init = async () => {
-      let ratio = 1;
+      // let ratio = 1;
 
-      if (puzzle) {
-        const boardGrid = parseBoardString(puzzle.boardDataStr);
-        const rows = boardGrid.length;
-        const cols = boardGrid[0].length;
-        ratio = rows / cols;
-      }
+      // if (puzzle) {
+      //   const boardGrid = parseBoardString(puzzle.boardDataStr);
+      //   const rows = boardGrid.length;
+      //   const cols = boardGrid[0].length;
+      //   // ratio = rows / cols;
+      // }
 
       const pixiConfig = {
         width: resolution,
-        height: resolution * ratio - 38,
+        height: resolution,
         // antialias: true,
         backgroundColor: 0xF0F4EF,
         resolution: 3,
@@ -329,7 +330,7 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
 
       mouseUp = () => {
         if (tickerStopTimeout) clearTimeout(tickerStopTimeout);
-        tickerStopTimeout = setTimeout(() => pixiApp.ticker.stop(), 500);
+        // tickerStopTimeout = setTimeout(() => pixiApp.ticker.stop(), 500);
       }
       view.addEventListener("mouseup", mouseUp, false);
       view.addEventListener("touchend", mouseUp, false);
@@ -350,7 +351,7 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
 
     // eslint-disable-next-line
   }, [puzzle.id]);
-  return <canvas ref={canvasRef}></canvas>;
+  return <canvas ref={canvasRef} style={{height: resolution}}></canvas>;
 }, (a, b) => {
   return a.puzzle.id === b.puzzle.id
 });
