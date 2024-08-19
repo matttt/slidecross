@@ -31,7 +31,7 @@ export class Cell {
     const inputLetter = letter ? letter : "";
 
     const fontStyle = {
-      fontSize: this.w / 3.5,
+      fontSize: this.w / 2.5,
     };
 
     this.texts = {

@@ -96,7 +96,7 @@ export class Board {
         name: fontName,
         style: new TextStyle({ ...baseTextStyle, fontFamily: FontNameMap[fontName] }),
         chars: BitmapFontManager.ALPHA,
-        resolution: 3
+        resolution: 5
       });
     }
 
