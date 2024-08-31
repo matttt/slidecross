@@ -73,7 +73,7 @@ export class Board {
     this.n = Math.min(this.data.length, this.data[0].length);
     this.numRows = this.data.length;
     this.numCols = this.data[0].length;
-    this.w = resolution / this.n;
+    this.w = (resolution-2) / this.n;
     this.isAnimating = false;
     this.startPos = null;
     this.mousePos = null;

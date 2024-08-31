@@ -107,14 +107,17 @@ export class Cell {
       });
     }
 
-    this.bgContainer.x = this.w * this.i;
-    this.bgContainer.y = this.w * this.j;
+    const x = this.w * i;
+    const y = (this.w) * j + 1;
 
-    this.fgContainer.x = this.w * this.i;
-    this.fgContainer.y = this.w * this.j;
+    this.bgContainer.x = x;
+    this.bgContainer.y = y;
 
-    this.selectionContainer.x = this.w * this.i;
-    this.selectionContainer.y = this.w * this.j;
+    this.fgContainer.x = x;
+    this.fgContainer.y = y;
+
+    this.selectionContainer.x = x;
+    this.selectionContainer.y = y;
 
     this.draw();
   }
