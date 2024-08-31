@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {Assets} from 'pixi.js';
 import { puzzles } from '../game/puzzles.js';
 import Button from '@mui/material/Button';
 import { generateBoardAsciiArt } from "../game/generateSVG.jsx";
@@ -11,6 +12,14 @@ const puzzleButtonStyle = {
 };
 export const MainMenu = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    Assets.backgroundLoad('/fonts/Nunito-Bold.ttf');
+    Assets.backgroundLoad('/fonts/Nunito-ExtraBoldItalic.ttf');
+    Assets.backgroundLoad('/fonts/Nunito-ExtraLight.ttf');
+    Assets.backgroundLoad('/fonts/Nunito-Italic.ttf');
+  }, []);
+
   const createPuzzleButton = (puzzle, i, type) => {
     const boardStateStr = localStorage.getItem(puzzle.id) || null;
 
