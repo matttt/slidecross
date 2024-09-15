@@ -146,12 +146,12 @@ export class Cell {
     this.animatingCorrectness = true;
     try {
       new TWEEN.Tween(this.fgOffsetContainer.position)
-          .to({y: -this.w/12}, 250)
+          .to({y: -this.w/20}, 175)
           .easing(TWEEN.Easing.Quadratic.Out)
           .start()
           .onComplete(() => {
             new TWEEN.Tween(this.fgOffsetContainer.position)
-            .to({x: 0, y: 0}, 250)
+            .to({x: 0, y: 0}, 175)
             .easing(TWEEN.Easing.Quadratic.Out)
             .start()
             .onComplete(() => {

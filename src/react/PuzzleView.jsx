@@ -12,7 +12,6 @@ import IconButton from '@mui/material/IconButton';
 import 'pixi.js/text-bitmap';
 import { Application, Assets } from "pixi.js";
 import app from "../game/App.js";
-import Div100vh from 'react-div-100vh'
 import Markdown from 'react-markdown'
 // import rehypeRaw from 'rehype-raw'
 
@@ -241,7 +240,7 @@ export const PuzzleView = () => {
   };
 
   return (
-    <Div100vh style={{ overflow: 'hidden' }}>
+    <div style={{ overflow: 'hidden', height: '100dvh' }}>
       <ShuffleWarning open={isShuffleWarningOpen} handleClose={handleCloseShuffleWarning} onShuffle={onShuffle} />
       <TutorialCard open={isTutorialCardOpen} handleClose={handleCloseTutorialCard} />
       <MiniTutCard open={isMiniTutCardOpen} handleClose={handleCloseMiniTutCard} openFullTutorial={handleOpenTutorialCard} />
@@ -255,7 +254,7 @@ export const PuzzleView = () => {
         <ClueArea clue={clue} onNextClue={onNextClue} onPreviousClue={onPreviousClue} />
       </div>
 
-    </Div100vh>
+    </div>
   );
 };
 
