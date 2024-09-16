@@ -70,6 +70,11 @@ export const MainMenu = () => {
         {createPuzzleButtonArr`fives`}
       </div>
 
+      {createPuzzleHeader(6)}
+      <div className="grid grid-cols-3 gap-4 md:grid-cols-4">
+        {createPuzzleButtonArr`sixes`}
+      </div>
+
       {createPuzzleHeader(9)}
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {createPuzzleButtonArr`nines`}
