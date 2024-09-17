@@ -22,10 +22,10 @@ import useKeypress from 'react-use-keypress';
 import { TutorialCard } from "./TutorialCard.jsx";
 import { MiniTutCard } from "./MiniTutCard.jsx";
 import { PuzzleWinCard } from "./PuzzleWinCard.jsx";
+import { parseBoardString } from "../game/utils.js";
 
 
-const min = Math.min(window.innerWidth, window.innerHeight)
-export const resolution = (isMobile && min < 480) ? min : min * .75
+
 
 // const backButtonStyle = {
 //   position: "absolute",
@@ -66,9 +66,9 @@ const ShuffleWarning = ({ open, handleClose, onShuffle }) =>
     </DialogActions>
   </Dialog>;
 
-const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
-  const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
-
+const ClueArea = ({ clue, onPreviousClue, onNextClue, resolution }) => {
+  // const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
+  const widthOffset = 0;
 
   let clueCopy = clue;
 
@@ -92,10 +92,14 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
   //   }
   // }
 
+  let classes = 'flex items-center justify-between px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]';
 
+  if (isMobile) {
+    classes += ' fixed bottom-0';
+  }
 
   return (
-    <div style={{ width: resolution - widthOffset }} className="flex items-center justify-between px-1 pb-safe-offset-2 pt-2 bg-[#D6E5F4]">
+    <div style={{ width: resolution - widthOffset }} className={classes}>
       <IconButton onClick={onPreviousClue} style={{ color: '#0D1821' }}  >
         <NavigateBeforeIcon />
       </IconButton>
@@ -112,7 +116,7 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue }) => {
   );
 };
 
-const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard }) => {
+const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard, resolution }) => {
   // const [showTimer, setShowTimer] = useState(false);
   const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
 
@@ -159,6 +163,7 @@ export const PuzzleView = () => {
   const navigate = useNavigate();
   const hasPlayed = localStorage.getItem('hasPlayed') || false;
 
+
   const { puzzleId, puzzleType } = useParams();
   const [clue, setClue] = useState('');
   const [isShuffleWarningOpen, setIsShuffleWarningOpen] = useState(false);
@@ -168,6 +173,22 @@ export const PuzzleView = () => {
   // const puzzle = puzzles[puzzleType].find(p => p.id === puzzleId);
 
   const [puzzle, setPuzzle] = useState(puzzles[puzzleType].find(p => p.id === puzzleId));
+
+  const min = Math.min(window.innerWidth, window.innerHeight)
+  let resolution = (isMobile && min < 480) ? min : min * .75
+
+  if (puzzle) {
+    const puzzleGrid = parseBoardString(puzzle.boardDataStr);
+    const puzzleSize = Math.max(puzzleGrid.length, puzzleGrid[0].length);
+
+
+    const maxPuzzleSize = puzzleSize * 125;
+
+    if (resolution > maxPuzzleSize) {
+      resolution = maxPuzzleSize; 
+    }      
+  }
+
 
   useEffect(() => {
     setPuzzle(puzzles[puzzleType].find(p => p.id === puzzleId))
@@ -236,7 +257,8 @@ export const PuzzleView = () => {
     setOnBoardKeyPress,
     setClue,
     puzzleSolved,
-    setOnShuffle
+    setOnShuffle,
+    resolution
   };
 
   return (
@@ -247,18 +269,21 @@ export const PuzzleView = () => {
       <PuzzleWinCard open={isPuzzleWinCardOpen} handleClose={handleClosePuzzleWinCard} puzzleId={puzzle.id} />
 
       <div className="flex flex-col items-center justify-center h-full">
-        <TopBar onBack={() => navigate('/')} onUndo={onUndo} openShuffleWarning={handleOpenShuffleWarning} openTutorialCard={handleOpenTutorialCard} />
-        <div class="grow"/>
+        <TopBar onBack={() => navigate('/')} onUndo={onUndo} openShuffleWarning={handleOpenShuffleWarning} openTutorialCard={handleOpenTutorialCard} resolution={resolution} />
+        <div className="grow"/>
         <Canvas {...puzzleProps} />
-        <div class="grow"/>
-        <ClueArea clue={clue} onNextClue={onNextClue} onPreviousClue={onPreviousClue} />
+        {isMobile && <div class="grow"/>}
+        {isMobile && <div class="grow"/>}
+        <ClueArea clue={clue} onNextClue={onNextClue} onPreviousClue={onPreviousClue} resolution={resolution} />
+       {!isMobile && <div class="grow"/>}
       </div>
+
 
     </div>
   );
 };
 
-const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, puzzleSolved, pixiConfig }) => {
+const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo, setOnNextClue, setOnPreviousClue, setOnBoardKeyPress, setOnShuffle, setClue, puzzleSolved, pixiConfig, resolution }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -267,12 +292,6 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
     const init = async () => {
       // let ratio = 1;
 
-      // if (puzzle) {
-      //   const boardGrid = parseBoardString(puzzle.boardDataStr);
-      //   const rows = boardGrid.length;
-      //   const cols = boardGrid[0].length;
-      //   // ratio = rows / cols;
-      // }
 
       const pixiConfig = {
         width: resolution,
@@ -301,7 +320,8 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
         boardStateStr,
         boardStateMeta,
         setClue,
-        puzzleSolved
+        puzzleSolved,
+        resolution
       };
 
       const appMethods = await app(puzzleInput)
@@ -336,10 +356,11 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
     }
 
     init();
-
+    
     return () => {
+      console.log('happening in cleanup', pixiApp, canvasRef)
       if (pixiApp) {
-        pixiApp.destroy(true, { children: true, texture: true, baseTexture: true });
+        pixiApp.destroy(false, { children: true, texture: true, baseTexture: true });
       }
       if (tickerStopTimeout) clearTimeout(tickerStopTimeout);
       view?.removeEventListener("mousedown", mouseDown, false);
@@ -350,7 +371,7 @@ const Canvas = memo(({ pixiApp, puzzle, boardStateStr, boardStateMeta, setOnUndo
 
     // eslint-disable-next-line
   }, [puzzle.id]);
-  return <canvas ref={canvasRef} style={{height: resolution}}></canvas>;
+  return <canvas ref={canvasRef} style={{height: resolution}} key={puzzle.id}></canvas>;
 }, (a, b) => {
   return a.puzzle.id === b.puzzle.id
 });

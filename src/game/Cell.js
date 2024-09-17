@@ -134,7 +134,6 @@ export class Cell {
   }
 
   setFont(font) {
-    console.log(font)
     this.font = font;
     this.updateText();
   }
@@ -145,13 +144,13 @@ export class Cell {
 
     this.animatingCorrectness = true;
     try {
-      new TWEEN.Tween(this.fgOffsetContainer.position)
-          .to({y: -this.w/20}, 175)
+      new TWEEN.Tween(this.fgOffsetContainer.scale)
+          .to({x: 1.05, y: 1.05}, 175)
           .easing(TWEEN.Easing.Quadratic.Out)
           .start()
           .onComplete(() => {
-            new TWEEN.Tween(this.fgOffsetContainer.position)
-            .to({x: 0, y: 0}, 175)
+            new TWEEN.Tween(this.fgOffsetContainer.scale)
+            .to({x: 1, y: 1}, 175)
             .easing(TWEEN.Easing.Quadratic.Out)
             .start()
             .onComplete(() => {
@@ -210,7 +209,7 @@ export class Cell {
       this.gfx.rect(0, 0, this.w, this.w).fill({alpha:0, color:0xFFFFFF}).stroke({color:0x0d1821, width:2});
 
     } else {
-      this.gfx.rect(0, 0, this.w, this.w).fill(0x0d1821);
+      this.gfx.rect(-1, -1, this.w+2, this.w+2).fill(0x0d1821);
     }
 
 

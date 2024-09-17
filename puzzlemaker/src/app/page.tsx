@@ -62,7 +62,6 @@ export default function Home() {
         const pairCell = puz.grid[firstCell.j][firstCell.i]
         const clue = pairCell.across.clue
 
-        console.log(c.map((cell: any) => cell.letter).join(''), clue)
 
         acrossClues.push(clue)
       }
@@ -72,7 +71,6 @@ export default function Home() {
         const pairCell = puz.grid[firstCell.j][firstCell.i]
         const clue = pairCell.down.clue
 
-        console.log(c.map((cell: any) => cell.letter).join(''), clue)
 
         downClues.push(clue)
       }

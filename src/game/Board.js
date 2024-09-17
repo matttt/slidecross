@@ -2,7 +2,6 @@ import { Container, TextStyle, BitmapFontManager } from "pixi.js";
 import { Howl } from 'howler';
 
 import { boardStateToStr, getHorizontalConveyors, getVerticalConveyors } from './utils.js';
-import { resolution } from '../react/PuzzleView.jsx';
 import { Conveyor } from "./Conveyor.js";
 import { Cell } from "./Cell.js";
 import { HORIZONTAL, VERTICAL } from "./App.js";
@@ -28,7 +27,7 @@ export const FontNameMap = {
 
 
 export class Board {
-  constructor({ boardState, correctBoardState, clues, id, setClue, puzzleSolved, boardStateMeta, ticker }) {
+  constructor({ boardState, correctBoardState, clues, id, setClue, puzzleSolved, boardStateMeta, ticker, resolution }) {
     this.id = id
     this.correctData = correctBoardState;
     this.data = boardState;
@@ -37,6 +36,7 @@ export class Board {
     this.puzzleSolved = puzzleSolved;
     this.ticker = ticker;
     this.boardStateMeta = boardStateMeta || { ...initBoardStateMeta };
+
 
     this.timerInterval = this.startTimer()
 

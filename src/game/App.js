@@ -11,7 +11,7 @@ const DRAG_START_ZONE = 5
 
 
 export const ANIMATION_TIME = 200
-async function app({ pixiApp, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved }) {
+async function app({ pixiApp, puzzle, boardStateStr, boardStateMeta, setClue, puzzleSolved, resolution }) {
   const { stage, ticker, renderer } = pixiApp;
   stage.eventMode = 'passive';
 
@@ -38,7 +38,8 @@ async function app({ pixiApp, puzzle, boardStateStr, boardStateMeta, setClue, pu
     id: puzzle.id, 
     setClue,
     puzzleSolved,
-    ticker
+    ticker,
+    resolution
   };
 
   const board = new Board(boardInput)
