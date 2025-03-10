@@ -124,7 +124,7 @@ const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard, resoluti
   //   setShowTimer(!showTimer)
   // }
 
-  return <div style={{ width: resolution - widthOffset }} className="w-full mt-2 flex p-3 md:p-0">
+  return <div className="w-full mt-2 flex p-3 md:p-0">
     <IconButton onClick={onBack} color="primary" style={{ color: '#EEE', left: isMobile ? '' : '-10px' }} className="left-[-3]">
       <KeyboardBackspaceIcon />
     </IconButton>
