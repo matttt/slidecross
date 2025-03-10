@@ -118,7 +118,7 @@ const ClueArea = ({ clue, onPreviousClue, onNextClue, resolution }) => {
 
 const TopBar = ({ onBack, onUndo, openShuffleWarning, openTutorialCard, resolution }) => {
   // const [showTimer, setShowTimer] = useState(false);
-  const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
+  //const widthOffset = window.innerWidth > window.innerHeight ? 64 : 0;
 
   // const toggleTimer = () => {
   //   setShowTimer(!showTimer)
